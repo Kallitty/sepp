@@ -1,0 +1,69 @@
+.sepp__board {
+  display: flex;
+  padding: 2rem;
+  gap: 20px;
+}
+
+.sepp__board--content {
+  background: #ffff;
+  flex: 1;
+  border-radius: 20px;
+  // padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+// /* Base styles */
+// .sepp__board {
+//   display: flex;
+//   flex-direction: column; /* Start with a mobile-first approach */
+//   padding: 1rem;
+//   gap: 10px;
+// }
+
+// .sepp__board--content {
+//   background: #ffff;
+//   border-radius: 20px;
+//   padding: 1rem;
+//   display: flex;
+//   flex-direction: column; /* Ensure content is stacked on mobile */
+//   gap: 0.75rem;
+//   justify-content: space-between;
+// }
+
+// /* Medium devices (tablets, 768px and up) */
+// @media (min-width: 768px) {
+//   .sepp__board {
+//     flex-direction: row; /* Side-by-side layout for larger screens */
+//     padding: 2rem;
+//     gap: 20px;
+//   }
+
+//   .sepp__board--content {
+//     flex: 1;
+//     padding: 2rem;
+//     display: flex;
+//     flex-direction: row; /* Adjust content layout for wider screens */
+//     gap: 1.5rem;
+//   }
+// }
+
+// /* Large devices (desktops, 1024px and up) */
+// @media (min-width: 1024px) {
+//   .sepp__board--content {
+//     /* Further refinements for larger desktop displays */
+//     gap: 2rem;
+//     justify-content: space-between;
+//   }
+// }
+
+// /* Extra-large devices (large desktops, 1200px and up) */
+// @media (min-width: 1200px) {
+//   .sepp__board {
+//     /* Optionally, adjust the overall layout for very large screens */
+//   }
+//   .sepp__board--content {
+//     /* Custom adjustments for extra-large screens */
+//   }
+// }

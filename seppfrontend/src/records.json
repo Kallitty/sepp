@@ -1,0 +1,68 @@
+{
+  "jsQuizz": {
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQs",
+        "correctAnswer": "A. Virtual DOM",
+        "isVisible": true,
+        "icon": "/simages/quesimg1.jpg",
+        "question": "Which of the following is used in React.js to increase performance?",
+        "choices": [
+          "A. Virtual DOM",
+          "B. Original DOM",
+          "C. Both A and B",
+          "D. None of the above"
+        ]
+      },
+      {
+        "id": 2,
+        "type": "MCQs",
+        "correctAnswer": "B. User Interface framework",
+        "isVisible": true,
+        "icon": "/simages/siteimg1.jpg",
+        "question": "What is ReactJS?",
+        "choices": [
+          "A. Server-side framework",
+          "B. User Interface framework",
+          "C. Both a and b",
+          "D. None of the above"
+        ]
+      },
+      {
+        "id": 3,
+        "type": "MCQs",
+        "correctAnswer": "D. Props",
+        "isVisible": false,
+        "question": "Identify the one which is used to pass data to components from outside",
+        "choices": [
+          "A. Render with arguments",
+          "B. setState",
+          "C. PropTypes",
+          "D. Props"
+        ]
+      },
+      {
+        "id": 4,
+        "isVisible": false,
+        "question": "In which language is React.js written?",
+        "choices": ["A. Python", "B. Java", "C. C#", "D. JavaScript"],
+        "type": "MCQs",
+        "correctAnswer": "D. JavaScript"
+      },
+      {
+        "id": 5,
+        "type": "MCQs",
+        "correctAnswer": "C. JavaScript compiler",
+        "isVisible": false,
+        "question": "What is Babel?",
+        "choices": [
+          "A. JavaScript interpreter",
+          "B. JavaScript transpiler",
+          "C. JavaScript compiler",
+          "D. None of the above"
+        ]
+      }
+    ]
+  }
+}

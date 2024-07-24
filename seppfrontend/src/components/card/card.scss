@@ -1,0 +1,42 @@
+.sepp__card-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 2rem;
+}
+.sepp__card {
+  flex: 1;
+  background: rgb(232, 208, 238);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: 0.5s ease-in-out;
+}
+.sepp__card:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
+.sepp__card--cover {
+  background: #ffff;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 20px;
+  color: rgb(232, 208, 238);
+}
+
+.sepp__card--title {
+  background: hsla(300, 25%, 97%, 0.748);
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2c0326;
+  border-radius: 10px;
+}

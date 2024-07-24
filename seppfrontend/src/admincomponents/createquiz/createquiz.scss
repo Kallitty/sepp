@@ -1,0 +1,160 @@
+$primary: #b6b0d8;
+$accent: #b15eb1;
+$bg: #ffffff;
+$bg-accent: #e7e8e9;
+$disabled: #9c9c9c;
+$foreground: #2d264b;
+
+h2 {
+  font-size: 34px;
+  color: $foreground;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.sepp__quiz-container {
+  width: 1050px;
+  height: max-content;
+  background: $bg;
+  border-radius: 4px;
+  margin: 0 auto; // Center the container
+  margin-top: -20px;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .form-fields {
+    width: 60%;
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-size: 16px;
+        color: $foreground;
+        margin-bottom: 8px;
+      }
+
+      input[type='text'],
+      input[type='file'],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        color: $foreground;
+        border: 1px solid $disabled;
+        border-radius: 4px;
+        background: $bg-accent;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: $primary;
+        }
+      }
+
+      .title-input {
+        width: 50%; // Make title input shorter
+      }
+    }
+
+    .choices-group {
+      display: flex;
+      flex-direction: column;
+
+      .choice {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        input[type='text'] {
+          flex: 1;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background: linear-gradient(0deg, $primary 0.03%, $accent);
+        color: $bg;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+          background: linear-gradient(0deg, $accent, $primary 0.03%);
+        }
+
+        &:disabled {
+          background: $bg-accent;
+          color: $disabled;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .side-panel {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form-group {
+      width: 100%;
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-size: 16px;
+        color: $foreground;
+        margin-bottom: 8px;
+      }
+
+      input[type='number'] {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        color: $foreground;
+        border: 1px solid $disabled;
+        border-radius: 4px;
+        background: $bg-accent;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: $primary;
+        }
+      }
+    }
+
+    .icon-preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .sepp__quiz-icon-img {
+        max-width: 300px;
+        max-height: 300px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+      }
+
+      .icon-preview {
+        max-width: 300px;
+        max-height: 400px;
+        margin-top: 40px;
+      }
+    }
+  }
+}

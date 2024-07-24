@@ -1,0 +1,71 @@
+$primary: #b6b0d8;
+$accent: #b15eb1;
+$bg: #ffffff;
+$bg-accent: #e7e8e9;
+$disabled: #9c9c9c;
+$foreground: #2d264b;
+
+.sepp__exam-skeleton {
+}
+.sepp__exam--body {
+    // z-index: +1;
+    font-family: monospace;
+    background: linear-gradient(0deg, $primary 0.03%, $accent);
+    color: $foreground;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100vh;
+}
+.sepp__exam-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // This centers the children horizontally in the container
+    width: 650px;
+    background: $bg;
+    border-radius: 4px;
+    margin-top: 50px;
+    padding: 30px 60px;
+    box-sizing: border-box;
+    max-height: 500px;
+    h2 {
+        margin-top: 40px;
+        font-size: 30px;
+        font-weight: 700px;
+        text-shadow: $foreground;
+    }
+    p {
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 500px;
+        // color: $accent;
+    }
+    h2,
+    p {
+        text-align: center;
+        width: 100%;
+        color: $accent;
+    }
+}
+
+button {
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+}
+
+.sepp__exam-start-quiz-btn,
+.sepp__exam-go-back-btn {
+    background: linear-gradient(0deg, $primary 0.03%, $accent);
+    border-radius: 9px;
+    justify-content: space-between;
+    font-size: $bg;
+    padding: 10px 42px;
+    outline: none;
+    border: none;
+    margin-top: 40px;
+    cursor: pointer;
+}

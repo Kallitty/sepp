@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #fbf3ff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.section__padding {
+  padding: 5rem 2rem;
+}
+
+.sepp__contactus {
+  text-align: center;
+}
+
+.sepp__contactus-header {
+  margin-bottom: 3rem;
+}
+
+.gradient__text {
+  background: linear-gradient(45deg, #bb36fd, #9b00e8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.sepp__contactus-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.sepp__contactus-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sepp__contactus-info-item {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.sepp__contactus-icon {
+  font-size: 2rem;
+  color: #9b00e8;
+  margin-bottom: 1rem;
+}
+
+.sepp__contactus-form {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 25px;
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+}
+
+.sepp__contactus-form h2 {
+  margin-bottom: 1rem;
+  color: blueviolet;
+}
+
+.sepp__contactus-form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.sepp__contactus-form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.sepp__contactus-form-group input,
+.sepp__contactus-form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sepp__contactus-form-button {
+  background: linear-gradient(45deg, #bb36fd, #9b00e8);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+
+.sepp__contactus-form-button:hover {
+  background: linear-gradient(45deg, #c85bff, #b726ff);
+}
+
+.sepp__contactus-form-button:focus {
+  outline: none;
+}

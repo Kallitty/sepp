@@ -1,0 +1,204 @@
+$primary: #b6b0d8;
+$accent: #b15eb1;
+$bg: #ffffff;
+$bg-accent: #e7e8e9;
+$disabled: #9c9c9c;
+$foreground: #2d264b;
+
+.sepp__quiz-container {
+    width: 750px;
+    height: max-content;
+    background: $bg;
+    border-radius: 4px;
+    margin-top: 50px;
+    padding: 30px 60px;
+    box-sizing: border-box;
+    .sepp__quiz-icon-img {
+        max-width: 300px;
+        max-height: 300px;
+        margin-bottom: 1px; // Add some margin if needed
+        border-radius: 8px;
+        // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Add box shadow if needed
+    }
+
+    .sepp__quiz-heading-flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sepp__quiz-active-question-no {
+        font-size: 16px;
+        font-weight: 500px;
+        color: $primary;
+        margin-bottom: 4px;
+    }
+    .sepp__quiz-total-question {
+        font-size: 12px;
+        font-weight: 500px;
+        color: $disabled;
+        margin-bottom: 4px;
+    }
+    .sepp__quiz-timer {
+        font-size: 24px;
+        font-weight: 500px;
+        color: $disabled;
+    }
+    .sepp__quiz-timer-icon {
+        font-size: 44px;
+        font-weight: 500px;
+        color: $disabled;
+    }
+    h2 {
+        margin-top: 40px;
+        font-size: 20px;
+        font-weight: 500px;
+    }
+    ul {
+        margin-top: 20px;
+        margin-left: -40px;
+        li {
+            text-decoration: none;
+            list-style: none;
+            color: $foreground;
+            font-size: 15px;
+            background: $bg;
+            border: 1px solid $disabled;
+            border-radius: 16px;
+            padding: 11px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .sepp__quiz-selected-answer {
+            background: $primary;
+            border: 1px solid $accent;
+            color: $bg;
+        }
+    }
+    .sepp__quiz-footer {
+        display: flex;
+        justify-content: space-between; // This line to space items evenly
+        align-items: center; // this line to vertically center items
+    }
+
+    .sepp__quiz-yes-button .sepp__quiz-no-button {
+        background: linear-gradient(0deg, $primary 0.03%, $accent);
+        border-radius: 9px;
+        font-size: $bg;
+        padding: 10px 20px; // Adjust the padding as needed
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+    button {
+        row-gap: 30px;
+        background: linear-gradient(0deg, $primary 0.03%, $accent);
+        border-radius: 9px;
+        font-size: $bg;
+        padding: 10px 42px;
+        outline: none;
+        border: none;
+        margin-top: 15px;
+        cursor: pointer;
+        &:disabled {
+            background: $bg-accent;
+            color: $disabled;
+            cursor: not-allowed;
+        }
+    }
+
+    .sepp__quiz-next-button .sepp__quiz-previous-button {
+        background: linear-gradient(0deg, $primary 0.03%, $accent);
+        border-radius: 9px;
+        font-size: $bg;
+        padding: 10px 20px; // Adjust the padding as needed
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .sepp__quiz-modal {
+        display: flex;
+    }
+    .sepp__quiz-modal p {
+        font-size: 18px;
+        color: $accent;
+    }
+
+    .sepp__quiz-timeup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+        ); /* Semi-transparent black overlay */
+        z-index: 1; /* Ensure the overlay appears above other elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .sepp__quiz-timeup {
+            background-color: $bg;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sepp__quiz-timeup p {
+            margin-bottom: 10px;
+            color: $accent;
+        }
+
+        .sepp__quiz-timeup button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: $accent;
+            color: $bg;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sepp__quiz-timeup button:hover {
+            background-color: $foreground;
+        }
+    }
+
+    .sepp__quiz-result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h3 {
+            font-size: 24px;
+            letter-spacing: 1.4px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 16px;
+            font-weight: 700;
+            color: $accent;
+
+            span {
+                color: $primary;
+                font-size: 22px;
+            }
+        }
+        button {
+            font-size: 16px;
+            font-weight: 700;
+            color: $bg;
+        }
+    }
+
+    .red-timer {
+        color: red;
+    }
+}

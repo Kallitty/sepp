@@ -1,0 +1,67 @@
+.sepp__sidebar-grand {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1rem;
+  background: #ecd3e8;
+  margin: 0;
+  margin-top: 20px;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sepp__sidebar-left__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2.3rem;
+  height: 94vh;
+}
+.sepp__sidebar-left-menu--logo {
+  gap: 0.3rem;
+  display: flex;
+  flex-direction: row;
+}
+.sepp__sidebar-left__logo-icon {
+  font-size: 2rem;
+}
+.sepp__sidebar-left__logo-icon .sepp__sidebar-left-menu--logo h3 {
+  // font-size: 4.4rem;
+}
+.sepp__sidebar-left__logo {
+  text-align: center;
+  padding: 20px;
+  color: rgb(25, 22, 25);
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+.sepp__sidebar-left__logo .sepp__sidebar-left__icon {
+  font-size: 1.4rem;
+}
+.sepp__sidebar-left-menu--list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.sepp__sidebar-left-menu--list .sepp__sidebar-left__items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  color: #470647;
+}
+
+.sepp__sidebar-left-menu--list .sepp__sidebar-left__items:hover {
+  background: rgb(201, 135, 201);
+  color: rgb(232, 208, 238);
+}
+
+.sepp__sidebar-left__logout {
+  padding: 10px 0; // Adjust padding as needed
+  text-align: left; // Center the content
+}

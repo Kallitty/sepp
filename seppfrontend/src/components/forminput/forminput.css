@@ -1,0 +1,19 @@
+label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 10px;
+  color: rgb(75, 71, 71);
+  padding-left: 10px;
+}
+
+.sepp__forminput_span {
+  font-size: 8px;
+  padding: 2px;
+  color: red;
+  display: none;
+  padding-left: 10px;
+}
+input:invalid[focused='true'] ~ .sepp__forminput_span {
+  display: block;
+}

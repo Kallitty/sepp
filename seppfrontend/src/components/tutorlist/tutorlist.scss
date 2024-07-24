@@ -1,0 +1,48 @@
+.sepp__tutorlist--header {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+}
+.sepp__tutorlist--header h4 {
+  color: #2c0326;
+}
+.sepp__tutorlist--header select {
+  border-radius: 10px;
+  border: none;
+  padding: 8px 12px;
+  border: 1px solid #f1d2eb;
+  color: #2c0326;
+}
+.sepp__tutorlist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.sepp__tutorlist--list {
+  display: flex;
+  padding-right: 10px;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s ease-in-out;
+}
+.sepp__tutorlist--tutor-detail {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #2c0326;
+}
+.sepp__tutorlist--tutor-detail img {
+  width: 50px;
+  height: 50px;
+  background: #f1d2eb;
+  border-radius: 50%;
+}
+
+.sepp__tutorlist--list:hover {
+  background: rgb(232, 208, 238);
+  border-radius: 10px;
+}
+
+.sepp__tutorlist--tutor-todo {
+  color: #2c0326;
+}

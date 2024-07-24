@@ -1,0 +1,16 @@
+.sepp__brand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.sepp__brand div {
+  margin: 1rem;
+  /* flex: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 30px;
+}

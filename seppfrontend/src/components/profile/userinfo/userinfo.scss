@@ -1,0 +1,64 @@
+.sepp__profile-user--detail {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sepp__profile-user--detail img {
+  background: #fff;
+  border-radius: 50%;
+  width: 120px;
+  height: 125px;
+}
+
+.sepp__profile-username {
+  font-weight: 600;
+  color: #470647;
+  margin-top: -3px;
+}
+
+.sepp__profile-category {
+  color: #470647;
+  margin-top: -10px;
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  width: 120px;
+  height: 125px;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profile-picture-wrapper:hover .overlay {
+  opacity: 1;
+}
+
+.upload-icon {
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}

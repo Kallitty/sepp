@@ -1,0 +1,22 @@
+// admin.scss
+.admin-container {
+  background: white;
+
+  .navbar {
+    background: #343a40 !important;
+    color: white;
+  }
+
+  .sb-sidenav {
+    background: #343a40;
+  }
+
+  .sb-sidenav-footer {
+    background: #343a40;
+    color: white;
+  }
+
+  .sb-sidenav .nav-link {
+    color: white;
+  }
+}

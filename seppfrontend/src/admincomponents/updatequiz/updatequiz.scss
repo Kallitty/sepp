@@ -1,0 +1,51 @@
+.sepp__update-quizes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sepp__update-quiz__quiz {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.sepp__update-quiz--detail {
+  display: flex;
+  align-items: center;
+}
+
+.sepp__update-quiz--name {
+  margin-left: 10px;
+}
+
+.sepp__update-quiz--title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sepp__update-quiz--action {
+  display: flex;
+  gap: 10px;
+}
+
+.sepp__update-quiz--edit,
+.sepp__update-quiz--delete {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.sepp__update-quiz--edit {
+  background-color: #4caf50;
+}
+
+.sepp__update-quiz--delete {
+  background-color: #f44336;
+}

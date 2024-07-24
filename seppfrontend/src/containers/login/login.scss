@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fbf3ff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+p {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 1.4px;
+  font-weight: 500;
+  font-family: var(--font-family);
+  color: #fff;
+
+  margin: 0.5rem 0;
+}
+
+.sepp__login {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.sepp__login-card {
+  position: relative;
+  background: #fff;
+  height: 100%;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+}
+
+.sepp__login-left_container {
+  position: relative;
+  background: #fff;
+  border-radius: 25px;
+  height: 100%;
+  padding: 25px 0px 100px 0px;
+  // padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sepp__login-left_container header {
+  color: blueviolet;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+// .row {
+//   height: 100%;
+// }
+.sepp__login-left_container .myInput {
+  width: 350px;
+  border-radius: 25px;
+  padding: 10px;
+  padding-left: 50px;
+  border: none;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+}
+.sepp__login-left_container .myInput:focus {
+  outline: none;
+}
+
+.sepp__login-left_container .button {
+  background: linear-gradient(45deg, #bb36fd, #9b00e8);
+  color: #fff;
+  width: 350px;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+
+  margin: 0.5rem 0 0.5rem;
+  -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+.sepp__login-left_container .button:hover {
+  background: linear-gradient(45deg, #c85bff, #b726ff);
+}
+.sepp__login-left_container .button:focus {
+  outline: none;
+}
+.sepp__login-left_container .fas {
+  position: relative;
+  color: #bb36fd;
+  left: 36px;
+}
+.sepp__login-form {
+  position: relative;
+  margin-top: 50px;
+}
+.sepp__login-right_container {
+  position: relative;
+  background-image: linear-gradient(45deg, #f046ff, #9b00e8);
+  // background-image: url("https://images.unsplash.com/photo-1625590801433-741293b8fd18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGxhbmRpbmclMjBwYWdlfGVufDB8fDB8fHww");
+  border-radius: 25px;
+  height: 100%;
+  padding: 25px;
+  color: rgb(192, 192, 192);
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sepp__login-right_container header {
+  color: #fff;
+  font-size: 44px;
+}
+
+.sepp__login-right_container-box {
+  position: relative;
+  margin: 20px;
+  margin-bottom: 100px;
+}
+.sepp__login-right_container-box input {
+  margin-top: 20px;
+  background: transparent;
+  color: #fff;
+  width: 120px;
+  border: 2px solid#fff;
+  border-radius: 25px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+}
+.sepp__login-right_container-box input:hover {
+  border: 2px solid#eecbff;
+}
+.sepp__login-right_container-box input:focus {
+  outline: none;
+}
+.items {
+  margin: 5px 0px 20px 0px;
+}
+.sepp__login-signup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sepp__login-signup button {
+  background: linear-gradient(45deg, #4caf50, #087f23);
+  color: #fff;
+  width: 220px;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  margin-top: 5rem;
+  margin-right: 2rem;
+  -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+
+.sepp__login-signup button:hover {
+  background: linear-gradient(45deg, #498c4b, #1aa53a);
+}
+
+.sepp__login-signup button:focus {
+  outline: none;
+}
+
+.sepp__login-signup button .fas {
+  position: relative;
+  color: #47a961;
+  left: 36px;
+}
