@@ -19,18 +19,6 @@ const Sidebar = () => {
             </div>
             Profile
           </Link>
-          <Link className='nav-link' to='/admin/category'>
-            <div className='sb-nav-link-icon'>
-              <i className='fas fa-user'></i>
-            </div>
-            Category
-          </Link>
-          <Link className='nav-link' to='/admin/view-category'>
-            <div className='sb-nav-link-icon'>
-              <i className='fas fa-user'></i>
-            </div>
-            View Category
-          </Link>
           <Link className='nav-link' to='/admin/create-quiz'>
             <div className='sb-nav-link-icon'>
               <i className='fas fa-user'></i>

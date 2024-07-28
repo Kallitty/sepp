@@ -7,8 +7,6 @@ import ForgotPassword from '../containers/forgotpassword/ForgotPassword'
 import ResetPassword from '../containers/resetpassword/ResetPassword'
 import Dashboard from '../admincomponents/dashboard/Dashboard'
 import Profile from '../admincomponents/profile/Profile'
-import Category from '../admincomponents/category/Category'
-import ViewCategory from '../admincomponents/viewcategory/ViewCategory'
 import AdminPrivateRoute from './AdminPrivateRoute'
 import UserRoute from './UserRoute'
 import Board from '../containers/board/Board'
@@ -66,8 +64,6 @@ const routes = createBrowserRouter([
     children: [
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'profile', element: <Profile /> },
-      { path: 'category', element: <Category /> },
-      { path: 'view-category', element: <ViewCategory /> },
       { path: 'create-quiz', element: <CreateQuiz /> },
       { path: 'update-quiz', element: <UpdateQuiz /> },
       { path: 'edit-quiz/:id', element: <EditQuiz /> },
