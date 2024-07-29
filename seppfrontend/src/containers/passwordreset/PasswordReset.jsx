@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import swal from 'sweetalert'
-import './resetpassword.scss'
+import './passwordreset.scss'
 import { Navbar } from '../../components'
-import Footer from '../../containers/footer/Footer.jsx'
+import Footer from '../footer/Footer.jsx'
 
-const ResetPassword = () => {
+const PasswordReset = () => {
   const { token } = useParams()
   const navigate = useNavigate()
   const [passwordInput, setPasswordInput] = useState({
@@ -141,4 +141,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default PasswordReset

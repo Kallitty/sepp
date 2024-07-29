@@ -4,7 +4,7 @@ import Home from '../home/Home'
 import Login from '../containers/login/Login'
 import Signup from '../containers/signup/Signup'
 import ForgotPassword from '../containers/forgotpassword/ForgotPassword'
-import ResetPassword from '../containers/resetpassword/ResetPassword'
+import PasswordReset from '../containers/passwordreset/PasswordReset'
 import Dashboard from '../admincomponents/dashboard/Dashboard'
 import Profile from '../admincomponents/profile/Profile'
 import AdminPrivateRoute from './AdminPrivateRoute'
@@ -40,7 +40,7 @@ const routes = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Signup /> },
       { path: 'forgot-password', element: <ForgotPassword /> },
-      { path: 'password/reset/:token', element: <ResetPassword /> },
+      { path: 'password/reset/:token', element: <PasswordReset /> },
     ],
   },
   {

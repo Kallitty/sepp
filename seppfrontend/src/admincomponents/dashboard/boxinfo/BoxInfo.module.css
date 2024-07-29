@@ -1,0 +1,47 @@
+.boxInfoItem {
+  padding: 24px;
+  background: var(--light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.iconContainer {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 36px;
+}
+
+.textContainer h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.textContainer p {
+  color: var(--dark-grey);
+}
+
+.boxInfoItem:nth-child(1) .iconContainer {
+  background: var(--light-blue);
+  color: var(--blue);
+}
+
+.boxInfoItem:nth-child(2) .iconContainer {
+  background: var(--light-yellow);
+  color: var(--yellow);
+}
+
+.boxInfoItem:nth-child(3) .iconContainer {
+  background: var(--light-orange);
+  color: var(--orange);
+}

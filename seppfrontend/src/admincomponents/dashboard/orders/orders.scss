@@ -1,0 +1,31 @@
+/* Orders.module.css */
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orderTable th,
+.orderTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.orderTable th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.orderStatus {
+  font-weight: bold;
+  color: green; /* or red, based on status */
+}
+
+.orderDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.orderDetails h3 {
+  margin: 0 0 10px;
+}

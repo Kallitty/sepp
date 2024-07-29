@@ -1,15 +1,22 @@
+$primary: #b6b0d8;
+$accent: #b15eb1;
+$bg: #ffffff;
+$bg-accent: #e7e8e9;
+$disabled: #9c9c9c;
+$foreground: #2d264b;
+
 .sepp__edit-title {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
   background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px $foreground;
 
   h2 {
     margin-bottom: 1rem;
     text-align: center;
-    color: #333;
+    color: $accent;
   }
 
   .form-group {
@@ -19,13 +26,13 @@
       display: block;
       margin-bottom: 0.5rem;
       font-weight: bold;
-      color: #555;
+      color: $bg-accent;
     }
 
     input {
       width: 100%;
       padding: 0.75rem;
-      border: 1px solid #ddd;
+      border: 1px solid $bg;
       border-radius: 4px;
       font-size: 1rem;
       color: #333;
@@ -36,7 +43,7 @@
     display: block;
     width: 100%;
     padding: 0.75rem;
-    background-color: #007bff;
+    background-color: $accent;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -45,11 +52,11 @@
     transition: background-color 0.3s;
 
     &:disabled {
-      background-color: #007bff90;
+      background-color: $accent;
     }
 
     &:not(:disabled):hover {
-      background-color: #0056b3;
+      background-color: $primary;
     }
   }
 }
