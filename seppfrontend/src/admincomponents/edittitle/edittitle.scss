@@ -25,8 +25,9 @@ $foreground: #2d264b;
     label {
       display: block;
       margin-bottom: 0.5rem;
-      font-weight: bold;
-      color: $bg-accent;
+      // font-weight: bold;
+      font-size: 14px;
+      color: $foreground;
     }
 
     input {
