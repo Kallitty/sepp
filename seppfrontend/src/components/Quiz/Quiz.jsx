@@ -182,14 +182,13 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
                   </span>
                 </p>
               </div>
-              {q.isVisible && q.icon && (
+              {q.icon && (
                 <img
-                  src={`/icons/${q.icon}`}
+                  src={q.icon.startsWith('http') ? q.icon : `/icons/${q.icon}`}
                   alt={`Question ${q.id} icon`}
                   className='sepp__quiz-icon-img'
                 />
               )}
-
               <h2>{q.question}</h2>
               <ul>
                 {q.choices.map((answer, idx) => (
@@ -228,6 +227,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
               </div>
             </div>
           ))}
+
           {showTimeUpModal && (
             <div className='sepp__quiz-timeup-overlay'>
               <div className='sepp__quiz-timeup'>
