@@ -1,26 +1,60 @@
 import React from 'react'
 import { google, slack, atlassian, dropbox, shopify } from './imports.js'
 import './brand.css'
+import { motion } from 'framer-motion'
+
+const iconVariants = (duration) => ({
+  initial: { y: -10 },
+  animate: {
+    y: [10, -10],
+    transition: {
+      duration: duration,
+      ease: 'linear',
+      repeat: Infinity,
+      repeatType: 'reverse',
+    },
+  },
+})
 
 const Brand = () => {
   return (
     <div className='sepp__brand section__padding'>
       <div></div>
-      <div>
+      <motion.div
+        variants={iconVariants(2.5)}
+        initial='initial'
+        animate='animate'
+      >
         <img src={google} alt='google' />
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        variants={iconVariants(5)}
+        initial='initial'
+        animate='animate'
+      >
         <img src={slack} alt='slack' />
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        variants={iconVariants(3)}
+        initial='initial'
+        animate='animate'
+      >
         <img src={atlassian} alt='atlassian' />
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        variants={iconVariants(3.5)}
+        initial='initial'
+        animate='animate'
+      >
         <img src={dropbox} alt='dropbox' />
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        variants={iconVariants(2)}
+        initial='initial'
+        animate='animate'
+      >
         <img src={shopify} alt='shopify' />
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Feature from '../../components/feature/Feature.jsx'
 import './features.css'
+import { motion } from 'framer-motion'
 
 const featueresData = [
   {
@@ -25,13 +26,30 @@ const Features = () => {
   return (
     <div className='sepp__features section__padding' id='features'>
       <div className='sepp__features-heading'>
-        <h1 className='gradient__text'>
+        <motion.h1
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 0.5 }}
+          className='gradient__text'
+        >
           Your Best Career Choice Is Now, We Are Rooting For You To Succeed. You
           Need To Step In & Make It Happen.
-        </h1>
-        <p> Request Early Access to Make it Happen...</p>
+        </motion.h1>
+        <motion.p
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 1 }}
+        >
+          {' '}
+          Request Early Access to Make it Happen...
+        </motion.p>
       </div>
-      <div className='sepp__features-container'>
+      <motion.div
+        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: 100 }}
+        transition={{ duration: 1 }}
+        className='sepp__features-container'
+      >
         {featueresData.map((item, index) => (
           <Feature
             title={item.title}
@@ -39,7 +57,7 @@ const Features = () => {
             key={item.title + index}
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

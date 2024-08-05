@@ -2,25 +2,55 @@ import React from 'react'
 import './footer.css'
 import seppFooter from '../../assets/cutoutsepp.png'
 import ScrollToTop from '../scrolltotop/Scrolltotop'
+import { motion } from 'framer-motion'
+
+const iconVariants = (duration) => ({
+  initial: { y: -10 },
+  animate: {
+    y: [10, -10],
+    transition: {
+      duration: duration,
+      ease: 'linear',
+      repeat: Infinity,
+      repeatType: 'reverse',
+    },
+  },
+})
 
 const Footer = () => {
   return (
     <div className='sepp__footer section__padding'>
       <div className='sepp__footer-heading'>
-        <h1 className='gradient__text'>
+        <motion.h1
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 1 }}
+          className='gradient__text'
+        >
           Are you ready to embrace the future ahead of the curve?
-        </h1>
+        </motion.h1>
       </div>
       <ScrollToTop to='/register'>
         <div className='sepp__footer-btn'>
-          <p>Be among the first to gain privileged access today.</p>
+          <motion.p
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 100 }}
+            transition={{ duration: 1 }}
+          >
+            Be among the first to gain privileged access today.
+          </motion.p>
         </div>
       </ScrollToTop>
       <div className='sepp__footer-links'>
-        <div className='sepp__footer-links_logo'>
+        <motion.div
+          variants={iconVariants(2.5)}
+          initial='initial'
+          animate='animate'
+          className='sepp__footer-links_logo'
+        >
           <img src={seppFooter} alt='footerlogo' />
           <p>Pioneer Your Path to Success.</p>
-        </div>
+        </motion.div>
         <div className='sepp__footer-links_div'>
           <h4>Company</h4>
           <p>
@@ -58,9 +88,14 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className='sepp__footer-copyright'>
+      <motion.div
+        variants={iconVariants(1.5)}
+        initial='initial'
+        animate='animate'
+        className='sepp__footer-copyright'
+      >
         <p>© 2024 SEPP. All rights reserved.</p>
-      </div>
+      </motion.div>
     </div>
   )
 }
