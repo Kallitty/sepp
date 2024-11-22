@@ -43,10 +43,6 @@ const Navbar = ({ hideAuth }) => {
       </div>
       <div className='sepp__navbar-sign'>
         {!hideAuth && (
-          // <>
-          //   <p>Login</p>
-          //   <button type='button'>Sign up</button>
-          // </>
           <>
             <p>
               <Link to='/login'>Login</Link>
