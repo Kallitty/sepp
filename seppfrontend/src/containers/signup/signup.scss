@@ -189,3 +189,75 @@ p {
   display: none;
   padding-left: 10px;
 }
+
+@media screen and (max-width: 550px) {
+  .sepp__signup {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .sepp__signup-card {
+    margin: 0 auto; /* Center the card */
+    padding: 15px; /* Add padding to prevent content from touching edges */
+    box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.6); /* Reduce shadow for smaller screens */
+  }
+
+  .sepp__signup-left_container {
+    padding: 15px; /* Reduce padding to fit content properly */
+    display: block; /* Ensure single column layout */
+  }
+
+  .sepp__signup-form {
+    width: 100%; /* Make form take full width */
+    margin: 0 auto; /* Center the form */
+  }
+
+  .sepp__signup-form header {
+    font-size: 28px; /* Adjust header size for smaller screens */
+    text-align: center; /* Center-align text */
+  }
+
+  .items {
+    margin-bottom: 15px; /* Reduce spacing between form inputs */
+  }
+
+  .sepp__signup-right_container {
+    display: none; /* Hide right container on smaller screens if necessary */
+  }
+
+  .sepp__signup-login {
+    justify-content: center; /* Center the login button */
+    margin-top: 2rem; /* Adjust spacing */
+  }
+
+  .sepp__signup-login button {
+    width: 100%; /* Make button full-width */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sepp__signup {
+    padding: 5px;
+  }
+
+  .sepp__signup-card {
+    padding: 10px;
+  }
+  .sepp__signup-left_container .button {
+    width: 280px;
+  }
+  .sepp__signup-left_container .myInput {
+    width: 280px;
+  }
+  .sepp__signup-form header {
+    font-size: 24px; /* Further reduce header size */
+  }
+
+  .items input {
+    font-size: 14px; /* Adjust input font size */
+  }
+
+  .sepp__signup-login button {
+    font-size: 14px; /* Adjust button font size */
+    padding: 8px; /* Reduce padding */
+  }
+}

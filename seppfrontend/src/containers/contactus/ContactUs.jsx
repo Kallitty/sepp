@@ -11,28 +11,28 @@ const ContactUs = () => {
       <div className='sepp__contactus section__padding'>
         <div className='sepp__contactus-header'>
           <h1 className='gradient__text'>Get in Touch with Us</h1>
-          <p>
+          <div>
             We would love to hear from you. Whether you have a question about
             features, trials, pricing, need a demo, or anything else, our team
             is ready to answer all your questions.
-          </p>
+          </div>
         </div>
         <div className='sepp__contactus-content'>
           <div className='sepp__contactus-info'>
             <div className='sepp__contactus-info-item'>
               <FaPhoneAlt className='sepp__contactus-icon' />
               <h3>Phone</h3>
-              <p>+123 456 7890</p>
+              <>+123 456 7890</>
             </div>
             <div className='sepp__contactus-info-item'>
               <FaEnvelope className='sepp__contactus-icon' />
               <h3>Email</h3>
-              <p>support@sepp.com</p>
+              <>support@sepp.com</>
             </div>
             <div className='sepp__contactus-info-item'>
               <FaMapMarkerAlt className='sepp__contactus-icon' />
               <h3>Address</h3>
-              <p>123 SEPP Street, Learning City, 45678</p>
+              <>123 SEPP Street, Learning City, 45678</>
             </div>
           </div>
           <div className='sepp__contactus-form'>

@@ -34,14 +34,14 @@ function Signup() {
   const inputs = [
     {
       id: 1,
-      label: 'Fullname',
+      // label: 'Fullname',
       name: 'name',
       type: 'text',
       placeholder: 'Fullname',
     },
     {
       id: 2,
-      label: 'Email',
+      // label: 'Email',
       name: 'email',
       type: 'email',
       placeholder: 'Email',
@@ -50,14 +50,14 @@ function Signup() {
     },
     {
       id: 3,
-      label: 'Input Password',
+      // label: 'Input Password',
       name: 'password',
       type: 'password',
       placeholder: 'Input Password',
     },
     {
       id: 4,
-      label: 'Confirm Password',
+      // label: 'Confirm Password',
       name: 'password_confirmation',
       type: 'password',
       placeholder: 'Confirm Password',

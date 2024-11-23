@@ -109,9 +109,11 @@ function Login() {
                     </Link>
                   </div>
                   <div className='sepp__login-signup'>
-                    <ScrollToTop to='/register'>
-                      <button>Create an account</button>
-                    </ScrollToTop>
+                    <button>
+                      <ScrollToTop to='/register'>
+                        Create an account
+                      </ScrollToTop>
+                    </button>
                   </div>
                 </form>
               </div>

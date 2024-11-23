@@ -18,6 +18,7 @@ body {
 
 .sepp__donations {
   text-align: center;
+  color: #fff;
 }
 
 .sepp__donations-header {
@@ -61,11 +62,14 @@ body {
   padding: 2rem;
   border-radius: 25px;
   box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+  text-align: center; /* Ensures all child text is centered by default */
 }
 
 .sepp__donations-form h2 {
   margin-bottom: 1rem;
-  color: blueviolet;
+  margin-left: -15px;
+  color: #9b00e8;
+  text-align: center;
 }
 
 .sepp__donations-form-group {
