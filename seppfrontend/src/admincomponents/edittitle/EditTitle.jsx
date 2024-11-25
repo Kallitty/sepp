@@ -13,7 +13,7 @@ const EditTitle = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await axios.get(`/api/quizzes/${id}`)
+        const response = await axios.get(`/quizzes/${id}`)
         const quizData = response.data
         setTitle(quizData.title || '') // Ensure title is not undefined
       } catch (error) {
@@ -29,7 +29,7 @@ const EditTitle = () => {
     setLoading(true)
 
     try {
-      const response = await axios.put(`/api/quizzes/${id}`, { title })
+      const response = await axios.put(`/quizzes/${id}`, { title })
       console.log(response.data)
       swal('Success', 'Title updated successfully!', 'success').then(() => {
         navigate('/admin/update-quiz')

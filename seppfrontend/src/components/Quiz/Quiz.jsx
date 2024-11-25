@@ -20,7 +20,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await axios.get(`/api/quizzes/${quizId}`)
+        const response = await axios.get(`/quizzes/${quizId}`)
         const quiz = response.data
         setQuestions(quiz.questions)
         setSelectedAnswers(new Array(quiz.questions.length).fill(null))
@@ -106,7 +106,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
   }
 
   const submitResults = (resultData) => {
-    axios.post('api/store-quiz-results', resultData).then((res) => {
+    axios.post('/store-quiz-results', resultData).then((res) => {
       if (res.data.status === 200) {
         swal('Success.', res.data.message, 'success')
       } else if (res.data.status === 400) {

@@ -96,7 +96,7 @@ const CreateQuiz = () => {
     })
 
     axios
-      .post('/api/create-quiz', formData, {
+      .post('/create-quiz', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

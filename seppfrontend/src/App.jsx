@@ -10,5 +10,5 @@ const App = () => (
     <Footer />
   </div>
 )
-//comment
+
 export default App

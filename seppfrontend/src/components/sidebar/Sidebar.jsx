@@ -19,7 +19,7 @@ function Sidebar() {
   const logoutSubmit = (e) => {
     e.preventDefault()
     axios
-      .post(`api/logout`)
+      .post(`/logout`)
       .then((res) => {
         if (res.data.status === 200) {
           localStorage.removeItem('auth_token')

@@ -5,7 +5,8 @@ import './home/index.css'
 import router from './routes/router.jsx'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8000/'
+axios.defaults.baseURL =
+  import.meta.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Accept'] = 'application/json'
 axios.defaults.withCredentials = true

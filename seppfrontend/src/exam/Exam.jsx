@@ -13,7 +13,7 @@ const Exam = () => {
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
-        const response = await axios.get(`/api/quizzes/${quizId}`)
+        const response = await axios.get(`/quizzes/${quizId}`)
         setQuizData(response.data)
       } catch (error) {
         console.error('Error fetching quiz data:', error)

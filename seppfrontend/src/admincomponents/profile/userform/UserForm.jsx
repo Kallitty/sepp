@@ -34,7 +34,7 @@ const UserForm = ({ user, onSubmit }) => {
     e.preventDefault()
     if (isEditMode) {
       axios
-        .put(`/api/users/${user.id}`, formData)
+        .put(`/users/${user.id}`, formData)
         .then((response) => {
           swal('Success', 'User updated successfully', 'success')
           onSubmit(response.data)
@@ -47,7 +47,7 @@ const UserForm = ({ user, onSubmit }) => {
         })
     } else {
       axios
-        .post('/api/users', formData)
+        .post('/users', formData)
         .then((response) => {
           swal('Success', 'User created successfully', 'success')
           onSubmit(response.data)

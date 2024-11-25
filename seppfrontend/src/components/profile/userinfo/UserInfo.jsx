@@ -13,7 +13,7 @@ const UserInfo = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/api/user')
+        const response = await axios.get('/user')
         setUser(response.data)
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -41,15 +41,11 @@ const UserInfo = () => {
       formData.append('profile_picture', e.target.files[0])
 
       try {
-        const response = await axios.post(
-          '/api/user/profile-picture',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        )
+        const response = await axios.post('/user/profile-picture', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
 
         if (response.status === 200) {
           swal('Success!', 'Profile picture updated successfully.', 'success')

@@ -10,7 +10,7 @@ const UserRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get('/api/checkingAuthenticated')
+        const res = await axios.get('/checkingAuthenticated')
         if (res.data.status === 200) {
           setIsAuthenticated(true)
         }

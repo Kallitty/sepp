@@ -11,7 +11,7 @@ const Result = () => {
 
   useEffect(() => {
     axios
-      .get('/api/user-quiz-results')
+      .get('/user-quiz-results')
       .then((res) => {
         if (res.data.status === 200) {
           setScores(res.data.results)

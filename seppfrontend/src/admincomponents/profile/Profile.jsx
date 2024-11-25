@@ -14,7 +14,7 @@ const Profile = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/users')
+      const response = await axios.get('/users')
       setUsers(response.data)
     } catch (error) {
       console.error('Error fetching users:', error)
@@ -28,9 +28,9 @@ const Profile = () => {
   const handleUserSubmit = async (user) => {
     try {
       if (user.id) {
-        await axios.put(`/api/users/${user.id}`, user)
+        await axios.put(`/users/${user.id}`, user)
       } else {
-        await axios.post('/api/users', user)
+        await axios.post('/users', user)
       }
       fetchUsers()
       setSelectedUser(null)
@@ -41,7 +41,7 @@ const Profile = () => {
 
   const handleUserDelete = async (userId) => {
     try {
-      await axios.delete(`/api/users/${userId}`)
+      await axios.delete(`/users/${userId}`)
       fetchUsers()
     } catch (error) {
       console.error('Error deleting user:', error)
