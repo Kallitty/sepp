@@ -70,6 +70,12 @@ const CreateQuiz = () => {
     }
   }
 
+  const removeImage = (index) => {
+    const values = [...questions]
+    values[index].icon = null // Clear the icon for the current question
+    setQuestions(values)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true) // Set loading to true when form is submitted
@@ -231,11 +237,22 @@ const CreateQuiz = () => {
           </div>
           <div className='icon-preview-container'>
             {questions[currentQuestionIndex].icon && (
-              <img
-                src={URL.createObjectURL(questions[currentQuestionIndex].icon)}
-                alt='Question Icon'
-                className='icon-preview'
-              />
+              <div className='icon-preview-wrapper'>
+                <img
+                  src={URL.createObjectURL(
+                    questions[currentQuestionIndex].icon
+                  )}
+                  alt='Question Icon'
+                  className='icon-preview'
+                />
+                <button
+                  type='button'
+                  className='remove-icon-button'
+                  onClick={() => removeImage(currentQuestionIndex)}
+                >
+                  X
+                </button>
+              </div>
             )}
           </div>
         </div>

@@ -155,6 +155,32 @@ h2 {
         max-height: 400px;
         margin-top: 40px;
       }
+
+      .icon-preview-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .remove-icon-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      .remove-icon-button:hover {
+        background: darkred;
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ import Footer from '../footer/Footer.jsx'
 const PasswordReset = () => {
   const { token } = useParams()
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const [passwordInput, setPasswordInput] = useState({
     email: '',
     password: '',
@@ -23,6 +24,7 @@ const PasswordReset = () => {
 
   const resetSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
 
     const data = {
       email: passwordInput.email,
@@ -31,10 +33,11 @@ const PasswordReset = () => {
       token: token,
     }
 
-    axios.get('/sanctum/csrf-cookie').then((response) => {
+    axios.get('/sanctum/csrf-cookie').then(() => {
       axios
         .post('/password/reset', data)
         .then((res) => {
+          setLoading(false)
           if (res.status === 200) {
             swal('Success', res.data.message, 'success')
             navigate('/login')
@@ -46,6 +49,7 @@ const PasswordReset = () => {
           }
         })
         .catch((error) => {
+          setLoading(false)
           console.error(
             'There was an error with the password reset request!',
             error
@@ -128,8 +132,12 @@ const PasswordReset = () => {
                 </span>
               </div>
               <div className='sepp__form-group'>
-                <button type='submit' className='sepp__form-button'>
-                  Reset Password
+                <button
+                  type='submit'
+                  className='sepp__form-button'
+                  disabled={loading}
+                >
+                  {loading ? 'Resetting...' : 'Reset Password'}
                 </button>
               </div>
             </form>

@@ -21,7 +21,7 @@ const tutors = [
   {
     id: 3,
     image: 'Image5',
-    name: 'Mrs M. Cath',
+    name: 'Mrs O. Pres',
     duration: '4.5 hours',
     cost: '25.80',
   },

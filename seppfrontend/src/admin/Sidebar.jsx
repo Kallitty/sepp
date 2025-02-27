@@ -55,8 +55,8 @@ const Sidebar = () => {
             data-bs-parent='#sidenavAccordion'
           >
             <nav className='sb-sidenav-menu-nested nav'>
-              <Link className='nav-link' to='/admin/static-navigation'>
-                Static Navigation
+              <Link className='nav-link' to='/admin/allresult'>
+                All Scores
               </Link>
               <Link className='nav-link' to='/admin/light-sidenav'>
                 Light Sidenav

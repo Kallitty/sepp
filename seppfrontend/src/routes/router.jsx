@@ -23,6 +23,7 @@ import CreateQuiz from '../admincomponents/createquiz/CreateQuiz'
 import UpdateQuiz from '../admincomponents/updatequiz/UpdateQuiz'
 import EditQuiz from '../admincomponents/editquiz/EditQuiz'
 import EditTitle from '../admincomponents/edittitle/EditTitle'
+import AllResult from '../admincomponents/results/AllResult'
 
 const isAuthenticated = () => !!localStorage.getItem('auth_token')
 
@@ -68,6 +69,7 @@ const routes = createBrowserRouter([
       { path: 'update-quiz', element: <UpdateQuiz /> },
       { path: 'edit-quiz/:id', element: <EditQuiz /> },
       { path: 'edit-title/:id', element: <EditTitle /> },
+      { path: 'allresult', element: <AllResult /> },
     ],
   },
   { path: '*', element: <NotFound /> },

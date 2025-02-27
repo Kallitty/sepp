@@ -21,18 +21,19 @@ const EditQuiz = () => {
   ])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [loading, setLoading] = useState(false)
+  const [imageChanged, setImageChanged] = useState({})
 
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await axios.get(`/quizzes/${id}`)
+        const response = await axios.get(`/view-quizzes/${id}`)
         const quizData = response.data
         setTitle(quizData.title || '')
         setDuration(quizData.duration || '')
         setQuestions(
           quizData.questions.map((q) => ({
             ...q,
-            icon: q.icon ? q.icon : null,
+            icon: q.icon ? q.icon : '',
           }))
         )
       } catch (error) {
@@ -47,6 +48,7 @@ const EditQuiz = () => {
     const values = [...questions]
     if (field === 'icon') {
       values[index][field] = e.target.files[0]
+      setImageChanged((prev) => ({ ...prev, [index]: true })) // Mark image as changed
     } else {
       values[index][field] = e.target.value
     }
@@ -94,6 +96,13 @@ const EditQuiz = () => {
     }
   }
 
+  const removeImage = (index) => {
+    const values = [...questions]
+    values[index].icon = null // Clear the icon for the current question
+    setQuestions(values)
+    setImageChanged((prev) => ({ ...prev, [index]: true })) // Mark image as changed
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -101,6 +110,7 @@ const EditQuiz = () => {
     const formData = new FormData()
     formData.append('title', title)
     formData.append('duration', duration)
+
     questions.forEach((question, index) => {
       formData.append(`questions[${index}][question]`, question.question)
       formData.append(`questions[${index}][type]`, question.type)
@@ -113,15 +123,19 @@ const EditQuiz = () => {
         formData.append(`questions[${index}][choices][${choiceIndex}]`, choice)
       })
 
-      if (question.icon) {
+      // Only append the icon if it has been changed
+      if (imageChanged[index] && question.icon instanceof File) {
+        formData.append(`questions[${index}][icon]`, question.icon)
+      } else if (question.icon) {
+        // Retain the existing image path
         formData.append(`questions[${index}][icon]`, question.icon)
       }
     })
 
     try {
-      const response = await axios.put(`/quizzes/${id}`, formData, {
+      const response = await axios.post(`/update-quizzes/${id}`, formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
       })
       console.log('Response data:', response.data)
@@ -130,7 +144,40 @@ const EditQuiz = () => {
       })
     } catch (error) {
       console.error('Error:', error)
-      swal('Error', 'Failed to update quiz', 'error')
+      let errorMessage = 'An error occurred. Please try again later.'
+
+      if (error.response) {
+        switch (error.response.status) {
+          case 401:
+            errorMessage = 'Unauthorized. Please log in and try again.'
+            break
+          case 403:
+            errorMessage =
+              'Forbidden. You do not have permission to perform this action.'
+            break
+          case 404:
+            errorMessage = 'Not Found. The requested resource was not found.'
+            break
+          case 405:
+            errorMessage =
+              'Method Not Allowed. Please check the request method.'
+            break
+          case 422:
+            errorMessage = Object.values(error.response.data.errors)
+              .flat()
+              .join('\n')
+            break
+          case 500:
+            errorMessage =
+              'Internal Server Error. Please contact the support team.'
+            break
+          default:
+            errorMessage = error.response.data.message || errorMessage
+            break
+        }
+      }
+
+      swal('Error', errorMessage, 'error')
     } finally {
       setLoading(false)
     }
@@ -254,17 +301,26 @@ const EditQuiz = () => {
             </div>
             <div className='icon-preview-container'>
               {questions[currentQuestionIndex].icon && (
-                <img
-                  src={
-                    questions[currentQuestionIndex].icon instanceof File
-                      ? URL.createObjectURL(
-                          questions[currentQuestionIndex].icon
-                        )
-                      : questions[currentQuestionIndex].icon
-                  }
-                  alt='Question Icon'
-                  className='icon-preview'
-                />
+                <div className='icon-preview-wrapper'>
+                  <img
+                    src={
+                      questions[currentQuestionIndex].icon instanceof File
+                        ? URL.createObjectURL(
+                            questions[currentQuestionIndex].icon
+                          )
+                        : questions[currentQuestionIndex].icon
+                    }
+                    alt='Question Icon'
+                    className='icon-preview'
+                  />
+                  <button
+                    type='button'
+                    className='remove-icon-button'
+                    onClick={() => removeImage(currentQuestionIndex)}
+                  >
+                    X
+                  </button>
+                </div>
               )}
             </div>
           </div>

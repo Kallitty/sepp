@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import './result.scss'
+import './allresult.scss'
 import { ClipLoader } from 'react-spinners'
 
-const Result = () => {
+const AllResult = () => {
   const [loading, setLoading] = useState(true)
   const [scores, setScores] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -11,7 +11,7 @@ const Result = () => {
 
   useEffect(() => {
     axios
-      .get('/user-quiz-results')
+      .get('/allquiz-results') // Fetch results from the admin endpoint
       .then((res) => {
         if (res.data.status === 200) {
           setScores(res.data.results)
@@ -71,11 +71,13 @@ const Result = () => {
 
   return (
     <div className='result-container'>
-      <h2>Scoreboard</h2>
+      <h2>Master Scoreboard</h2>
       <table>
         <thead>
           <tr>
             <th>Serial No.</th>
+            <th>Name</th>
+            <th>Email</th>
             <th>Quiz Title</th>
             <th>Quiz ID</th>
             <th>Score</th>
@@ -88,7 +90,9 @@ const Result = () => {
           {currentScores.map((score, index) => (
             <tr key={score.id}>
               <td>{indexOfFirstScore + index + 1}</td>
-              <td>{score.quiz_title}</td> {/* Display the quiz title */}
+              <td>{score.user_name}</td> {/* Display user name */}
+              <td>{score.user_email}</td> {/* Display user email */}
+              <td>{score.quiz_title}</td> {/* Display quiz title */}
               <td>{score.quiz_id}</td>
               <td>{score.score}</td>
               <td>{score.correct_answers}</td>
@@ -114,4 +118,4 @@ const Result = () => {
   )
 }
 
-export default Result
+export default AllResult

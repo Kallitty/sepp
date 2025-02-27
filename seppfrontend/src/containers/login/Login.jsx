@@ -16,6 +16,7 @@ function Login() {
     password: '',
     error_list: {},
   })
+  const [loading, setLoading] = useState(false) // To handle button loading state
 
   const handleInput = (e) => {
     setLogin({ ...loginInput, [e.target.name]: e.target.value })
@@ -23,30 +24,40 @@ function Login() {
 
   const loginSubmit = (e) => {
     e.preventDefault()
-
+    setLoading(true) // Start loading
     const data = {
       email: loginInput.email,
       password: loginInput.password,
     }
 
     axios.get('/sanctum/csrf-cookie').then((response) => {
-      axios.post('/login', data).then((res) => {
-        if (res.data.status === 200) {
-          localStorage.setItem('auth_token', res.data.token)
-          localStorage.setItem('auth_username', res.data.username)
-          swal('Success', res.data.message, 'success').then(() => {
-            if (res.data.role === 'admin') {
-              navigate('/admin/dashboard')
-            } else {
-              navigate('/boardoutlet')
-            }
-          })
-        } else if (res.data.status === 401) {
-          swal('Warning', res.data.message, 'warning')
-        } else {
-          setLogin({ ...loginInput, error_list: res.data.validation_errors })
-        }
-      })
+      axios
+        .post('/login', data)
+        .then((res) => {
+          setLoading(false) // Stop loading after response
+          if (res.data.status === 200) {
+            localStorage.setItem('auth_token', res.data.token)
+            localStorage.setItem('auth_username', res.data.username)
+            swal('Success', res.data.message, 'success').then(() => {
+              if (res.data.role === 'admin') {
+                navigate('/admin/dashboard')
+              } else {
+                navigate('/boardoutlet')
+              }
+            })
+          } else if (res.data.status === 401) {
+            swal('Warning', res.data.message, 'warning')
+          } else if (res.data.status === 403) {
+            // Blocked user
+            swal('Blocked', res.data.message, 'error')
+          } else {
+            setLogin({ ...loginInput, error_list: res.data.validation_errors })
+          }
+        })
+        .catch((error) => {
+          setLoading(false) // Handle loading in case of error
+          swal('Error', 'An error occurred. Please try again.', 'error')
+        })
     })
   }
 
@@ -98,7 +109,10 @@ function Login() {
                     )}
                   </div>
 
-                  <input type='submit' className='button' value='Login' />
+                  <button type='submit' className='button' disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
+                  </button>
+
                   <div>
                     <Link
                       to='/forgot-password'

@@ -21,6 +21,7 @@ function Signup() {
   })
 
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false) // Add loading state
 
   useEffect(() => {
     if (location.state && location.state.email) {
@@ -34,14 +35,12 @@ function Signup() {
   const inputs = [
     {
       id: 1,
-      // label: 'Fullname',
       name: 'name',
       type: 'text',
       placeholder: 'Fullname',
     },
     {
       id: 2,
-      // label: 'Email',
       name: 'email',
       type: 'email',
       placeholder: 'Email',
@@ -50,14 +49,12 @@ function Signup() {
     },
     {
       id: 3,
-      // label: 'Input Password',
       name: 'password',
       type: 'password',
       placeholder: 'Input Password',
     },
     {
       id: 4,
-      // label: 'Confirm Password',
       name: 'password_confirmation',
       type: 'password',
       placeholder: 'Confirm Password',
@@ -66,6 +63,7 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true) // Set loading to true
 
     const data = {
       name: values.name,
@@ -74,17 +72,24 @@ function Signup() {
       password_confirmation: values.password_confirmation,
     }
 
-    axios.get('/sanctum/csrf-cookie').then((response) => {
-      axios.post('/register', data).then((res) => {
-        if (res.data.status === 200) {
-          localStorage.setItem('auth_token', res.data.token)
-          localStorage.setItem('auth_username', res.data.username)
-          swal('Success', res.data.message, 'success')
-          navigate('/login')
-        } else {
-          setErrors(res.data.validation_errors)
-        }
-      })
+    axios.get('/sanctum/csrf-cookie').then(() => {
+      axios
+        .post('/register', data)
+        .then((res) => {
+          if (res.data.status === 200) {
+            localStorage.setItem('auth_token', res.data.token)
+            localStorage.setItem('auth_username', res.data.username)
+            swal('Success', res.data.message, 'success')
+            navigate('/login')
+          } else {
+            setErrors(res.data.validation_errors)
+          }
+          setLoading(false) // Reset loading state
+        })
+        .catch(() => {
+          swal('Error', 'Something went wrong, please try again', 'error')
+          setLoading(false) // Reset loading state on error
+        })
     })
   }
 
@@ -127,7 +132,10 @@ function Signup() {
                     </label>
                   </div>
                   <br />
-                  <input type='submit' className='button' value='Register' />
+                  {/* Update button to reflect loading state */}
+                  <button type='submit' className='button' disabled={loading}>
+                    {loading ? 'Registering...' : 'Register'}
+                  </button>
                   <div className='sepp__signup-login'>
                     Already registered? <br />
                     <ScrollToTop to='/login'>
