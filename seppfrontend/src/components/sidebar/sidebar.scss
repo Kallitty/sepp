@@ -148,7 +148,7 @@
   padding: 10px;
   border-radius: 10px;
   transition: 0.3s ease-in-out;
-  color: #470647;
+  color: #470647; ///////
 
   @media screen and (max-width: 1200px) {
     font-size: 1rem; // Reduce font size for large tablets and smaller desktops
@@ -176,8 +176,8 @@
 }
 
 .sepp__sidebar-left-menu--list .sepp__sidebar-left__items:hover {
-  background: rgb(201, 135, 201);
-  color: rgb(232, 208, 238);
+  background: rgb(220, 174, 220);
+  // color: rgb(232, 208, 238);
 }
 
 .sepp__sidebar-left__logout {
