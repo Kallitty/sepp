@@ -23,9 +23,7 @@ export default function BoardOutlet() {
       <div className='content'>
         <header>
           <div>
-            <a href='#' className='btn-logout'>
-              {getGreeting()}
-            </a>
+            <a className='greeting'>{getGreeting()}</a> {/* Add a class here */}
           </div>
         </header>
         <main>

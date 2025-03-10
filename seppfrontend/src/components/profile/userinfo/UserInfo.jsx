@@ -79,7 +79,7 @@ const UserInfo = () => {
         <img
           src={image || (user && user.profile_picture) || DefaultProfilePic}
           alt='Profile'
-          className='profile-picture'
+          className='sepp__profile-user--profile-picture'
         />
         <div className='overlay'>
           <label htmlFor='file-input' className='upload-icon'>

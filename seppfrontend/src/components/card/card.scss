@@ -2,8 +2,26 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  margin-top: 2rem;
+  @media screen and (max-width: 1200px) {
+    gap: 18px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    gap: 14px; // Reduce gap for tablets
+  }
+
+  @media (max-width: 550px) {
+    width: 160px;
+    // flex-direction: column; // Stack cards vertically on screens 550px or smaller
+    gap: 6px; // Reduce gap between cards
+  }
+
+  @media screen and (max-width: 400px) {
+    gap: 4px; // Minimal gap for very small screens
+  }
 }
+
 .sepp__card {
   flex: 1;
   background: rgb(232, 208, 238);
@@ -14,11 +32,33 @@
   flex-direction: column;
   gap: 20px;
   transition: 0.5s ease-in-out;
+  @media screen and (max-width: 1200px) {
+    gap: 18px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 120px;
+    height: 170px;
+
+    gap: 14px; // Reduce gap for tablets
+  }
+
+  @media (max-width: 550px) {
+    width: 75px; // Make cards take full width on screens 550px or smaller
+    height: 80px;
+    padding: 5px; // Reduce padding for smaller screens
+  }
+
+  @media screen and (max-width: 400px) {
+    gap: 8px; // Minimal gap for very small screens
+  }
 }
+
 .sepp__card:hover {
   transform: scale(1.04);
   cursor: pointer;
 }
+
 .sepp__card--cover {
   background: #ffff;
   font-size: 3rem;
@@ -28,6 +68,20 @@
   padding: 20px;
   border-radius: 20px;
   color: rgb(232, 208, 238);
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 2rem; // Reduce icon size for screens 550px or smaller
+    padding: 5px; // Reduce padding for smaller screens
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 1.5rem; // Reduce icon size for screens 550px or smaller
+    padding: 3px;
+  }
 }
 
 .sepp__card--title {
@@ -39,4 +93,16 @@
   font-weight: 700;
   color: #2c0326;
   border-radius: 10px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 6px; // Reduce font size for screens 550px or smaller
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 4px;
+  }
 }

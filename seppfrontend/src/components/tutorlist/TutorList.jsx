@@ -38,7 +38,7 @@ const TutorList = () => {
   return (
     <div className='sepp__tutorlist'>
       <div className='sepp__tutorlist--header'>
-        <h2>Tutors</h2>
+        <h3>Tutors</h3>
         <select name='' id=''>
           <option value='English'>English</option>
           <option value='French'>French</option>

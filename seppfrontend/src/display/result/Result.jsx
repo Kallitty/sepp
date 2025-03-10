@@ -64,40 +64,42 @@ const Result = () => {
   if (loading) {
     return (
       <div className='loading-container'>
-        <ClipLoader size={50} color={'#123abc'} loading={loading} />
+        <ClipLoader size={25} color={'#123abc'} loading={loading} />
       </div>
     )
   }
 
   return (
-    <div className='result-container'>
-      <h2>Scoreboard</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Serial No.</th>
-            <th>Quiz Title</th>
-            <th>Quiz ID</th>
-            <th>Score</th>
-            <th>Correct Answers</th>
-            <th>Wrong Answers</th>
-            <th>Percentage</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentScores.map((score, index) => (
-            <tr key={score.id}>
-              <td>{indexOfFirstScore + index + 1}</td>
-              <td>{score.quiz_title}</td> {/* Display the quiz title */}
-              <td>{score.quiz_id}</td>
-              <td>{score.score}</td>
-              <td>{score.correct_answers}</td>
-              <td>{score.wrong_answers}</td>
-              <td>{score.correct_answers_percentage}%</td>
+    <div className='sepp_result-container'>
+      <h3>Scoreboard</h3>
+      <div className='table-wrapper'>
+        <table>
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Quiz Title</th>
+              <th>Quiz ID</th>
+              <th>Score</th>
+              <th>Correct Answers</th>
+              <th>Wrong Answers</th>
+              <th>Percentage</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentScores.map((score, index) => (
+              <tr key={score.id}>
+                <td>{indexOfFirstScore + index + 1}</td>
+                <td>{score.quiz_title}</td>
+                <td>{score.quiz_id}</td>
+                <td>{score.score}</td>
+                <td>{score.correct_answers}</td>
+                <td>{score.wrong_answers}</td>
+                <td>{score.correct_answers_percentage}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className='pagination-container'>
         <button onClick={handlePrevious} disabled={currentPage === 1}>
           Previous

@@ -1,7 +1,17 @@
 .sepp__board {
   display: flex;
-  padding: 2rem;
-  gap: 20px;
+  padding: 1rem;
+  gap: 10px;
+  @media screen and (max-width: 768px) {
+  }
+
+  @media (max-width: 550px) {
+    gap: 1px;
+    // width: 70px;
+  }
+
+  @media screen and (max-width: 400px) {
+  }
 }
 
 .sepp__board--content {
@@ -12,6 +22,17 @@
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 550px) {
+    gap: 0.1rem;
+    // width: 0px; //fluke
+  }
+
+  @media screen and (max-width: 400px) {
+  }
 }
 
 // /* Base styles */

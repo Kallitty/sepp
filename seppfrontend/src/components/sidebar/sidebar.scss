@@ -2,47 +2,142 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
+  margin: 10px;
   background: #ecd3e8;
-  margin: 0;
-  margin-top: 20px;
-  padding: 20px;
+  // margin-top: 20px;
+  // padding: 20px;
   font-family: 'Montserrat', sans-serif;
+
+  @media screen and (max-width: 1200px) {
+    // padding: 15px; // Reduce padding for large tablets and smaller desktops
+    margin-top: 15px;
+    border-radius: 1.2rem;
+    margin: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    // padding: 10px; // Reduce padding for tablets
+    margin-top: 10px;
+    border-radius: 1rem;
+    margin: 6px;
+  }
+
+  @media screen and (max-width: 550px) {
+    // padding: 8px; // Reduce padding for mobile devices
+    border-radius: 0.7rem;
+    margin: 3px;
+  }
+
+  @media screen and (max-width: 400px) {
+    // padding: 5px; // Minimal padding for very small screens
+    border-radius: 0.5rem;
+    margin: 2px;
+  }
 }
 
 .sepp__sidebar-left__menu {
   display: flex;
   flex-direction: column;
-  gap: 2.3rem;
+  gap: 2rem;
   height: 94vh;
+
+  @media screen and (max-width: 1200px) {
+    gap: 1.8rem; // Reduce gap for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 1.3rem; // Reduce gap for tablets
+    height: auto; // Auto height for smaller screens
+  }
+
+  @media screen and (max-width: 550px) {
+    gap: 0.8rem; // Reduce gap for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    gap: 0.6rem; // Minimal gap for very small screens
+  }
 }
+
 .sepp__sidebar-left-menu--logo {
   gap: 0.3rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column; // Stack logo and text vertically on smaller screens
+    // gap: 0.5rem; // Reduce gap for smaller screens
+  }
+
+  @media screen and (max-width: 550px) {
+    // gap: 0.3rem; // Further reduce gap for mobile devices
+  }
 }
+
 .sepp__sidebar-left__logo-icon {
   font-size: 2rem;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1.8rem; // Reduce icon size for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem; // Reduce icon size for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 1.2rem; // Reduce icon size for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 1.1rem; // Minimal icon size for very small screens
+  }
 }
-.sepp__sidebar-left__logo-icon .sepp__sidebar-left-menu--logo h3 {
-  // font-size: 4.4rem;
+
+.sepp__sidebar-left-menu--logo h3 {
+  font-size: 1.5rem;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1.2rem; // Reduce font size for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.1rem; // Reduce font size for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.9rem; // Reduce font size for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.7rem; // Minimal font size for very small screens
+  }
 }
-.sepp__sidebar-left__logo {
-  text-align: center;
-  padding: 20px;
-  color: rgb(25, 22, 25);
-  align-items: center;
-  display: flex;
-  gap: 20px;
-}
-.sepp__sidebar-left__logo .sepp__sidebar-left__icon {
-  font-size: 1.4rem;
-}
+
 .sepp__sidebar-left-menu--list {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 1200px) {
+    gap: 15px; // Reduce gap for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 10px; // Reduce gap for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    gap: 5px; // Reduce gap for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    gap: 3px; // Minimal gap for very small screens
+  }
 }
+
 .sepp__sidebar-left-menu--list .sepp__sidebar-left__items {
   display: flex;
   align-items: center;
@@ -54,6 +149,30 @@
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   color: #470647;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1rem; // Reduce font size for large tablets and smaller desktops
+    gap: 15px; // Reduce gap for large tablets and smaller desktops
+    padding: 8px; // Reduce padding for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.9rem; // Reduce font size for tablets
+    gap: 10px; // Reduce gap for tablets
+    padding: 6px; // Reduce padding for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.4rem; // Reduce font size for mobile devices
+    gap: 8px; // Reduce gap for mobile devices
+    padding: 5px; // Reduce padding for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.3rem; // Minimal font size for very small screens
+    gap: 5px; // Minimal gap for very small screens
+    padding: 4px; // Minimal padding for very small screens
+  }
 }
 
 .sepp__sidebar-left-menu--list .sepp__sidebar-left__items:hover {
@@ -62,6 +181,46 @@
 }
 
 .sepp__sidebar-left__logout {
-  padding: 10px 0; // Adjust padding as needed
-  text-align: left; // Center the content
+  padding: 10px 0;
+  text-align: left;
+  font-size: 0.8rem;
+
+  @media screen and (max-width: 1200px) {
+    // padding: 8px 0; // Reduce padding for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    // padding: 6px 0; // Reduce padding for tablets
+    text-align: center; // Center-align logout button on smaller screens
+  }
+
+  @media screen and (max-width: 550px) {
+    // padding: 5px 0; // Reduce padding for mobile devices
+    font-size: 0.6rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    // padding: 4px 0; // Minimal padding for very small screens
+    font-size: 0.3rem;
+  }
+}
+
+.sepp__sidebar-left__logouticon {
+  font-size: 1.2rem;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1.1rem; // Reduce icon size for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem; // Reduce icon size for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.6rem; // Reduce icon size for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.3rem; // Minimal icon size for very small screens
+  }
 }

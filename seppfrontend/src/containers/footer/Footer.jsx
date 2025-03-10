@@ -94,7 +94,7 @@ const Footer = () => {
         animate='animate'
         className='sepp__footer-copyright'
       >
-        <p>© 2024 SEPP. All rights reserved.</p>
+        <p>© 2025 SEPP. All rights reserved.</p>
       </motion.div>
     </div>
   )

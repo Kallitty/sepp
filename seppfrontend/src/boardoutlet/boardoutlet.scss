@@ -4,23 +4,18 @@
 }
 
 #boardOutlet aside {
-  // width: 240px;
   background-color: #844d725b;
-  padding: 1rem;
 }
 
 #boardOutlet aside > a {
   display: block;
-  padding: 0.75rem 1rem;
-  // border-radius: 6px;
+  padding: 0.2rem 0.3rem;
   color: white;
-
-  // text-decoration: none;
   transition: all 0.2s;
 }
 
 #boardOutlet aside > a:hover {
-  // background-color: rgba(0, 0, 0, 0.327);
+  background-color: rgba(0, 0, 0, 0.327);
 }
 
 #boardOutlet .content {
@@ -28,15 +23,39 @@
 }
 
 #boardOutlet header {
-  height: 40px;
-  padding: 2rem 3rem;
+  height: 2.5rem;
   background-color: white;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.534);
   display: flex;
+  padding-left: 1rem;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    height: 1.5rem;
+    padding-left: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    height: 1rem;
+    padding-left: 0.5rem;
+  }
 }
 
 #boardOutlet main {
   // padding: 2rem;
+}
+
+// Add styles for the greeting text
+.greeting {
+  font-size: 1rem; // Default size for larger screens
+
+  // Adjust font size for smaller screens
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
 }

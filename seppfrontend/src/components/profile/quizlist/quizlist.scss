@@ -1,9 +1,16 @@
 .sepp__profile-quizes {
   background: #fff;
-  
+
+  @media (max-width: 768px) {
+    padding: 10px; // Add padding for smaller screens
+  }
+  @media (max-width: 550px) {
+    padding: 2px; // Add padding for smaller screens
+  }
 }
 
 .sepp__profile-quiz__quiz {
+  height: max-content;
   background: #eadded;
   padding: 10px;
   display: flex;
@@ -13,13 +20,30 @@
   margin-top: 10px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
-   margin-bottom: 10px;
+  margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    margin-top: 5px;
+
+    // flex-direction: column; // Stack quiz details vertically on smaller screens
+    // align-items: flex-start; // Align items to the left
+    padding: 2px;
+  }
+  @media (max-width: 550px) {
+    margin-top: 1px;
+    padding: 1px;
+  }
 }
 
 .sepp__profile-quiz--detail {
   display: flex;
-  gap: 5px;
-  align-items: center;
+  // align-items: center;
+
+  @media (max-width: 768px) {
+  }
+  @media (max-width: 550px) {
+    display: grid;
+  }
 }
 
 .sepp__profile-quiz--icon {
@@ -31,29 +55,69 @@
   justify-content: center;
   border-radius: 50%;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+  }
+  @media (max-width: 550px) {
+    width: 10px;
+    height: 10px;
+    font-size: 8px;
+  }
 }
 
+.sepp__profile-quiz--title {
+  color: #470647;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (max-width: 550px) {
+    font-size: 10px;
+  }
+}
+.sepp__profile-quiz--duration {
+  color: #470647;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 550px) {
+    font-size: 6px;
+  }
+}
 .sepp__profile-quiz--title .sepp__profile-quiz--duration {
   font-size: 10px;
-  
+
+  @media (max-width: 768px) {
+    font-size: 8px; //
+  }
+  @media (max-width: 550px) {
+    font-size: 3px; //
+  }
 }
 
 .sepp__profile-quiz--title .sepp__profile-quiz--action {
   font-weight: 700;
   font-size: 1.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem; // Reduce font size for smaller screens
+  }
 }
 
 .sepp__profile-quiz--name {
-}
-
-.sepp__profile-quiz--title {
-  color: #470647;
-}
-
-.sepp__profile-quiz--duration {
-  color: #470647;
+  @media (max-width: 768px) {
+    text-align: left; // Ensure text is left-aligned on smaller screens
+  }
 }
 
 .sepp__profile-quiz--action {
   color: #470647;
+
+  @media (max-width: 768px) {
+    display: none; // Hide the separator on smaller screens
+  }
 }

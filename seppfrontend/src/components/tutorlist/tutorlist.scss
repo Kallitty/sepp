@@ -1,41 +1,162 @@
+.sepp__tutorlist {
+  @media (max-width: 550px) {
+    width: 150px;
+  }
+}
 .sepp__tutorlist--header {
   display: flex;
-  margin: 2rem 0;
+  margin: 0.5rem 0;
   justify-content: space-between;
+
+  @media screen and (max-width: 1200px) {
+    gap: 12px;
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 10px; // Reduce gap for tablets
+  }
+
+  @media (max-width: 550px) {
+    width: 150px;
+    gap: 8px; // Add gap between header elements
+    // align-items: center; // Center-align header content
+  }
+  @media screen and (max-width: 400px) {
+    gap: 6px; // Minimal gap for very small screens
+  }
 }
-.sepp__tutorlist--header h4 {
-  color: #2c0326;
+
+.sepp__tutorlist--header h3 {
+  color: #470647;
+  font-size: 1.2rem;
+  @media screen and (max-width: 1200px) {
+    font-size: 1.1rem; // Reduce font size for large tablets and smaller desktops
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem; // Reduce font size for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.6rem; // Reduce font size for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    // Minimal font size for very small screens
+  }
 }
+
 .sepp__tutorlist--header select {
   border-radius: 10px;
+  font-size: 0.6rem;
   border: none;
-  padding: 8px 12px;
+  padding: 2px 2px;
   border: 1px solid #f1d2eb;
-  color: #2c0326;
+  color: #470647;
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.5rem; // Reduce font size for tablets
+  }
+
+  @media screen and (max-width: 550px) {
+    max-height: 0.8rem;
+    font-size: 0.3rem; // Reduce font size for mobile devices
+  }
+
+  @media screen and (max-width: 400px) {
+    // Minimal font size for very small screens
+  }
 }
+
 .sepp__tutorlist-container {
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media (max-width: 550px) {
+    // flex-direction: row;
+    gap: 10px; // Reduce gap between list items on smaller screens
+  }
 }
+
 .sepp__tutorlist--list {
   display: flex;
   padding-right: 10px;
   align-items: center;
   justify-content: space-between;
   transition: 0.3s ease-in-out;
+
+  @media (max-width: 550px) {
+    // padding: 10px; // Add padding for better spacing
+    // gap: 10px; // Add gap between stacked elements
+  }
 }
+
 .sepp__tutorlist--tutor-detail {
   display: flex;
   align-items: center;
   gap: 20px;
   color: #2c0326;
+
+  @media screen and (max-width: 768px) {
+    gap: 6px;
+  }
+
+  @media (max-width: 550px) {
+    gap: 3px; // Reduce gap between image and name on smaller screens
+  }
+  @media screen and (max-width: 400px) {
+    gap: 1px;
+  }
 }
+
 .sepp__tutorlist--tutor-detail img {
   width: 50px;
   height: 50px;
   background: #f1d2eb;
   border-radius: 50%;
+
+  @media screen and (max-width: 768px) {
+    width: 20px; // Reduce image size for smaller screens
+    height: 20px;
+  }
+
+  @media (max-width: 550px) {
+    width: 15px; // Reduce image size for smaller screens
+    height: 15px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.sepp__tutorlist--tutor-detail h4 {
+  @media screen and (max-width: 768px) {
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 550px) {
+    margin-top: 7px;
+    font-size: 8px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 6px;
+  }
+}
+
+.sepp__tutorlist--list span {
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 8px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 6px;
+  }
 }
 
 .sepp__tutorlist--list:hover {
@@ -45,4 +166,8 @@
 
 .sepp__tutorlist--tutor-todo {
   color: #2c0326;
+
+  @media (max-width: 550px) {
+    display: none; // Hide the separator on smaller screens
+  }
 }
