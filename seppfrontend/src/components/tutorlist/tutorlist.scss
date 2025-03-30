@@ -1,6 +1,6 @@
 .sepp__tutorlist {
   @media (max-width: 550px) {
-    width: 150px;
+    // width: 150px;
   }
 }
 .sepp__tutorlist--header {
@@ -17,12 +17,12 @@
   }
 
   @media (max-width: 550px) {
-    width: 150px;
-    gap: 8px; // Add gap between header elements
+    // width: 150px;
+    // gap: 8px; // Add gap between header elements
     // align-items: center; // Center-align header content
   }
   @media screen and (max-width: 400px) {
-    gap: 6px; // Minimal gap for very small screens
+    // gap: 6px; // Minimal gap for very small screens
   }
 }
 
@@ -38,7 +38,7 @@
   }
 
   @media screen and (max-width: 550px) {
-    font-size: 0.6rem; // Reduce font size for mobile devices
+    font-size: 0.8rem; // Reduce font size for mobile devices
   }
 
   @media screen and (max-width: 400px) {
@@ -106,7 +106,7 @@
     gap: 3px; // Reduce gap between image and name on smaller screens
   }
   @media screen and (max-width: 400px) {
-    gap: 1px;
+    // gap: 1px;
   }
 }
 
@@ -122,12 +122,12 @@
   }
 
   @media (max-width: 550px) {
-    width: 15px; // Reduce image size for smaller screens
-    height: 15px;
+    // width: 15px; // Reduce image size for smaller screens
+    // height: 15px;
   }
   @media screen and (max-width: 400px) {
-    width: 10px;
-    height: 10px;
+    // width: 10px;
+    // height: 10px;
   }
 }
 
@@ -138,11 +138,11 @@
   }
 
   @media (max-width: 550px) {
-    margin-top: 7px;
-    font-size: 8px;
+    // margin-top: 7px;
+    // font-size: 8px;
   }
   @media screen and (max-width: 400px) {
-    font-size: 6px;
+    // font-size: 6px;
   }
 }
 
@@ -152,10 +152,10 @@
   }
 
   @media (max-width: 550px) {
-    font-size: 8px;
+    // font-size: 8px;
   }
   @media screen and (max-width: 400px) {
-    font-size: 6px;
+    // font-size: 6px;
   }
 }
 

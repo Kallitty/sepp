@@ -12,13 +12,14 @@
   }
 
   @media (max-width: 550px) {
-    width: 160px;
+    // width: 160px;
+
     // flex-direction: column; // Stack cards vertically on screens 550px or smaller
-    gap: 6px; // Reduce gap between cards
+    gap: 4px; // Reduce gap between cards
   }
 
   @media screen and (max-width: 400px) {
-    gap: 4px; // Minimal gap for very small screens
+    // gap: 4px; // Minimal gap for very small screens
   }
 }
 
@@ -46,11 +47,12 @@
   @media (max-width: 550px) {
     width: 75px; // Make cards take full width on screens 550px or smaller
     height: 80px;
-    padding: 5px; // Reduce padding for smaller screens
+    // padding: 4px 0px 4px 0px; // Reduce padding for smaller screens
+    padding-top: 6px;
+    gap: 4px;
   }
 
   @media screen and (max-width: 400px) {
-    gap: 8px; // Minimal gap for very small screens
   }
 }
 
@@ -74,13 +76,13 @@
   }
 
   @media (max-width: 550px) {
-    font-size: 2rem; // Reduce icon size for screens 550px or smaller
+    font-size: 1rem; // Reduce icon size for screens 550px or smaller
     padding: 5px; // Reduce padding for smaller screens
   }
 
   @media screen and (max-width: 400px) {
-    font-size: 1.5rem; // Reduce icon size for screens 550px or smaller
-    padding: 3px;
+    // font-size: 1.5rem; // Reduce icon size for screens 550px or smaller
+    // padding: 3px;
   }
 }
 
@@ -99,10 +101,10 @@
   }
 
   @media (max-width: 550px) {
-    font-size: 6px; // Reduce font size for screens 550px or smaller
+    font-size: 8px; // Reduce font size for screens 550px or smaller
   }
 
   @media screen and (max-width: 400px) {
-    font-size: 4px;
+    // font-size: 4px;
   }
 }

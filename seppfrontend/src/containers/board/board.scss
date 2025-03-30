@@ -1,90 +1,98 @@
-.sepp__board {
+.sepp__board-container {
   display: flex;
-  padding: 1rem;
-  gap: 10px;
-  @media screen and (max-width: 768px) {
-  }
-
-  @media (max-width: 550px) {
-    gap: 1px;
-    // width: 70px;
-  }
-
-  @media screen and (max-width: 400px) {
-  }
+  min-height: 100vh;
+  background: #f5f5f5; // or your preferred background color
 }
 
-.sepp__board--content {
-  background: #ffff;
+.sepp__board-main {
   flex: 1;
-  border-radius: 20px;
-  // padding: 2rem;
   display: flex;
-  gap: 1.5rem;
-  justify-content: space-between;
-  @media screen and (max-width: 768px) {
-    gap: 1rem;
-  }
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
 
-  @media (max-width: 550px) {
-    gap: 0.1rem;
-    // width: 0px; //fluke
-  }
+.sepp__board-greeting {
+  background: #eadded;
+  padding: 0.5rem;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-  @media screen and (max-width: 400px) {
+  h1 {
+    margin: 0;
+    font-size: 1rem;
+    color: #470647; // matching your theme
+    font-weight: 400;
   }
 }
 
-// /* Base styles */
-// .sepp__board {
-//   display: flex;
-//   flex-direction: column; /* Start with a mobile-first approach */
-//   padding: 1rem;
-//   gap: 10px;
-// }
+.sepp__board-content-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
 
-// .sepp__board--content {
-//   background: #ffff;
-//   border-radius: 20px;
-//   padding: 1rem;
-//   display: flex;
-//   flex-direction: column; /* Ensure content is stacked on mobile */
-//   gap: 0.75rem;
-//   justify-content: space-between;
-// }
+  @media screen and (max-width: 768px) {
+    // gap: 0.5rem;
+  }
+  @media screen and (max-width: 550px) {
+    gap: 0.5rem;
+  }
+}
 
-// /* Medium devices (tablets, 768px and up) */
-// @media (min-width: 768px) {
-//   .sepp__board {
-//     flex-direction: row; /* Side-by-side layout for larger screens */
-//     padding: 2rem;
-//     gap: 20px;
-//   }
+// Responsive styles
+@media screen and (max-width: 1200px) {
+  .sepp__board-greeting {
+    // padding: 0.5rem;
+  }
 
-//   .sepp__board--content {
-//     flex: 1;
-//     padding: 2rem;
-//     display: flex;
-//     flex-direction: row; /* Adjust content layout for wider screens */
-//     gap: 1.5rem;
-//   }
-// }
+  .sepp__board-content-wrapper {
+    // gap: 0.5rem;
+  }
+}
 
-// /* Large devices (desktops, 1024px and up) */
-// @media (min-width: 1024px) {
-//   .sepp__board--content {
-//     /* Further refinements for larger desktop displays */
-//     gap: 2rem;
-//     justify-content: space-between;
-//   }
-// }
+@media screen and (max-width: 768px) {
+  .sepp__board-main {
+    // padding: 0.8rem;
+    // gap: 1rem;
+  }
 
-// /* Extra-large devices (large desktops, 1200px and up) */
-// @media (min-width: 1200px) {
-//   .sepp__board {
-//     /* Optionally, adjust the overall layout for very large screens */
-//   }
-//   .sepp__board--content {
-//     /* Custom adjustments for extra-large screens */
-//   }
-// }
+  .sepp__board-greeting {
+    h1 {
+      font-size: 0.6rem;
+    }
+  }
+
+  .sepp__board-content-wrapper {
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .sepp__board-main {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .sepp__board-greeting {
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    h1 {
+      font-size: 0.6rem;
+    }
+  }
+
+  .sepp__board-content-wrapper {
+    gap: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sepp__board-greeting {
+    padding-left: 4rem;
+
+    h1 {
+      // font-size: 0.5rem;
+    }
+  }
+}

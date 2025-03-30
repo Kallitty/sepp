@@ -75,7 +75,7 @@
     font-size: 14px;
   }
   @media (max-width: 550px) {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 .sepp__profile-quiz--duration {
@@ -85,7 +85,7 @@
     font-size: 12px;
   }
   @media (max-width: 550px) {
-    font-size: 6px;
+    font-size: 10px;
   }
 }
 .sepp__profile-quiz--title .sepp__profile-quiz--duration {
@@ -111,6 +111,9 @@
 .sepp__profile-quiz--name {
   @media (max-width: 768px) {
     text-align: left; // Ensure text is left-aligned on smaller screens
+  }
+  @media (max-width: 550px) {
+    text-align: inherit; // Ensure text is left-aligned on smaller screens
   }
 }
 

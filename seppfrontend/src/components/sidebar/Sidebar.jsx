@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import swal from 'sweetalert'
 import { Link } from 'react-router-dom'
@@ -12,10 +12,33 @@ import {
   BiFolder,
   BiTask,
   BiLogOut,
+  BiMenu,
+  BiX,
 } from 'react-icons/bi'
 import { DiAptana } from 'react-icons/di'
 
 function Sidebar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const sidebarRef = useRef(null)
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
   const logoutSubmit = (e) => {
     e.preventDefault()
     axios
@@ -50,49 +73,99 @@ function Sidebar() {
   }
 
   return (
-    <div className='sepp__sidebar-grand'>
-      <div className='sepp__sidebar-left__menu'>
-        <div className='sepp__sidebar-left-menu--logo'>
-          <BiBookAlt className='sepp__sidebar-left__logo-icon' />
-          <h3>My SEPP</h3>
-        </div>
-
-        <div className='sepp__sidebar-left-menu--list'>
-          <Link to='/boardoutlet' className='sepp__sidebar-left__items'>
-            <BiHome className='sepp__sidebar-left__icon' />
-            Dashboard
-          </Link>
-          <Link to='/boardoutlet/result' className='sepp__sidebar-left__items'>
-            <BiSolidReport className='sepp__sidebar-left__icon' />
-            Results
-          </Link>
-          <Link to='#' className='sepp__sidebar-left__items'>
-            <BiFolder className='sepp__sidebar-left__icon' />
-            Report card
-          </Link>
-          <Link to='#' className='sepp__sidebar-left__items'>
-            <BiStats className='sepp__sidebar-left__icon' />
-            Stats
-          </Link>
-          <Link to='#' className='sepp__sidebar-left__items'>
-            <BiMessage className='sepp__sidebar-left__icon' />
-            Message
-          </Link>
-          <Link to='#' className='sepp__sidebar-left__items'>
-            <BiTask className='sepp__sidebar-left__icon' />
-            Help
-          </Link>
-          <Link to='#' className='sepp__sidebar-left__items'>
-            <DiAptana className='sepp__sidebar-left__icon' />
-            Settings
-          </Link>
-        </div>
+    <>
+      {/* Mobile Menu Button - Only visible on small screens */}
+      <div className='sepp__mobile-menu-button' onClick={toggleMobileMenu}>
+        {isMobileMenuOpen ? <BiX /> : <BiMenu />}
       </div>
-      <a href='#' className='sepp__sidebar-left__logout' onClick={logoutSubmit}>
-        <BiLogOut className='sepp__sidebar-left__logouticon' />
-        Logout
-      </a>
-    </div>
+
+      {/* Overlay for mobile menu */}
+      {isMobileMenuOpen && <div className='sepp__sidebar-overlay'></div>}
+
+      <div
+        ref={sidebarRef}
+        className={`sepp__sidebar-grand ${
+          isMobileMenuOpen ? 'mobile-menu-open' : ''
+        }`}
+      >
+        <div className='sepp__sidebar-left__menu'>
+          <div className='sepp__sidebar-left-menu--logo'>
+            <BiBookAlt className='sepp__sidebar-left__logo-icon' />
+            <h3>My SEPP</h3>
+          </div>
+
+          <div className='sepp__sidebar-left-menu--list'>
+            <Link
+              to='/boardoutlet'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiHome className='sepp__sidebar-left__icon' />
+              Dashboard
+            </Link>
+            <Link
+              to='/boardoutlet/result'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiSolidReport className='sepp__sidebar-left__icon' />
+              Results
+            </Link>
+            <Link
+              to='#'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiFolder className='sepp__sidebar-left__icon' />
+              Report card
+            </Link>
+            <Link
+              to='#'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiStats className='sepp__sidebar-left__icon' />
+              Stats
+            </Link>
+            <Link
+              to='#'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiMessage className='sepp__sidebar-left__icon' />
+              Message
+            </Link>
+            <Link
+              to='#'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <BiTask className='sepp__sidebar-left__icon' />
+              Help
+            </Link>
+            <Link
+              to='#'
+              className='sepp__sidebar-left__items'
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <DiAptana className='sepp__sidebar-left__icon' />
+              Settings
+            </Link>
+          </div>
+        </div>
+        <a
+          href='#'
+          className='sepp__sidebar-left__logout'
+          onClick={(e) => {
+            logoutSubmit(e)
+            setIsMobileMenuOpen(false)
+          }}
+        >
+          <BiLogOut className='sepp__sidebar-left__logouticon' />
+          Logout
+        </a>
+      </div>
+    </>
   )
 }
 
