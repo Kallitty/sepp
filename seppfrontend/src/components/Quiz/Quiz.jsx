@@ -155,7 +155,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
       : ''
 
   return (
-    <div className='sepp__quiz-container'>
+    <div className='sepp_quiz-container'>
       {!showResult ? (
         <>
           {questions.map((q, index) => (
@@ -189,7 +189,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
                   className='sepp__quiz-icon-img'
                 />
               )}
-              <h2>{q.question}</h2>
+              <h4>{q.question}</h4>
               <ul>
                 {q.choices.map((answer, idx) => (
                   <li

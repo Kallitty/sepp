@@ -5,21 +5,30 @@ $bg-accent: #e7e8e9;
 $disabled: #9c9c9c;
 $foreground: #2d264b;
 
-.sepp__quiz-container {
+.sepp_quiz-container {
   width: 750px;
   height: max-content;
   background: $bg;
   border-radius: 4px;
-  margin-top: 50px;
-  padding: 30px 60px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
   box-sizing: border-box;
   .sepp__quiz-icon-img {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 30rem;
+    // max-height: 30rem;
+    min-width: 25rem;
+    // min-height: 25rem;
     margin-bottom: 1px; // Add some margin if needed
     border-radius: 8px;
     z-index: +1000;
     // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Add box shadow if needed
+    @media screen and (max-width: 550px) {
+      max-width: 300px;
+      min-width: 250px;
+    }
   }
 
   .sepp__quiz-heading-flex {
@@ -49,24 +58,27 @@ $foreground: #2d264b;
     font-weight: 500px;
     color: $disabled;
   }
-  h2 {
-    margin-top: 40px;
-    font-size: 20px;
+  h4 {
+    margin-top: 2rem;
+    margin-left: -1rem;
+    font-size: 1rem;
     font-weight: 500px;
   }
   ul {
-    margin-top: 20px;
-    margin-left: -40px;
+    margin-top: 1rem;
+    margin-left: -1rem;
+    // font-size: 0.6rem;
     li {
       text-decoration: none;
       list-style: none;
       color: $foreground;
-      font-size: 15px;
+      font-size: 0.8rem;
       background: $bg;
       border: 1px solid $disabled;
       border-radius: 16px;
-      padding: 11px;
-      margin-top: 15px;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-left: -0.5rem;
       cursor: pointer;
     }
     .sepp__quiz-selected-answer {
@@ -94,23 +106,33 @@ $foreground: #2d264b;
     row-gap: 30px;
     background: linear-gradient(0deg, $primary 0.03%, $accent);
     border-radius: 9px;
-    font-size: $bg;
+    font-size: 1rem;
     padding: 10px 42px;
     outline: none;
     border: none;
-    margin-top: 15px;
+    margin-top: 1rem;
     cursor: pointer;
+
     &:disabled {
       background: $bg-accent;
       color: $disabled;
       cursor: not-allowed;
+    }
+    @media screen and (max-width: 550px) {
+      font-size: 0.8rem; // Legible text size
+
+      // Visual feedback
+      &:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+      }
     }
   }
 
   .sepp__quiz-next-button .sepp__quiz-previous-button {
     background: linear-gradient(0deg, $primary 0.03%, $accent);
     border-radius: 9px;
-    font-size: $bg;
+    font-size: 1rem;
     padding: 10px 20px; // Adjust the padding as needed
     outline: none;
     border: none;
