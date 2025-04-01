@@ -112,7 +112,7 @@ function Sidebar() {
               Results
             </Link>
             <Link
-              to='#'
+              to='/boardoutlet/reportcard'
               className='sepp__sidebar-left__items'
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -120,7 +120,7 @@ function Sidebar() {
               Report card
             </Link>
             <Link
-              to='#'
+              to='/boardoutlet/stats'
               className='sepp__sidebar-left__items'
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -128,7 +128,7 @@ function Sidebar() {
               Stats
             </Link>
             <Link
-              to='#'
+              to='/boardoutlet/message'
               className='sepp__sidebar-left__items'
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -136,7 +136,7 @@ function Sidebar() {
               Message
             </Link>
             <Link
-              to='#'
+              to='/boardoutlet/help'
               className='sepp__sidebar-left__items'
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -144,7 +144,7 @@ function Sidebar() {
               Help
             </Link>
             <Link
-              to='#'
+              to='/boardoutlet/settings'
               className='sepp__sidebar-left__items'
               onClick={() => setIsMobileMenuOpen(false)}
             >
