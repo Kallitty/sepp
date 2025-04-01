@@ -8,4 +8,12 @@
   font-size: 1.2rem;
   color: #f8f8f8;
   background-color: #330033;
+
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.6rem;
+  }
 }

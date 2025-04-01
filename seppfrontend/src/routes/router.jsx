@@ -66,6 +66,9 @@ const routes = createBrowserRouter([
           { path: 'message', element: <Nothing /> },
           { path: 'help', element: <Nothing /> },
           { path: 'settings', element: <Nothing /> },
+          { path: 'studyebook', element: <Nothing /> },
+          { path: 'studyvideos', element: <Nothing /> },
+          { path: 'communitychat', element: <Nothing /> },
 
           { path: '*', element: <NotFound /> },
         ],
