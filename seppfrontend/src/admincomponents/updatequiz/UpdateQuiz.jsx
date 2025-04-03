@@ -65,6 +65,12 @@ const UpdateQuiz = () => {
             >
               Edit Q & A
             </Link>
+            <Link
+              to={`/admin/display-quiz/${quiz.id}`}
+              className='sepp__update-quiz--edit'
+            >
+              Display Quiz
+            </Link>
 
             <button
               onClick={() => handleDelete(quiz.id)}
@@ -80,91 +86,3 @@ const UpdateQuiz = () => {
 }
 
 export default UpdateQuiz
-
-// public function update(Request $request, $id)
-// {
-//     Log::info('Received update request', ['data' => $request->all()]);
-
-//     $request->validate([
-//         'title' => 'sometimes|string|max:255',
-//         'questions' => 'sometimes|array',
-//         'questions.*.id' => 'sometimes|integer|exists:questions,id',
-//         'questions.*.question' => 'sometimes|string',
-//         'questions.*.type' => 'sometimes|string',
-//         'questions.*.correctAnswer' => 'sometimes|string',
-//         'questions.*.choices' => 'sometimes|array',
-//         'questions.*.choices.*' => 'sometimes|string',
-//         'questions.*.icon' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
-//     ]);
-
-//     try {
-//         $quiz = Quiz::findOrFail($id);
-//         Log::info('Quiz found', ['quiz_id' => $quiz->id]);
-
-//         if ($request->has('title')) {
-//             $quiz->title = $request->title;
-//             $quiz->save();
-//             Log::info('Quiz title updated', ['title' => $quiz->title]);
-//         }
-
-//         if ($request->has('questions')) {
-//             $existingQuestionIds = $quiz->questions->pluck('id')->toArray();
-//             $updatedQuestionIds = [];
-
-//             foreach ($request->questions as $questionData) {
-//                 $question = isset($questionData['id']) ? Question::find($questionData['id']) : new Question();
-
-//                 $question->question = $questionData['question'] ?? $question->question;
-//                 $question->type = $questionData['type'] ?? $question->type;
-//                 $question->correct_answer = $questionData['correctAnswer'] ?? $question->correct_answer;
-//                 $question->quiz_id = $quiz->id;
-
-//                 if (isset($questionData['icon']) && is_file($questionData['icon']) && $questionData['icon']->isValid()) {
-//                     $path = $questionData['icon']->store('public/icons');
-//                     $iconName = basename($path);
-//                     $frontendPath = public_path('../../sepp/seppfrontend/public/icons');
-//                     $questionData['icon']->move($frontendPath, $iconName);
-//                     $question->icon = $iconName;
-//                     Log::info('Icon uploaded', ['icon' => $iconName]);
-//                 }
-
-//                 $question->save();
-//                 Log::info('Question saved', ['question_id' => $question->id]);
-//                 $updatedQuestionIds[] = $question->id;
-
-//                 if (isset($questionData['choices'])) {
-//                     $existingChoiceIds = $question->choices->pluck('id')->toArray();
-//                     $updatedChoiceIds = [];
-
-//                     foreach ($questionData['choices'] as $choiceValue) {
-//                         $choice = new Choice();
-
-//                         if (!empty($choiceValue)) {
-//                             $choice->choice = $choiceValue;
-//                             Log::info('Choice data', ['choice' => $choiceValue]);
-//                         } else {
-//                             Log::warning('Missing choice data', ['question_id' => $question->id, 'choiceData' => $choiceValue]);
-//                             continue; // Skip if choice is not set
-//                         }
-
-//                         $choice->question_id = $question->id;
-//                         $choice->save();
-//                         Log::info('Choice saved', ['choice_id' => $choice->id]);
-//                         $updatedChoiceIds[] = $choice->id;
-//                     }
-
-//                     $choicesToDelete = array_diff($existingChoiceIds, $updatedChoiceIds);
-//                     Choice::destroy($choicesToDelete);
-//                 }
-//             }
-
-//             $questionsToDelete = array_diff($existingQuestionIds, $updatedQuestionIds);
-//             Question::destroy($questionsToDelete);
-//         }
-
-//         return response()->json(['message' => 'Quiz updated successfully']);
-//     } catch (\Exception $e) {
-//         Log::error('Failed to update quiz', ['error' => $e->getMessage()]);
-//         return response()->json(['message' => 'Failed to update quiz', 'error' => $e->getMessage()], 500);
-//     }
-// }

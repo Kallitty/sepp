@@ -27,12 +27,12 @@ const ContactUs = () => {
             <div className='sepp__contactus-info-item'>
               <FaEnvelope className='sepp__contactus-icon' />
               <h3>Email</h3>
-              <>support@sepp.com</>
+              <>support@seppedu.com</>
             </div>
             <div className='sepp__contactus-info-item'>
               <FaMapMarkerAlt className='sepp__contactus-icon' />
               <h3>Address</h3>
-              <>123 SEPP Street, Learning City, 45678</>
+              <>7 Crawford Avenue, Bolton BL12BQ</>
             </div>
           </div>
           <div className='sepp__contactus-form'>
