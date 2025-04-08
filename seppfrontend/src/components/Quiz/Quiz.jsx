@@ -189,7 +189,8 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
                   className='sepp__quiz-icon-img'
                 />
               )}
-              <h4>{q.question}</h4>
+
+              <h4 style={{ whiteSpace: 'pre-line' }}>{q.question}</h4>
               <ul>
                 {q.choices.map((answer, idx) => (
                   <li
@@ -243,17 +244,24 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
           )}
 
           {showConfirmationModal && (
-            <div className='sepp__quiz-modal'>
-              <p>Are you sure you want to submit?</p>
-              <button
-                className='sepp__quiz-yes-button'
-                onClick={handleYesSubmit}
-              >
-                Yes
-              </button>
-              <button className='sepp__quiz-no-button' onClick={handleNoCancel}>
-                No
-              </button>
+            <div className='sepp__quiz-modal-overlay'>
+              <div className='sepp__quiz-modal-content'>
+                <p>Are you sure you want to submit?</p>
+                <div className='sepp__quiz-modal-buttons'>
+                  <button
+                    className='sepp__quiz-yes-button'
+                    onClick={handleYesSubmit}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className='sepp__quiz-no-button'
+                    onClick={handleNoCancel}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </>

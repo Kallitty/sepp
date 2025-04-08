@@ -49,17 +49,17 @@ $foreground: #2d264b;
     margin-bottom: 4px;
   }
   .sepp__quiz-timer {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500px;
     color: $disabled;
   }
   .sepp__quiz-timer-icon {
-    font-size: 44px;
+    font-size: 1.2rem;
     font-weight: 500px;
     color: $disabled;
   }
   h4 {
-    margin-top: 2rem;
+    margin-top: 0rem;
     margin-left: -1rem;
     font-size: 1rem;
     font-weight: 500px;
@@ -145,6 +145,73 @@ $foreground: #2d264b;
   .sepp__quiz-modal p {
     font-size: 18px;
     color: $accent;
+  }
+  .sepp__quiz-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .sepp__quiz-modal-content {
+      background: $bg;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      max-width: 90%;
+      text-align: center;
+
+      p {
+        font-size: 18px;
+        color: $foreground;
+        margin-bottom: 25px;
+      }
+    }
+
+    .sepp__quiz-modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      button {
+        padding: 10px 30px;
+        border-radius: 9px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+
+        &.sepp__quiz-yes-button {
+          background: linear-gradient(0deg, $primary 0.03%, $accent);
+          color: $bg;
+
+          &:hover {
+            background: linear-gradient(
+              0deg,
+              darken($primary, 10%) 0.03%,
+              darken($accent, 10%)
+            );
+          }
+        }
+
+        &.sepp__quiz-no-button {
+          background: $bg-accent;
+          color: $foreground;
+
+          &:hover {
+            background: darken($bg-accent, 10%);
+          }
+        }
+      }
+    }
   }
 
   .sepp__quiz-timeup-overlay {

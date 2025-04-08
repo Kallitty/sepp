@@ -39,39 +39,92 @@ function Sidebar() {
     }
   }, [])
 
+  // const logoutSubmit = (e) => {
+  //   e.preventDefault()
+  //   axios
+  //     .post(`/logout`)
+  //     .then((res) => {
+  //       if (res.data.status === 200) {
+  //         localStorage.removeItem('auth_token')
+  //         localStorage.removeItem('auth_username')
+  //         swal('Logged out.', res.data.message, 'success')
+  //         window.location.href = '/home'
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (error.response && error.response.status === 419) {
+  //         swal(
+  //           'Session Expired',
+  //           'Your session has expired. Please log in again.',
+  //           'error'
+  //         ).then(() => {
+  //           localStorage.removeItem('auth_token')
+  //           localStorage.removeItem('auth_username')
+  //           window.location.href = '/home'
+  //         })
+  //       } else {
+  //         swal(
+  //           'Error',
+  //           'An error occurred during logout. Please try again.',
+  //           'error'
+  //         )
+  //       }
+  //     })
+  // }
   const logoutSubmit = (e) => {
     e.preventDefault()
-    axios
-      .post(`/logout`)
-      .then((res) => {
-        if (res.data.status === 200) {
-          localStorage.removeItem('auth_token')
-          localStorage.removeItem('auth_username')
-          swal('Logged out.', res.data.message, 'success')
-          window.location.href = '/home'
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 419) {
-          swal(
-            'Session Expired',
-            'Your session has expired. Please log in again.',
-            'error'
-          ).then(() => {
-            localStorage.removeItem('auth_token')
-            localStorage.removeItem('auth_username')
-            window.location.href = '/home'
-          })
-        } else {
-          swal(
-            'Error',
-            'An error occurred during logout. Please try again.',
-            'error'
-          )
-        }
-      })
-  }
 
+    swal({
+      title: 'Are you sure you want to log out?',
+      text: 'You are logging out of your dashboard.',
+      icon: 'warning',
+      buttons: {
+        cancel: {
+          text: 'Cancel',
+          value: null,
+          visible: true,
+        },
+        confirm: {
+          text: 'Yes',
+          value: true,
+          visible: true,
+        },
+      },
+      dangerMode: true,
+    }).then((willLogout) => {
+      if (willLogout) {
+        axios
+          .post(`/logout`)
+          .then((res) => {
+            if (res.data.status === 200) {
+              localStorage.removeItem('auth_token')
+              localStorage.removeItem('auth_username')
+              swal('Logged out.', res.data.message, 'success')
+              window.location.href = '/home'
+            }
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 419) {
+              swal(
+                'Session Expired',
+                'Your session has expired. Please log in again.',
+                'error'
+              ).then(() => {
+                localStorage.removeItem('auth_token')
+                localStorage.removeItem('auth_username')
+                window.location.href = '/home'
+              })
+            } else {
+              swal(
+                'Error',
+                'An error occurred during logout. Please try again.',
+                'error'
+              )
+            }
+          })
+      }
+    })
+  }
   return (
     <>
       {/* Mobile Menu Button - Only visible on small screens */}

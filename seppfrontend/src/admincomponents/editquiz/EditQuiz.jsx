@@ -22,6 +22,8 @@ const EditQuiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [loading, setLoading] = useState(false)
   const [imageChanged, setImageChanged] = useState({})
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
+  const [questionToDelete, setQuestionToDelete] = useState(null)
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -76,12 +78,28 @@ const EditQuiz = () => {
   }
 
   const deleteQuestion = (index) => {
-    const values = [...questions]
-    values.splice(index, 1)
-    setQuestions(values)
-    if (currentQuestionIndex > 0 && currentQuestionIndex >= values.length) {
-      setCurrentQuestionIndex(values.length - 1)
+    setQuestionToDelete(index)
+    setShowDeleteConfirmation(true)
+  }
+
+  const confirmDelete = () => {
+    if (questionToDelete !== null) {
+      const values = [...questions]
+      values.splice(questionToDelete, 1)
+      setQuestions(values)
+
+      if (currentQuestionIndex > 0 && currentQuestionIndex >= values.length) {
+        setCurrentQuestionIndex(values.length - 1)
+      }
+
+      setShowDeleteConfirmation(false)
+      setQuestionToDelete(null)
     }
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirmation(false)
+    setQuestionToDelete(null)
   }
 
   const nextQuestion = () => {
@@ -324,6 +342,27 @@ const EditQuiz = () => {
               )}
             </div>
           </div>
+          {showDeleteConfirmation && (
+            <div className='delete-confirmation-modal'>
+              <div className='delete-confirmation-content'>
+                <p>Are you sure you want to delete this question?</p>
+                <div className='delete-confirmation-buttons'>
+                  <button
+                    className='confirm-delete-button'
+                    onClick={confirmDelete}
+                  >
+                    Yes, Delete
+                  </button>
+                  <button
+                    className='cancel-delete-button'
+                    onClick={cancelDelete}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </form>
     </div>

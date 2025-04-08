@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import './createquiz.scss' // Import the SCSS file
+import './createquiz.scss'
 import swal from 'sweetalert'
 import ClipLoader from 'react-spinners/ClipLoader'
 
@@ -18,6 +18,8 @@ const CreateQuiz = () => {
   ])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [loading, setLoading] = useState(false) // Add loading state
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
+  const [questionToDelete, setQuestionToDelete] = useState(null)
 
   const handleChange = (e, index, field) => {
     const values = [...questions]
@@ -50,12 +52,28 @@ const CreateQuiz = () => {
   }
 
   const deleteQuestion = (index) => {
-    const values = [...questions]
-    values.splice(index, 1)
-    setQuestions(values)
-    if (currentQuestionIndex > 0 && currentQuestionIndex >= values.length) {
-      setCurrentQuestionIndex(values.length - 1)
+    setQuestionToDelete(index)
+    setShowDeleteConfirmation(true)
+  }
+
+  const confirmDelete = () => {
+    if (questionToDelete !== null) {
+      const values = [...questions]
+      values.splice(questionToDelete, 1)
+      setQuestions(values)
+
+      if (currentQuestionIndex > 0 && currentQuestionIndex >= values.length) {
+        setCurrentQuestionIndex(values.length - 1)
+      }
+
+      setShowDeleteConfirmation(false)
+      setQuestionToDelete(null)
     }
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirmation(false)
+    setQuestionToDelete(null)
   }
 
   const nextQuestion = () => {
@@ -256,6 +274,24 @@ const CreateQuiz = () => {
             )}
           </div>
         </div>
+        {showDeleteConfirmation && (
+          <div className='delete-confirmation-modal'>
+            <div className='delete-confirmation-content'>
+              <p>Are you sure you want to delete this question?</p>
+              <div className='delete-confirmation-buttons'>
+                <button
+                  className='confirm-delete-button'
+                  onClick={confirmDelete}
+                >
+                  Yes, Delete
+                </button>
+                <button className='cancel-delete-button' onClick={cancelDelete}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
