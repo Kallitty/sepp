@@ -26,7 +26,7 @@ $red: #f44336;
   }
 
   .user-list {
-    width: 69%;
+    width: 74%;
     background: $bg-accent;
     border-radius: 4px;
     padding: 20px; // Add padding for layout consistency
@@ -35,11 +35,11 @@ $red: #f44336;
     h2 {
       font-size: 24px;
       color: $foreground;
-      margin-bottom: 10px; // Reduced margin for less space
+      margin-bottom: 0.8rem; // Reduced margin for less space
     }
 
     table {
-      width: 100%;
+      width: 60%;
       border-collapse: collapse;
 
       th,
@@ -164,7 +164,7 @@ $red: #f44336;
   }
 
   .user-form {
-    width: 30%;
+    width: 25%;
     background: $bg-accent;
     padding: 10px;
     border-radius: 4px;
