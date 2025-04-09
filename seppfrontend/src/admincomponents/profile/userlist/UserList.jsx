@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import './userlist.scss'
+// import '../profile.scss'
 import { utils, writeFile } from 'xlsx'
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
@@ -116,6 +118,41 @@ const UserList = ({ users, onSelectUser, onDeleteUser, onBlockUser }) => {
             <th>Created At</th>
             <th>Updated At</th>
             <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentUsers.map((user, index) => (
+            <tr key={user.id}>
+              <td>{indexOfFirstUser + index + 1}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{new Date(user.created_at).toLocaleDateString()}</td>
+              <td>{new Date(user.updated_at).toLocaleDateString()}</td>
+              <td>
+                <div className='role-status'>
+                  <span className='role'>
+                    {user.role_as === 1 ? 'Admin' : 'User'}
+                  </span>
+                  <span
+                    className={`status-badge ${
+                      user.status === 1 ? 'active' : 'blocked'
+                    }`}
+                  >
+                    {user.status === 1 ? 'Active' : 'Blocked'}
+                  </span>
+                </div>
+              </td>
+              <td className='actions'>
+                {/* <table>
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Role</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -131,7 +168,7 @@ const UserList = ({ users, onSelectUser, onDeleteUser, onBlockUser }) => {
               <td>{user.role_as === 1 ? 'Admin' : 'User'}</td>
               <td>{user.status === 1 ? 'Active' : 'Blocked'}</td>
 
-              <td className='actions'>
+              <td className='actions'> */}
                 <button
                   className='edit-button'
                   onClick={() => onSelectUser(user)}
