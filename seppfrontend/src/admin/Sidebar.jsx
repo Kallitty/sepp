@@ -58,6 +58,12 @@ const Sidebar = () => {
               <Link className='nav-link' to='/admin/allresult'>
                 All Scores
               </Link>
+              <Link className='nav-link' to='/admin/visitortab'>
+                Visitors
+              </Link>
+              <Link className='nav-link' to='/admin/user-activities'>
+                Users Activity
+              </Link>
               <Link className='nav-link' to='/admin/light-sidenav'>
                 Light Sidenav
               </Link>

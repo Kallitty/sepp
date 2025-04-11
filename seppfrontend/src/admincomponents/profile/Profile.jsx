@@ -4,8 +4,10 @@ import UserList from './userlist/UserList'
 import UserForm from './userform/UserForm'
 import './profile.scss'
 import swal from 'sweetalert'
+import { ClipLoader } from 'react-spinners'
 
 const Profile = () => {
+  const [loading, setLoading] = useState(true)
   const [users, setUsers] = useState([])
   const [selectedUser, setSelectedUser] = useState(null)
 
@@ -17,8 +19,10 @@ const Profile = () => {
     try {
       const response = await axios.get('/users')
       setUsers(response.data)
+      setLoading(false)
     } catch (error) {
       console.error('Error fetching users:', error)
+      setLoading(false)
     }
   }
 
@@ -74,6 +78,13 @@ const Profile = () => {
     })
   }
 
+  if (loading) {
+    return (
+      <div className='loading-container'>
+        <ClipLoader size={50} color={' #470647'} loading={loading} />
+      </div>
+    )
+  }
   return (
     <div className='profile-container'>
       <UserList

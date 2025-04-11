@@ -64,7 +64,7 @@ const AllResult = () => {
   if (loading) {
     return (
       <div className='loading-container'>
-        <ClipLoader size={50} color={'#123abc'} loading={loading} />
+        <ClipLoader size={50} color={' #470647'} loading={loading} />
       </div>
     )
   }

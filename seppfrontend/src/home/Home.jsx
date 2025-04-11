@@ -9,7 +9,7 @@ import './index.css'
 
 const Home = () => {
   return (
-    <div className='App'>
+    <div className=''>
       <div className='gradient__bg'>
         <Navbar />
         <Header />
