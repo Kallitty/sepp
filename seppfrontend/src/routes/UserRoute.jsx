@@ -34,7 +34,7 @@ const UserRoute = () => {
           height: '100vh',
         }}
       >
-        <ClipLoader size={50} color={'#123abc'} loading={loading} />
+        <ClipLoader size={20} color={'#470647'} loading={loading} />
       </div>
     )
   }
