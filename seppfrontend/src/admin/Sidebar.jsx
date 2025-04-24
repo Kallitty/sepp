@@ -43,7 +43,7 @@ const Sidebar = () => {
             <div className='sb-nav-link-icon'>
               <i className='fas fa-columns'></i>
             </div>
-            Layouts
+            User Details
             <div className='sb-sidenav-collapse-arrow'>
               <i className='fas fa-angle-down'></i>
             </div>
@@ -64,6 +64,38 @@ const Sidebar = () => {
               <Link className='nav-link' to='/admin/user-activities'>
                 Users Activity
               </Link>
+              <Link className='nav-link' to='/admin/light-sidenav'>
+                Light Sidenav
+              </Link>
+            </nav>
+          </div>
+          <Link
+            className='nav-link collapsed'
+            to='#'
+            data-bs-toggle='collapse'
+            data-bs-target='#collapseLayouts'
+            aria-expanded='false'
+            aria-controls='collapseLayouts'
+          >
+            <div className='sb-nav-link-icon'>
+              <i className='fas fa-columns'></i>
+            </div>
+            Messaging
+            <div className='sb-sidenav-collapse-arrow'>
+              <i className='fas fa-angle-down'></i>
+            </div>
+          </Link>
+          <div
+            className='collapse'
+            id='collapseLayouts'
+            aria-labelledby='headingOne'
+            data-bs-parent='#sidenavAccordion'
+          >
+            <nav className='sb-sidenav-menu-nested nav'>
+              <Link className='nav-link' to='/admin/messagecenter'>
+                Message Center
+              </Link>
+
               <Link className='nav-link' to='/admin/light-sidenav'>
                 Light Sidenav
               </Link>

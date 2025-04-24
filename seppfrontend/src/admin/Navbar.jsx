@@ -62,8 +62,8 @@ function Navbar() {
   }
   return (
     <nav className='sb-topnav navbar navbar-expand navbar-dark bg-dark !important'>
-      <Link to='/admin' className='navbar-brand ps-3'>
-        Agba Admin
+      <Link to='/admin/dashboard' className='navbar-brand ps-3'>
+        Sir Admin
       </Link>
 
       <button

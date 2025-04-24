@@ -1,0 +1,433 @@
+.inbox {
+  display: flex;
+  height: 80vh;
+  background: #fbf3ff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  &__sidebar {
+    width: 300px;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+  }
+
+  &__title {
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    color: #2c0326;
+  }
+
+  &__loading,
+  &__empty {
+    padding: 1rem;
+    text-align: center;
+    color: #666;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    padding: 1rem;
+    border-bottom: 1px solid #fbf3ff;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    gap: 1rem;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+
+    &.active {
+      background: #e8d0ee;
+    }
+
+    &.unread {
+      background: #fbe3f6;
+      font-weight: bold;
+    }
+  }
+
+  &__item-icon {
+    position: relative;
+    color: #bb36fd;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+
+    &-attachment {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      font-size: 0.7rem;
+      color: #bb36fd;
+      background: #fbf3ff;
+      border-radius: 50%;
+      padding: 2px;
+    }
+  }
+
+  &__item-content {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0 0 0.3rem 0;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    small {
+      color: #666;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    position: relative; /* Added for modal positioning */
+  }
+
+  &__placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+
+    &-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.message-detail {
+  padding: 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__action {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem;
+
+    &:hover {
+      color: #d32f2f;
+    }
+
+    &--delete:hover {
+      color: #d32f2f;
+    }
+  }
+
+  &__sender {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  &__sender-info {
+    flex: 1;
+  }
+
+  &__sender-name {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+  }
+
+  &__date {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  &__content {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  &__attachments {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  &__attachments-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+
+  &__attachments-icon {
+    color: #bb36fd;
+  }
+
+  &__attachments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__attachment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  &__attachment-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #5e35b1;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #bb36fd;
+    }
+  }
+
+  &__attachment-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__attachment-size {
+    color: #666;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    margin-top: 2rem;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #5e35b1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #bb36fd;
+    }
+
+    &-icon {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* Fixed Centered Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+    color: #333;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+    padding: 0 0.5rem;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.modal-content {
+  padding: 1.5rem;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .attachment-preview {
+    max-width: 100%;
+    max-height: 60vh;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+
+  .unsupported-preview {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+/* Attachment Actions */
+.attachment-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-view,
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-view {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-download {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.btn-close {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .inbox {
+    flex-direction: column;
+    height: auto;
+
+    &__sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+      max-height: 300px;
+    }
+  }
+
+  .message-detail {
+    padding: 1rem;
+  }
+
+  .modal {
+    width: 95%;
+    max-height: 85vh;
+  }
+}

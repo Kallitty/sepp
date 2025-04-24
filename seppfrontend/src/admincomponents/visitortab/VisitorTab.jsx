@@ -15,20 +15,20 @@ const VisitorTab = () => {
     referrer: false,
     timezone: false,
     country: false,
+    page: false,
   })
   const [searchInputs, setSearchInputs] = useState({
     ip: '',
     referrer: '',
     timezone: '',
     country: '',
+    page: '',
   })
-
-  const [pageIndex, setPageIndex] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchVisitors()
-    }, 500) // Debounce to prevent too many requests
+    }, 500)
 
     return () => clearTimeout(timer)
   }, [searchInputs])
@@ -36,8 +36,11 @@ const VisitorTab = () => {
   const fetchVisitors = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/visitors', {
-        params: searchInputs,
+      const response = await axios.get('user-activity', {
+        params: {
+          ...searchInputs,
+          anonymous_only: true,
+        },
       })
       setVisitors(response.data.data)
     } catch (error) {
@@ -66,7 +69,7 @@ const VisitorTab = () => {
     () => [
       {
         Header: 'IP Address',
-        accessor: 'ip',
+        accessor: 'ip_address',
         Cell: ({ value }) => (
           <div className='searchable-cell'>
             {value}
@@ -133,7 +136,22 @@ const VisitorTab = () => {
           </div>
         ),
       },
-      { Header: 'Page Visited', accessor: 'page_visited' },
+      {
+        Header: 'Page Visited',
+        accessor: 'page_visited',
+        Cell: ({ value }) => (
+          <div className='searchable-cell'>
+            {value}
+            {searchLoadings.page && (
+              <ClipLoader
+                size={12}
+                color={'#470647'}
+                className='input-spinner'
+              />
+            )}
+          </div>
+        ),
+      },
       {
         Header: 'Visited At',
         accessor: 'created_at',
@@ -154,14 +172,12 @@ const VisitorTab = () => {
     canNextPage,
     canPreviousPage,
     pageOptions,
-    gotoPage,
-    setPageSize,
     state,
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 5 },
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     usePagination
   )
@@ -169,7 +185,7 @@ const VisitorTab = () => {
   if (loading) {
     return (
       <div className='loading-container'>
-        <ClipLoader size={50} color={' #470647'} loading={loading} />
+        <ClipLoader size={50} color={'#470647'} loading={loading} />
       </div>
     )
   }
@@ -177,74 +193,25 @@ const VisitorTab = () => {
   return (
     <div className='visitor-container'>
       <div className='search-filters'>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search IP...'
-            value={searchInputs.ip}
-            onChange={(e) => handleSearchChange(e, 'ip')}
-            className='search-input'
-          />
-          {searchLoadings.ip && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
+        {Object.keys(searchInputs).map((field) => (
+          <div className='search-filter' key={field}>
+            <FaSearch className='search-icon' />
+            <input
+              type='text'
+              placeholder={`Search ${field.replace('_', ' ')}...`}
+              value={searchInputs[field]}
+              onChange={(e) => handleSearchChange(e, field)}
+              className='search-input'
             />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Referrer...'
-            value={searchInputs.referrer}
-            onChange={(e) => handleSearchChange(e, 'referrer')}
-            className='search-input'
-          />
-          {searchLoadings.referrer && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Timezone...'
-            value={searchInputs.timezone}
-            onChange={(e) => handleSearchChange(e, 'timezone')}
-            className='search-input'
-          />
-          {searchLoadings.timezone && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Country...'
-            value={searchInputs.country}
-            onChange={(e) => handleSearchChange(e, 'country')}
-            className='search-input'
-          />
-          {searchLoadings.country && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
+            {searchLoadings[field] && (
+              <ClipLoader
+                size={15}
+                color={'#470647'}
+                className='filter-spinner'
+              />
+            )}
+          </div>
+        ))}
       </div>
 
       <table {...getTableProps()} className='visitor-table'>

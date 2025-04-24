@@ -27,8 +27,26 @@ import EditTitle from '../admincomponents/edittitle/EditTitle'
 import AllResult from '../admincomponents/results/AllResult'
 import VisitorTab from '../admincomponents/visitortab/VisitorTab'
 import UserActivityTab from '../admincomponents/useractivitytab/UserActivityTab'
+import MessageCenter from '../admincomponents/messagecenter/MessageCenter'
+import Message from '../admincomponents/messagecenter/MessageCenter'
 
-const isAuthenticated = () => !!localStorage.getItem('auth_token')
+import {
+  startInactivityTimer,
+  clearInactivityTimer,
+} from '../services/inactivityService'
+import UserInbox from '../containers/userinbox/UserInbox'
+
+// const isAuthenticated = () => !!localStorage.getItem('auth_token')
+// In your router.jsx, modify the isAuthenticated function
+const isAuthenticated = () => {
+  const token = localStorage.getItem('auth_token')
+  if (!token) {
+    // Clear timer if no token exists
+    clearInactivityTimer()
+    return false
+  }
+  return true
+}
 
 const routes = createBrowserRouter([
   // Public Routes
@@ -65,7 +83,7 @@ const routes = createBrowserRouter([
           { path: 'result', element: <Result /> },
           { path: 'reportcard', element: <Nothing /> },
           { path: 'stats', element: <Nothing /> },
-          { path: 'message', element: <Nothing /> },
+          { path: 'message', element: <UserInbox /> },
           { path: 'help', element: <Nothing /> },
           { path: 'settings', element: <Nothing /> },
           { path: 'studyebook', element: <Nothing /> },
@@ -96,6 +114,7 @@ const routes = createBrowserRouter([
       { path: 'allresult', element: <AllResult /> },
       { path: 'visitortab', element: <VisitorTab /> },
       { path: 'user-activities', element: <UserActivityTab /> },
+      { path: 'messagecenter', element: <MessageCenter /> },
 
       // Catch-all for non-existent admin routes
       { path: '*', element: <NotFound /> },

@@ -4,45 +4,46 @@ import { useTable, usePagination } from 'react-table'
 import moment from 'moment'
 import './useractivitytab.scss'
 import swal from 'sweetalert'
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaUser } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
 
 const UserActivityTab = () => {
-  const [visitors, setVisitors] = useState([])
+  const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(false)
   const [searchLoadings, setSearchLoadings] = useState({
+    user: false,
+    page: false,
+    action: false,
     ip: false,
-    referrer: false,
-    timezone: false,
-    country: false,
   })
   const [searchInputs, setSearchInputs] = useState({
+    user: '',
+    page: '',
+    action: '',
     ip: '',
-    referrer: '',
-    timezone: '',
-    country: '',
   })
-
-  const [pageIndex, setPageIndex] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetchVisitors()
+      fetchActivities()
     }, 500)
 
     return () => clearTimeout(timer)
   }, [searchInputs])
 
-  const fetchVisitors = async () => {
+  const fetchActivities = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/user-activities', {
-        params: searchInputs,
+      const response = await axios.get('user-activity', {
+        params: {
+          ...searchInputs,
+          authenticated_only: true,
+        },
       })
-      setVisitors(response.data.data)
+      setActivities(response.data.data)
     } catch (error) {
-      console.error('Error fetching visitors', error)
-      swal('Error', 'Failed to fetch visitors', 'error')
+      console.error('Error fetching activities', error)
+      swal('Error', 'Failed to fetch user activities', 'error')
     }
     setLoading(false)
   }
@@ -60,13 +61,80 @@ const UserActivityTab = () => {
     return moment(dateString).format('YY-MM-DD, HH:mm')
   }
 
-  const data = React.useMemo(() => visitors, [visitors])
+  const getActionType = (pageVisited) => {
+    if (pageVisited.includes('login')) return 'Login'
+    if (pageVisited.includes('dashboard')) return 'Dashboard Access'
+    if (pageVisited.includes('edit')) return 'Content Edit'
+    return 'Page View'
+  }
+
+  // const data = React.useMemo(() => activities, [activities])
+  const data = React.useMemo(
+    () =>
+      activities.map((activity) => ({
+        ...activity,
+        action_type: getActionType(activity.page_visited),
+      })),
+    [activities]
+  )
 
   const columns = React.useMemo(
     () => [
       {
+        Header: 'User',
+        accessor: 'user.name',
+        Cell: ({ row }) => (
+          <div className='user-cell'>
+            <FaUser className='user-icon' />
+            <span>{row.original.user?.name || 'N/A'}</span>
+            {searchLoadings.user && (
+              <ClipLoader
+                size={12}
+                color={'#470647'}
+                className='input-spinner'
+              />
+            )}
+          </div>
+        ),
+      },
+      {
+        Header: 'Action',
+        accessor: 'action_type',
+        Cell: ({ value }) => {
+          const action = getActionType(value)
+          return (
+            <div className='searchable-cell'>
+              {action}
+              {searchLoadings.action && (
+                <ClipLoader
+                  size={12}
+                  color={'#470647'}
+                  className='input-spinner'
+                />
+              )}
+            </div>
+          )
+        },
+      },
+      {
+        Header: 'Page',
+        accessor: 'page_visited',
+        Cell: ({ value }) => (
+          <div className='searchable-cell'>
+            {value}
+            {searchLoadings.page && (
+              <ClipLoader
+                size={12}
+                color={'#470647'}
+                className='input-spinner'
+              />
+            )}
+          </div>
+        ),
+      },
+      {
         Header: 'IP Address',
-        accessor: 'ip',
+        accessor: 'ip_address',
         Cell: ({ value }) => (
           <div className='searchable-cell'>
             {value}
@@ -80,64 +148,22 @@ const UserActivityTab = () => {
           </div>
         ),
       },
-      { Header: 'City', accessor: 'city' },
-      {
-        Header: 'Country',
-        accessor: 'country',
-        Cell: ({ value }) => (
-          <div className='searchable-cell'>
-            {value}
-            {searchLoadings.country && (
-              <ClipLoader
-                size={12}
-                color={'#470647'}
-                className='input-spinner'
-              />
-            )}
-          </div>
-        ),
-      },
       { Header: 'Device', accessor: 'device' },
       { Header: 'Browser', accessor: 'browser' },
-      { Header: 'OS', accessor: 'os' },
       {
-        Header: 'Timezone',
-        accessor: 'timezone',
-        Cell: ({ value }) => (
-          <div className='searchable-cell'>
-            {value}
-            {searchLoadings.timezone && (
-              <ClipLoader
-                size={12}
-                color={'#470647'}
-                className='input-spinner'
-              />
-            )}
-          </div>
-        ),
-      },
-      { Header: 'Language', accessor: 'language' },
-      {
-        Header: 'Referrer',
-        accessor: 'referrer',
-        Cell: ({ value }) => (
-          <div className='searchable-cell'>
-            {value || 'Direct'}
-            {searchLoadings.referrer && (
-              <ClipLoader
-                size={12}
-                color={'#470647'}
-                className='input-spinner'
-              />
-            )}
-          </div>
-        ),
-      },
-      { Header: 'Page Visited', accessor: 'page_visited' },
-      {
-        Header: 'Visited At',
+        Header: 'Time',
         accessor: 'created_at',
         Cell: ({ value }) => formatDate(value),
+      },
+      {
+        Header: 'Details',
+        accessor: 'meta',
+        Cell: ({ value }) => (
+          <div className='meta-details'>
+            {value?.login_method && `Method: ${value.login_method}`}
+            {value?.role && `Role: ${value.role}`}
+          </div>
+        ),
       },
     ],
     [searchLoadings]
@@ -154,14 +180,12 @@ const UserActivityTab = () => {
     canNextPage,
     canPreviousPage,
     pageOptions,
-    gotoPage,
-    setPageSize,
     state,
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 5 },
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     usePagination
   )
@@ -169,7 +193,7 @@ const UserActivityTab = () => {
   if (loading) {
     return (
       <div className='loading-container'>
-        <ClipLoader size={50} color={' #470647'} loading={loading} />
+        <ClipLoader size={50} color={'#470647'} loading={loading} />
       </div>
     )
   }
@@ -177,74 +201,25 @@ const UserActivityTab = () => {
   return (
     <div className='visitor-container'>
       <div className='search-filters'>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search IP...'
-            value={searchInputs.ip}
-            onChange={(e) => handleSearchChange(e, 'ip')}
-            className='search-input'
-          />
-          {searchLoadings.ip && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
+        {Object.keys(searchInputs).map((field) => (
+          <div className='search-filter' key={field}>
+            <FaSearch className='search-icon' />
+            <input
+              type='text'
+              placeholder={`Search ${field}...`}
+              value={searchInputs[field]}
+              onChange={(e) => handleSearchChange(e, field)}
+              className='search-input'
             />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Referrer...'
-            value={searchInputs.referrer}
-            onChange={(e) => handleSearchChange(e, 'referrer')}
-            className='search-input'
-          />
-          {searchLoadings.referrer && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Timezone...'
-            value={searchInputs.timezone}
-            onChange={(e) => handleSearchChange(e, 'timezone')}
-            className='search-input'
-          />
-          {searchLoadings.timezone && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
-        <div className='search-filter'>
-          <FaSearch className='search-icon' />
-          <input
-            type='text'
-            placeholder='Search Country...'
-            value={searchInputs.country}
-            onChange={(e) => handleSearchChange(e, 'country')}
-            className='search-input'
-          />
-          {searchLoadings.country && (
-            <ClipLoader
-              size={15}
-              color={'#470647'}
-              className='filter-spinner'
-            />
-          )}
-        </div>
+            {searchLoadings[field] && (
+              <ClipLoader
+                size={15}
+                color={'#470647'}
+                className='filter-spinner'
+              />
+            )}
+          </div>
+        ))}
       </div>
 
       <table {...getTableProps()} className='visitor-table'>

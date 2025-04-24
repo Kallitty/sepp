@@ -1,0 +1,232 @@
+.message-detail {
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e8d0ee;
+  }
+
+  &__title {
+    margin: 0;
+    color: #2c0326;
+    font-size: 1.5rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__action {
+    background: none;
+    border: none;
+    color: #5e35b1;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: #4527a0;
+    }
+
+    &:disabled {
+      color: #b39ddb;
+      cursor: not-allowed;
+    }
+
+    &--delete:hover {
+      color: #d32f2f;
+    }
+  }
+
+  &__sender {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e8d0ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    span {
+      color: #5e35b1;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__sender-info {
+    flex: 1;
+  }
+
+  &__sender-name {
+    margin: 0;
+    font-weight: 600;
+    color: #2c0326;
+  }
+
+  &__date {
+    margin: 0.2rem 0 0 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  &__email-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #e8d0ee;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #5e35b1;
+  }
+
+  &__email-icon {
+    font-size: 1.2rem;
+  }
+
+  &__content {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e8d0ee;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #5e35b1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #4527a0;
+    }
+
+    &-icon {
+      font-size: 0.9rem;
+    }
+  }
+  &__attachments {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+  }
+
+  &__attachments-title {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  &__attachments-icon {
+    margin-right: 8px;
+    color: #5e35b1;
+  }
+
+  &__attachments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__attachment-item {
+    margin-bottom: 8px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    padding: 8px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+
+  &__attachment-link {
+    display: flex;
+    align-items: center;
+    color: #5e35b1;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  &__attachment-icon {
+    margin-right: 8px;
+    font-size: 0.8rem;
+  }
+
+  &__attachment-name {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__attachment-size {
+    margin-left: 8px;
+    color: #666;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .message-detail {
+    padding: 1rem;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    &__footer {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &__button {
+      justify-content: center;
+    }
+  }
+}

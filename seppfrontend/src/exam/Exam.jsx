@@ -38,7 +38,7 @@ const Exam = () => {
           ? quizData && (
               <div className='sepp__exam-container'>
                 <h2>
-                  You are about to take a {quizData.duration} minute(s) quiz.
+                  You are about to take a {quizData.duration} minute(s) test.
                 </h2>
                 <p>Kindly go back if you are not ready.</p>
                 <button
