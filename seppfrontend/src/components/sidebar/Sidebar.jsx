@@ -181,6 +181,13 @@ function Sidebar() {
                     Job Exams
                   </Link>
                   <Link
+                    to='/boardoutlet/exams/jamb'
+                    className='sepp__sidebar-left__items sepp__sidebar-exam-item'
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    JAMB
+                  </Link>
+                  <Link
                     to='/boardoutlet/exams/waec'
                     className='sepp__sidebar-left__items sepp__sidebar-exam-item'
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -193,13 +200,6 @@ function Sidebar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     NECO
-                  </Link>
-                  <Link
-                    to='/boardoutlet/exams/jamb'
-                    className='sepp__sidebar-left__items sepp__sidebar-exam-item'
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    JAMB
                   </Link>
                   <Link
                     to='/boardoutlet/exams/nabteb'
@@ -227,25 +227,25 @@ function Sidebar() {
                 onClick={toggleCertMenu}
               >
                 <BiFolder className='sepp__sidebar-left__icon' />
-                <span>Certification</span>
+                <span>Certs</span>
                 {isCertMenuOpen ? <BiChevronUp /> : <BiChevronDown />}
               </div>
 
               {isCertMenuOpen && (
                 <div className='sepp__sidebar-cert-subsections'>
                   <Link
-                    to='/boardoutlet/certification/report-card'
-                    className='sepp__sidebar-left__items sepp__sidebar-cert-item'
-                    onClick={handleSidebarItemClick}
-                  >
-                    Report Card
-                  </Link>
-                  <Link
                     to='/boardoutlet/certification/certificates'
                     className='sepp__sidebar-left__items sepp__sidebar-cert-item'
                     onClick={handleSidebarItemClick}
                   >
                     Certificates
+                  </Link>
+                  <Link
+                    to='/boardoutlet/certification/reportcard'
+                    className='sepp__sidebar-left__items sepp__sidebar-cert-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Report Card
                   </Link>
                 </div>
               )}

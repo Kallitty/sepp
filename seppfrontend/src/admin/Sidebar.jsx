@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Sidebar = () => {
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get('/user')
+        setUser(res.data)
+      } catch (error) {
+        console.error('Error fetching user:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUser()
+  }, [])
+
   return (
     <nav className='sb-sidenav accordion sb-sidenav-dark' id='sidenavAccordion'>
       <div className='sb-sidenav-menu'>
@@ -32,13 +51,14 @@ const Sidebar = () => {
             Update Quiz
           </Link>
           <div className='sb-sidenav-menu-heading'>Interface</div>
+          {/* User Details Collapse */}
           <Link
             className='nav-link collapsed'
             to='#'
             data-bs-toggle='collapse'
-            data-bs-target='#collapseLayouts'
+            data-bs-target='#collapseUserDetails'
             aria-expanded='false'
-            aria-controls='collapseLayouts'
+            aria-controls='collapseUserDetails'
           >
             <div className='sb-nav-link-icon'>
               <i className='fas fa-columns'></i>
@@ -50,7 +70,7 @@ const Sidebar = () => {
           </Link>
           <div
             className='collapse'
-            id='collapseLayouts'
+            id='collapseUserDetails'
             aria-labelledby='headingOne'
             data-bs-parent='#sidenavAccordion'
           >
@@ -64,30 +84,29 @@ const Sidebar = () => {
               <Link className='nav-link' to='/admin/user-activities'>
                 Users Activity
               </Link>
-              <Link className='nav-link' to='/admin/light-sidenav'>
-                Light Sidenav
-              </Link>
             </nav>
           </div>
+
+          {/* Messaging Collapse */}
           <Link
             className='nav-link collapsed'
             to='#'
             data-bs-toggle='collapse'
-            data-bs-target='#collapseLayouts'
+            data-bs-target='#collapseMessaging'
             aria-expanded='false'
-            aria-controls='collapseLayouts'
+            aria-controls='collapseMessaging'
           >
             <div className='sb-nav-link-icon'>
-              <i className='fas fa-columns'></i>
+              <i className='fas fa-envelope'></i>
             </div>
-            Messaging
+            Contenting
             <div className='sb-sidenav-collapse-arrow'>
               <i className='fas fa-angle-down'></i>
             </div>
           </Link>
           <div
             className='collapse'
-            id='collapseLayouts'
+            id='collapseMessaging'
             aria-labelledby='headingOne'
             data-bs-parent='#sidenavAccordion'
           >
@@ -95,12 +114,13 @@ const Sidebar = () => {
               <Link className='nav-link' to='/admin/messagecenter'>
                 Message Center
               </Link>
-
-              <Link className='nav-link' to='/admin/light-sidenav'>
-                Light Sidenav
+              <Link className='nav-link' to='/admin/blog'>
+                Blogging
               </Link>
             </nav>
           </div>
+
+          {/* Pages Collapse */}
           <Link
             className='nav-link collapsed'
             to='#'
@@ -158,6 +178,7 @@ const Sidebar = () => {
                   </Link>
                 </nav>
               </div>
+
               <Link
                 className='nav-link collapsed'
                 to='#'
@@ -191,14 +212,15 @@ const Sidebar = () => {
               </div>
             </nav>
           </div>
+
           <div className='sb-sidenav-menu-heading'>Addons</div>
-          <Link className='nav-link' to='/charts'>
+          <Link className='nav-link' to='/admin/charts'>
             <div className='sb-nav-link-icon'>
               <i className='fas fa-chart-area'></i>
             </div>
             Charts
           </Link>
-          <Link className='nav-link' to='/tables'>
+          <Link className='nav-link' to='/admin/tables'>
             <div className='sb-nav-link-icon'>
               <i className='fas fa-table'></i>
             </div>
@@ -206,9 +228,14 @@ const Sidebar = () => {
           </Link>
         </div>
       </div>
+
       <div className='sb-sidenav-footer'>
         <div className='small'>Logged in as:</div>
-        Administrator
+        {loading
+          ? 'Loading...'
+          : user?.role_as === 1
+          ? 'Administrator'
+          : user?.name || 'Contributor'}
       </div>
     </nav>
   )

@@ -42,25 +42,32 @@ const Footer = () => {
         </div>
       </ScrollToTop>
       <div className='sepp__footer-links'>
-        <motion.div
-          variants={iconVariants(2.5)}
-          initial='initial'
-          animate='animate'
-          className='sepp__footer-links_logo'
-        >
-          <img src={seppFooter} alt='footerlogo' />
-          <p>Pioneer Your Path to Success.</p>
-        </motion.div>
+        <ScrollToTop to='/'>
+          <motion.div
+            variants={iconVariants(2.5)}
+            initial='initial'
+            animate='animate'
+            className='sepp__footer-links_logo'
+          >
+            <img src={seppFooter} alt='footerlogo' />
+            <p>Pioneer Your Path to Success.</p>
+          </motion.div>
+        </ScrollToTop>
         <div className='sepp__footer-links_div'>
           <h4>Company</h4>
           <p>
-            <ScrollToTop to='/terms'>Terms & Conditions</ScrollToTop>
+            <ScrollToTop to='/blog'>Our Blog</ScrollToTop>
           </p>
           <p>
-            <ScrollToTop to='/privacy'>Privacy Policy</ScrollToTop>
+            <ScrollToTop to='/termsandconditions'>
+              Terms & Conditions
+            </ScrollToTop>
           </p>
           <p>
-            <ScrollToTop to='/faqs'>FAQs</ScrollToTop>
+            <ScrollToTop to='/privacypolicy'>Privacy Policy</ScrollToTop>
+          </p>
+          <p>
+            <ScrollToTop to='/frequentlyaskedquestions'>FAQs</ScrollToTop>
           </p>
         </div>
         <div className='sepp__footer-links_div'>

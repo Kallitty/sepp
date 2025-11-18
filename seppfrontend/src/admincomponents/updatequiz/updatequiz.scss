@@ -4,6 +4,13 @@
   gap: 10px;
 }
 
+.sepp__update-quiz--empty {
+  text-align: center;
+  color: #999;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
 .sepp__update-quiz__quiz {
   display: flex;
   justify-content: space-between;

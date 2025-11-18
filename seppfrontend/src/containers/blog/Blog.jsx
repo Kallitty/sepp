@@ -1,83 +1,107 @@
-import React from 'react'
-import './blog.css'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import './blog.scss'
 import Article from '../../components/article/Article.jsx'
-import { blog_01, blog_02, blog_03, blog_04, blog_05 } from './imports.js'
 import { motion } from 'framer-motion'
+import Footer from '../footer/Footer'
 
-const Blog = () => {
+const Blog = ({ showAll = false }) => {
+  const [articles, setArticles] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get('/articles')
+        setArticles(Array.isArray(response?.data) ? response.data : [])
+        setError(null)
+      } catch (error) {
+        console.error('Error fetching articles:', error)
+        setError('Failed to load articles')
+        setArticles([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchArticles()
+  }, [])
+
+  const handleArticleClick = (slug) => {
+    navigate(`/blog/${slug}`)
+  }
+
+  if (loading) {
+    return (
+      <div className='sepp__blog-loading'>
+        <div className='loader'></div>
+      </div>
+    )
+  }
+
   return (
-    <div className='sepp__blog section__padding' id='blog'>
-      <div className='sepp__blog-heading'>
-        <motion.h1
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: -100 }}
-          transition={{ duration: 1 }}
-          className='gradient__text'
-        >
-          Explore Our Blog
-        </motion.h1>
-        <div className='sepp__blog-container'>
-          <motion.div
+    <>
+      <div className='sepp__blog section__padding' id='blog'>
+        <div className='sepp__blog-heading'>
+          <motion.h1
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className='sepp__blog-container_groupA'
+            transition={{ duration: 1 }}
+            className='gradient__text'
           >
-            <Article
-              imgUrl={blog_01}
-              date='Nov 03, 2023'
-              title='Study Tips and Strategies'
-            />
-          </motion.div>
-          <div className='sepp__blog-container_groupB'>
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 1.5 }}
-            >
-              <Article
-                imgUrl={blog_05}
-                date='Jan 14, 2024'
-                title='Success Stories and Inspirations'
-              />
-            </motion.div>
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 1.5 }}
-            >
-              <Article
-                imgUrl={blog_03}
-                date='Jan 25, 2024'
-                title=' Latest Examination Updates'
-              />
-            </motion.div>
-            <motion.div
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 100 }}
-              transition={{ duration: 1.5 }}
-            >
-              <Article
-                imgUrl={blog_04}
-                date='Feb 03, 2024'
-                title='Career Development and Advancement'
-              />
-            </motion.div>
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 1.5 }}
-            >
-              <Article
-                imgUrl={blog_02}
-                date='Feb 18, 2024'
-                title=' Community Spotlights and Events'
-              />
-            </motion.div>
+            Explore Our Blog
+          </motion.h1>
+          <div className={`sepp__blog-container ${showAll ? 'full-view' : ''}`}>
+            {articles.length > 0 ? (
+              <>
+                <motion.div
+                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className='sepp__blog-container_groupA'
+                >
+                  <Article
+                    article={articles[0]}
+                    onClick={() => handleArticleClick(articles[0].slug)}
+                    isFeatured={true}
+                  />
+                </motion.div>
+                <div className='sepp__blog-container_groupB'>
+                  {/* {articles.slice(1, 5).map((article, index) => ( */}
+                  {(showAll ? articles.slice(1) : articles.slice(1, 5)).map(
+                    (article, index) => (
+                      <motion.div
+                        key={article.slug}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{
+                          opacity: 0,
+                          x: index % 2 === 0 ? -100 : 100,
+                        }}
+                        transition={{ duration: 1.5 }}
+                      >
+                        <Article
+                          article={article}
+                          onClick={() => handleArticleClick(article.slug)}
+                          isFeatured={false}
+                        />
+                      </motion.div>
+                    )
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className='sepp__blog-empty'>
+                No articles found. Check back later!
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

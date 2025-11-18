@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import swal from 'sweetalert'
 import ClipLoader from 'react-spinners/ClipLoader'
-import '../createquiz/createquiz.scss' // Import the SCSS file
+import '../createquiz/createquiz.scss'
 
 const EditQuiz = () => {
   const { id } = useParams()

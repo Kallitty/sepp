@@ -32,7 +32,7 @@ const ContactUs = () => {
             <div className='sepp__contactus-info-item'>
               <FaMapMarkerAlt className='sepp__contactus-icon' />
               <h3>Address</h3>
-              <>7 Crawford Avenue, Bolton BL12BQ</>
+              <>Deane Road, Bolton BL3 5AB</>
             </div>
           </div>
           <div className='sepp__contactus-form'>

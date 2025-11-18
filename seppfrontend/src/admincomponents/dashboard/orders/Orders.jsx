@@ -1,8 +1,93 @@
-import React from 'react'
-// import './orders.scss'
+import React, { useEffect, useState } from 'react'
 import styles from './Orders.module.css'
+import axios from 'axios'
+import { format } from 'date-fns'
+import { ClipLoader } from 'react-spinners'
+import { DefaultProfilePic } from '../../../components/profile/defaultprofp'
 
 const Orders = () => {
+  const [recentQuizzes, setRecentQuizzes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchRecentQuizzes = async () => {
+      try {
+        const response = await axios.get('/allquiz-results')
+        const sortedResults = response.data.results
+          .map((result) => ({
+            ...result,
+            // Convert score to percentage (assuming score is out of 100)
+            score: result.score !== null ? Math.round(result.score) : null,
+            // Ensure status is properly set
+            status:
+              result.status ||
+              (result.score !== null ? 'completed' : 'pending'),
+            // Add profile picture URL
+            profile_picture: result.user?.profile_picture || DefaultProfilePic,
+          }))
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(0, 5)
+
+        setRecentQuizzes(sortedResults)
+      } catch (err) {
+        setError(
+          err.response?.data?.message || 'Failed to fetch recent quizzes'
+        )
+        console.error('Error fetching quizzes:', err)
+        setRecentQuizzes([
+          {
+            id: 1,
+            user_name: 'John Muo',
+            profile_picture: DefaultProfilePic,
+            created_at: '2024-01-10T07:40:00.000Z',
+            updated_at: '2024-01-10T08:20:08.000Z',
+            score: 85,
+            status: 'completed',
+            quiz_title: 'General Knowledge',
+          },
+          {
+            id: 2,
+            user_name: 'Kallie Psalm',
+            profile_picture: DefaultProfilePic,
+            created_at: '2024-01-10T11:22:00.000Z',
+            updated_at: null,
+            score: null,
+            status: 'pending',
+            quiz_title: 'Science Quiz',
+          },
+        ])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchRecentQuizzes()
+  }, [])
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A'
+    return format(new Date(dateString), 'MM-dd-yyyy')
+  }
+
+  const formatTime = (dateString) => {
+    if (!dateString) return 'N/A'
+    return format(new Date(dateString), 'h:mm:ss a')
+  }
+
+  const getStatusClass = (status) => {
+    return status === 'completed' ? styles.completed : styles.pending
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <ClipLoader size={50} color={'#470647'} />
+        <p>Loading recent quiz results...</p>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.order}>
       <div className={styles.head}>
@@ -10,6 +95,7 @@ const Orders = () => {
         <i className='bx bx-search'></i>
         <i className='bx bx-filter'></i>
       </div>
+      {error && <div className={styles.error}>{error}</div>}
       <table>
         <thead>
           <tr>
@@ -22,61 +108,52 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img src='img/people.png' alt='User' />
-              <p>John Muo</p>
-            </td>
-            <td>01-10-2024</td>
-            <td>
-              <span className={`${styles.status} ${styles.completed}`}>
-                7:40:00 am
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.completed}`}>
-                8:20:08 am
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.completed}`}>
-                Completed
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.completed}`}>
-                Score
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src='img/people.png' alt='User' />
-              <p>Kallie Psalm</p>
-            </td>
-            <td>01-10-2024</td>
-            <td>
-              <span className={`${styles.status} ${styles.pending}`}>
-                11:22:00 am
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.pending}`}>
-                Pending
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.pending}`}>
-                Pending
-              </span>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.pending}`}>
-                Score
-              </span>
-            </td>
-          </tr>
-          {/* More rows as needed */}
+          {recentQuizzes.map((quiz) => (
+            <tr key={quiz.id}>
+              <td>
+                <img
+                  src={quiz.profile_picture || DefaultProfilePic}
+                  alt='User'
+                  className={styles.userAvatar}
+                  onError={(e) => {
+                    e.target.src = DefaultProfilePic
+                  }}
+                />
+                <p>{quiz.user_name}</p>
+              </td>
+              <td>{formatDate(quiz.created_at)}</td>
+              <td>
+                <span
+                  className={`${styles.status} ${getStatusClass(quiz.status)}`}
+                >
+                  {formatTime(quiz.created_at)}
+                </span>
+              </td>
+              <td>
+                <span
+                  className={`${styles.status} ${getStatusClass(quiz.status)}`}
+                >
+                  {quiz.status === 'completed'
+                    ? formatTime(quiz.updated_at)
+                    : 'Pending'}
+                </span>
+              </td>
+              <td>
+                <span
+                  className={`${styles.status} ${getStatusClass(quiz.status)}`}
+                >
+                  {quiz.status === 'completed' ? 'Completed' : 'Pending'}
+                </span>
+              </td>
+              <td>
+                <span
+                  className={`${styles.status} ${getStatusClass(quiz.status)}`}
+                >
+                  {quiz.status === 'completed' ? `${quiz.score}%` : 'N/A'}
+                </span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

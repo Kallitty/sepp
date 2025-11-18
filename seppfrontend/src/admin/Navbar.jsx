@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import swal from 'sweetalert'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,24 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 function Navbar() {
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('/user')
+        setUser(response.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUserData()
+  }, [])
+
   const logoutSubmit = (e) => {
     e.preventDefault()
 
@@ -60,10 +78,19 @@ function Navbar() {
       }
     })
   }
+
+  if (loading) {
+    return (
+      <nav className='sb-topnav navbar navbar-expand navbar-dark bg-dark'>
+        {/* <div className='navbar-brand ps-3'>Loading...</div> */}
+      </nav>
+    )
+  }
+
   return (
     <nav className='sb-topnav navbar navbar-expand navbar-dark bg-dark !important'>
       <Link to='/admin/dashboard' className='navbar-brand ps-3'>
-        Sir Admin
+        {user?.role_as === 1 ? 'Sir Admin' : user?.name || 'Contributor'}
       </Link>
 
       <button

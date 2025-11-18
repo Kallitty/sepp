@@ -14,6 +14,11 @@ const UpdateQuiz = () => {
         setQuizzes(response.data)
       } catch (error) {
         console.error('Error fetching quizzes:', error)
+        swal(
+          'Error',
+          error.response?.data?.message || 'Failed to fetch quizzes.',
+          'error'
+        )
       }
     }
 
@@ -36,8 +41,11 @@ const UpdateQuiz = () => {
             icon: 'success',
           })
         } catch (error) {
-          console.error('Error deleting quiz:', error)
-          swal('Error', 'Failed to delete quiz', 'error')
+          swal(
+            'Error',
+            error.response?.data?.message || 'Failed to delete quiz.',
+            'error'
+          )
         }
       }
     })
@@ -55,63 +63,75 @@ const UpdateQuiz = () => {
       )
     } catch (error) {
       console.error('Error toggling visibility:', error)
-      swal('Error', 'Failed to update quiz visibility', 'error')
+      swal(
+        'Error',
+        error.response?.data?.message || 'Failed to update quiz visibility.',
+        'error'
+      )
     }
   }
 
   return (
     <div className='sepp__update-quizes'>
-      {quizzes.map((quiz) => (
-        <div key={quiz.id} className='sepp__update-quiz__quiz'>
-          <div className='sepp__update-quiz--detail'>
-            <div className='sepp__update-quiz--name'>
-              <h5 className='sepp__update-quiz--title'>{quiz.title}</h5>
-              <span
-                className={`sepp__update-quiz--status ${
+      {quizzes.length === 0 ? (
+        <div className='sepp__update-quiz--empty'>
+          <p>
+            There are no quizzes to update. Kindly create a quiz to update them.
+          </p>
+        </div>
+      ) : (
+        quizzes.map((quiz) => (
+          <div key={quiz.id} className='sepp__update-quiz__quiz'>
+            <div className='sepp__update-quiz--detail'>
+              <div className='sepp__update-quiz--name'>
+                <h5 className='sepp__update-quiz--title'>{quiz.title}</h5>
+                <span
+                  className={`sepp__update-quiz--status ${
+                    quiz.is_visible ? 'visible' : 'hidden'
+                  }`}
+                >
+                  {quiz.is_visible ? 'Visible' : 'Hidden'}
+                </span>
+              </div>
+            </div>
+            <div className='sepp__update-quiz--action'>
+              <button
+                onClick={() => toggleVisibility(quiz.id, quiz.is_visible)}
+                className={`sepp__update-quiz--toggle ${
                   quiz.is_visible ? 'visible' : 'hidden'
                 }`}
               >
-                {quiz.is_visible ? 'Visible' : 'Hidden'}
-              </span>
+                {quiz.is_visible ? 'Hide' : 'Show'}
+              </button>
+              <Link
+                to={`/admin/edit-title/${quiz.id}`}
+                className='sepp__update-quiz--edit'
+              >
+                Edit Title
+              </Link>
+              <Link
+                to={`/admin/edit-quiz/${quiz.id}`}
+                className='sepp__update-quiz--edit'
+              >
+                Edit Q & A
+              </Link>
+              <Link
+                to={`/admin/display-quiz/${quiz.id}`}
+                className='sepp__update-quiz--edit'
+              >
+                Display Quiz
+              </Link>
+
+              <button
+                onClick={() => handleDelete(quiz.id)}
+                className='sepp__update-quiz--delete'
+              >
+                Delete
+              </button>
             </div>
           </div>
-          <div className='sepp__update-quiz--action'>
-            <button
-              onClick={() => toggleVisibility(quiz.id, quiz.is_visible)}
-              className={`sepp__update-quiz--toggle ${
-                quiz.is_visible ? 'visible' : 'hidden'
-              }`}
-            >
-              {quiz.is_visible ? 'Hide' : 'Show'}
-            </button>
-            <Link
-              to={`/admin/edit-title/${quiz.id}`}
-              className='sepp__update-quiz--edit'
-            >
-              Edit Title
-            </Link>
-            <Link
-              to={`/admin/edit-quiz/${quiz.id}`}
-              className='sepp__update-quiz--edit'
-            >
-              Edit Q & A
-            </Link>
-            <Link
-              to={`/admin/display-quiz/${quiz.id}`}
-              className='sepp__update-quiz--edit'
-            >
-              Display Quiz
-            </Link>
-
-            <button
-              onClick={() => handleDelete(quiz.id)}
-              className='sepp__update-quiz--delete'
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   )
 }

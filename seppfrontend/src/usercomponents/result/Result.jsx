@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { FaClipboardList } from 'react-icons/fa'
 import axios from 'axios'
 import './result.scss'
 import { ClipLoader } from 'react-spinners'
@@ -63,17 +64,31 @@ const Result = () => {
 
   if (loading) {
     return (
-      <div className='loading-container'>
-        <ClipLoader size={20} color={'#470647'} loading={loading} />
+      <div className='result__loading-container'>
+        <ClipLoader size={50} color={'#5a3a56'} loading={loading} />
+      </div>
+    )
+  }
+
+  if (scores.length === 0) {
+    return (
+      <div className='result__empty-state'>
+        <div className='result__empty-icon'>
+          <FaClipboardList />
+        </div>
+        <h3 className='result__empty-title'>No Results Found</h3>
+        <p className='result__empty-message'>
+          Kindly take an exam to see your result(s) here.
+        </p>
       </div>
     )
   }
 
   return (
-    <div className='sepp_result-container'>
-      <h3>Scoreboard</h3>
-      <div className='table-wrapper'>
-        <table>
+    <div className='result__container'>
+      <h3 className='result__header'>Scoreboard</h3>
+      <div className='result__table-wrapper'>
+        <table className='result__table'>
           <thead>
             <tr>
               <th>Serial No.</th>
@@ -100,14 +115,19 @@ const Result = () => {
           </tbody>
         </table>
       </div>
-      <div className='pagination-container'>
-        <button onClick={handlePrevious} disabled={currentPage === 1}>
+      <div className='result__pagination-container'>
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+          className='result__pagination-button'
+        >
           Previous
         </button>
-        <ul className='pagination'>{renderPageNumbers}</ul>
+        <ul className='result__pagination'>{renderPageNumbers}</ul>
         <button
           onClick={handleNext}
           disabled={currentPage === pageNumbers.length}
+          className='result__pagination-button'
         >
           Next
         </button>

@@ -18,10 +18,10 @@ function AdminPrivateRoute({ children }) {
         if (authRes.data.status === 200) {
           setIsAuthenticated(true)
           const userRes = await axios.get('/user')
-          if (userRes.data.role_as === 1) {
+          if (userRes.data.role_as === 1 || userRes.data.role_as === 2) {
             setIsAdmin(true)
           } else {
-            setError('User is not an admin.')
+            setError('User is neither an admin nor a contributor.')
           }
         } else {
           setError('User is not authenticated.')

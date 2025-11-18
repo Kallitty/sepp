@@ -51,3 +51,45 @@ p {
 .status.pending {
   background: var(--orange);
 }
+
+.skeletonAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.skeletonText {
+  width: 80%;
+  height: 16px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.error {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}

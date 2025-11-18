@@ -131,8 +131,21 @@ const CreateQuiz = () => {
       })
       .catch((error) => {
         console.error(error)
-        swal('Error', 'Failed to create quiz', 'error')
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.errors
+        ) {
+          const errors = error.response.data.errors
+          const errorMessages = Object.values(errors).flat().join('\n')
+
+          swal('Validation Error', errorMessages, 'error')
+        } else {
+          swal('Error', 'Failed to create quiz', 'error')
+        }
       })
+
       .finally(() => {
         setLoading(false) // Set loading to false when request is completed
       })

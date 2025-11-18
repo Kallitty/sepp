@@ -16,6 +16,7 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [time, setTime] = useState({ minutes: 0, seconds: 0 })
   const [durationInSeconds, setDurationInSeconds] = useState(0)
+  const [quizAttemptId, setQuizAttemptId] = useState(null)
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -37,6 +38,46 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
 
     fetchQuiz()
   }, [quizId, initialQuestions])
+
+  // useEffect(() => {
+  //   const startQuizAttempt = async () => {
+  //     try {
+  //       const response = await axios.post('/start-quiz', {
+  //         quiz_id: quizId, // Send the actual quiz ID from URL
+  //       })
+  //       setQuizAttemptId(response.data.quiz_attempt_id)
+  //     } catch (error) {
+  //       console.error('Error starting quiz attempt:', error)
+  //     }
+  //   }
+  //   startQuizAttempt()
+  // }, [])
+
+  useEffect(() => {
+    let isMounted = true // Flag to track component mount state
+
+    const startQuizAttempt = async () => {
+      try {
+        // Only start attempt if we don't already have an ID
+        if (!quizAttemptId) {
+          const response = await axios.post('/start-quiz', {
+            quiz_id: quizId,
+          })
+          if (isMounted) {
+            setQuizAttemptId(response.data.quiz_attempt_id)
+          }
+        }
+      } catch (error) {
+        console.error('Error starting quiz attempt:', error)
+      }
+    }
+
+    startQuizAttempt()
+
+    return () => {
+      isMounted = false // Cleanup function
+    }
+  }, [quizId]) // Add quizId as dependency
 
   useEffect(() => {
     if (durationInSeconds > 0) {
@@ -105,14 +146,37 @@ const Quiz = ({ questions: initialQuestions, quizId }) => {
     })
   }
 
-  const submitResults = (resultData) => {
-    axios.post('/store-quiz-results', resultData).then((res) => {
-      if (res.data.status === 200) {
-        swal('Success.', res.data.message, 'success')
-      } else if (res.data.status === 400) {
-        swal('Error.', 'There was an error saving your results.', 'error')
+  // const submitResults = (resultData) => {
+  //   axios.post('/store-quiz-results', resultData).then((res) => {
+  //     if (res.data.status === 200) {
+  //       swal('Success.', res.data.message, 'success')
+  //     } else if (res.data.status === 400) {
+  //       swal('Error.', 'There was an error saving your results.', 'error')
+  //     }
+  //   })
+  // }
+  const submitResults = async (resultData) => {
+    try {
+      if (!quizAttemptId) {
+        throw new Error('Quiz attempt not started')
       }
-    })
+
+      const response = await axios.post('/store-quiz-results', {
+        ...resultData,
+        quiz_attempt_id: quizAttemptId,
+      })
+
+      if (response.data.status === 200) {
+        swal('Success.', response.data.message, 'success')
+      }
+    } catch (error) {
+      console.error('Error submitting results:', error)
+      swal(
+        'Error.',
+        error.message || 'There was an error saving your results.',
+        'error'
+      )
+    }
   }
 
   const onTimeUpCloseModal = () => {
