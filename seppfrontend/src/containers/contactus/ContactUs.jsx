@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './contactus.scss'
+import axios from 'axios'
 import { Navbar } from '../../components'
 import Footer from '../footer/Footer'
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
@@ -39,7 +40,7 @@ const ContactUs = () => {
     }
 
     axios
-      .post('/api/contact', dataToSend)
+      .post('/contact', dataToSend)
       .then((res) => {
         if (res.data.status === 200) {
           setMessage(res.data.message)
