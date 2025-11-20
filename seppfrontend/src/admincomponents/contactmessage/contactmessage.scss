@@ -1,0 +1,312 @@
+/* Base Container */
+.contact-message {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.contact-message__title {
+  color: #2c0326;
+  margin-bottom: 10px;
+}
+
+.contact-message__info {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Card Style for Inbox */
+.contact-message__card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.contact-message__card-header {
+  background-color: #f8f9fa;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  color: #2c0326;
+}
+
+/* Table Styling */
+.contact-message__table-responsive {
+  overflow-x: auto;
+}
+
+.contact-message__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background-color: #e8d0ee; /* Light purple header */
+    color: #2c0326;
+    font-weight: 600;
+  }
+
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.contact-message__unread {
+  background-color: #fff3cd; /* Warning color for unread */
+  font-weight: 600;
+}
+
+.contact-message__read {
+  background-color: #ffffff;
+}
+
+.contact-message__empty {
+  text-align: center;
+  padding: 20px !important;
+  color: #999;
+}
+
+/* Badges */
+.contact-message__badge--success {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #28a745; /* Green */
+}
+
+.contact-message__badge--danger {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #dc3545; /* Red */
+}
+
+/* View Button */
+.contact-message__view-btn {
+  background-color: #5e35b1; /* Primary purple */
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #4527a0;
+  }
+}
+
+/* Loading State */
+.contact-message__loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.2rem;
+  color: #5e35b1;
+}
+
+/* Custom Modal Styles (replaces react-bootstrap Modal) */
+.custom-modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Higher than other content */
+}
+
+.custom-modal__content {
+  background-color: white;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 0; /* Remove default padding, use inner padding */
+}
+
+.custom-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-modal__title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2c0326;
+}
+
+.custom-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+.custom-modal__body {
+  padding: 1.5rem;
+}
+
+/* Form Styling (replaces react-bootstrap Form/Form.Group/Form.Control) */
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(94, 53, 177, 0.25); /* Adjusted shadow for primary color */
+  }
+
+  &.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(
+      1.5em + 0.75rem
+    ); /* Space for validation icon if needed */
+  }
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+/* Original Message Card Replacement */
+.contact-message__original-card {
+  padding: 1rem;
+  background-color: #f8f9fa; /* bg-light */
+  border: 1px solid #e9ecef;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  white-space: pre-wrap; /* Preserve formatting */
+}
+
+.contact-message__reply-header {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5e35b1;
+}
+
+/* Send Button (replaces react-bootstrap Button) */
+.contact-message__send-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.25rem;
+  background-color: #28a745; /* success color */
+  color: white;
+  border: 1px solid #28a745;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: #218838;
+  }
+
+  &:disabled {
+    background-color: #90ee90;
+    cursor: not-allowed;
+    border-color: #90ee90;
+  }
+}
+
+/* Font Awesome Spinner */
+.fa-spin {
+  animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .custom-modal__content {
+    width: 98%;
+  }
+
+  .contact-message__table {
+    font-size: 0.9rem;
+    th,
+    td {
+      padding: 8px 10px;
+    }
+  }
+}

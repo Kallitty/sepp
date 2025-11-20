@@ -43,6 +43,7 @@ import PrivacyPolicy from '../containers/privacypolicy/PrivacyPolicy'
 import ArticleDetail from '../components/articledetail/ArticleDetail'
 import AdminBlog from '../admincomponents/adminblog/AdminBlog'
 import AdminArticleForm from '../admincomponents/adminarticleform/AdminArticleForm'
+import ContactMessage from '../admincomponents/contactmessage/ContactMessage'
 
 import {
   startInactivityTimer,
@@ -142,6 +143,7 @@ const routes = createBrowserRouter([
       { path: 'blog', element: <AdminBlog /> },
       { path: 'blog/create', element: <AdminArticleForm /> },
       { path: 'blog/edit/:id', element: <AdminArticleForm /> },
+      { path: 'contact-messages', element: <ContactMessage /> },
 
       // Catch-all for non-existent admin routes
       { path: '*', element: <NotFound /> },

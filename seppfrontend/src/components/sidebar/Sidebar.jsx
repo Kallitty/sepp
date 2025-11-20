@@ -41,12 +41,18 @@ function Sidebar() {
     setIsExamMenuOpen(false) // Close exam menu when opening cert menu
   }
 
+  const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false)
+  const helpMenuRef = useRef(null)
+
   // Close sidebar and menus when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       // Close mobile menu if clicking outside sidebar
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false)
+      }
+      if (helpMenuRef.current && !helpMenuRef.current.contains(event.target)) {
+        setIsHelpMenuOpen(false)
       }
 
       // Close exam menu if clicking outside of it
@@ -259,14 +265,66 @@ function Sidebar() {
               <BiMessage className='sepp__sidebar-left__icon' />
               Message
             </Link>
-            <Link
+            {/* <Link
               to='/boardoutlet/help'
               className='sepp__sidebar-left__items'
               onClick={handleSidebarItemClick}
             >
               <BiTask className='sepp__sidebar-left__icon' />
               Help
-            </Link>
+            </Link> */}
+            {/* Help Section - Dropdown */}
+            <div className='sepp__sidebar-help-section' ref={helpMenuRef}>
+              <div
+                className='sepp__sidebar-help-header'
+                onClick={() => {
+                  setIsHelpMenuOpen(!isHelpMenuOpen)
+                  setIsExamMenuOpen(false)
+                  setIsCertMenuOpen(false)
+                }}
+              >
+                <BiTask className='sepp__sidebar-left__icon' />
+                <span>Help</span>
+                {isHelpMenuOpen ? <BiChevronUp /> : <BiChevronDown />}
+              </div>
+
+              {isHelpMenuOpen && (
+                <div className='sepp__sidebar-help-subsections'>
+                  <Link
+                    to='/boardoutlet/help/faq'
+                    className='sepp__sidebar-left__items sepp__sidebar-help-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    FAQ
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/help/tutorials'
+                    className='sepp__sidebar-left__items sepp__sidebar-help-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Tutorials
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/help/contact'
+                    className='sepp__sidebar-left__items sepp__sidebar-help-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Contact Support
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/help/report'
+                    className='sepp__sidebar-left__items sepp__sidebar-help-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Report Issue
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               to='/boardoutlet/settings'
               className='sepp__sidebar-left__items'

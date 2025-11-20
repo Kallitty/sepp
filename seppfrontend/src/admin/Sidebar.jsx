@@ -86,7 +86,6 @@ const Sidebar = () => {
               </Link>
             </nav>
           </div>
-
           {/* Messaging Collapse */}
           <Link
             className='nav-link collapsed'
@@ -117,9 +116,11 @@ const Sidebar = () => {
               <Link className='nav-link' to='/admin/blog'>
                 Blogging
               </Link>
+              <Link className='nav-link' to='/admin/contact-messages'>
+                Customer Messages
+              </Link>
             </nav>
           </div>
-
           {/* Pages Collapse */}
           <Link
             className='nav-link collapsed'
@@ -212,7 +213,6 @@ const Sidebar = () => {
               </div>
             </nav>
           </div>
-
           <div className='sb-sidenav-menu-heading'>Addons</div>
           <Link className='nav-link' to='/admin/charts'>
             <div className='sb-nav-link-icon'>

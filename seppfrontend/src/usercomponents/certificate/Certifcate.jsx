@@ -14,7 +14,7 @@ const Certificate = () => {
       try {
         const response = await axios.get('/quizzes')
         const certificateQuizzes = response.data.filter((quiz) =>
-          quiz.title.toLowerCase().includes('certificateeeeee')
+          quiz.title.toLowerCase().includes('certificate')
         )
         setQuizzes(certificateQuizzes)
       } catch (error) {

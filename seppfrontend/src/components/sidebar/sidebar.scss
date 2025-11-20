@@ -385,10 +385,11 @@
 }
 
 .sepp__sidebar-cert-subsections {
+  //
   display: flex;
   flex-direction: column;
   padding-left: 40px;
-  margin-top: 5px;
+  // margin-top: 5px;
 
   @media screen and (max-width: 768px) {
     padding-left: 30px;
@@ -423,3 +424,114 @@
     padding: 4px 5px !important;
   }
 }
+
+/* HELP DROPDOWN */
+.sepp__sidebar-help-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sepp__sidebar-help-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #470647;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: rgb(220, 174, 220);
+  }
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1rem;
+    gap: 15px;
+    padding: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.9rem;
+    gap: 10px;
+    padding: 6px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.8rem;
+    gap: 8px;
+    padding: 5px;
+  }
+}
+
+// .sepp__sidebar-help-subsections {
+//   display: flex;
+//   flex-direction: column;
+//   padding-left: 40px;
+//   margin-top: 5px;
+
+//   @media screen and (max-width: 768px) {
+//     padding-left: 30px;
+//   }
+
+//   @media screen and (max-width: 550px) {
+//     padding-left: 25px;
+//   }
+// }
+
+// .sepp__sidebar-help-item {
+//   font-size: 0.95rem !important;
+//   padding: 8px 10px;
+
+//   &:hover {
+//     background: rgba(220, 174, 220, 0.7);
+//   }
+// }
+
+//
+
+.sepp__sidebar-help-subsections {
+  //
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+  // margin-top: 5px;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 30px;
+  }
+
+  @media screen and (max-width: 550px) {
+    padding-left: 25px;
+  }
+}
+
+.sepp__sidebar-help-item {
+  padding: 8px 10px !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+
+  &:hover {
+    background: rgb(230, 190, 230) !important;
+  }
+
+  @media screen and (max-width: 1200px) {
+    font-size: 0.9rem !important;
+    padding: 6px 8px !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.85rem !important;
+    padding: 5px 6px !important;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 0.8rem !important;
+    padding: 4px 5px !important;
+  }
+}
+
+//
