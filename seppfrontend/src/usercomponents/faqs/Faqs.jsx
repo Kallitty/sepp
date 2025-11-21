@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { FaQuestionCircle } from 'react-icons/fa'
 import './faqs.scss'
 
 const FAQS = () => {
@@ -13,96 +14,90 @@ const FAQS = () => {
     {
       question: 'How do I update my profile information?',
       answer:
-        "Go to the 'Profile' page from the navigation menu. You can update your name, email, or other personal details and click 'Save Changes'.",
+        "Go to the 'Profile' page from the navigation menu. Update your details and click 'Save Changes'.",
     },
     {
-      question: 'Where can I find the quizzes and job preparation materials?',
+      question: 'Where can I find quizzes and job prep materials?',
       answer:
-        'Once logged in, you can access all available quizzes and job preparation content from the dashboard. Simply select a category to begin.',
+        'You can access all quizzes and job prep content from the dashboard.',
     },
     {
       question: 'How do I view my quiz results?',
       answer:
-        "You can view all your previous quiz attempts in the 'My Report card' or 'Dashboard' section. Your scores, attempts, and progress will be listed there.",
+        "Go to 'My Report Card' or the dashboard to view past attempts and performance.",
     },
     {
-      question: 'How do I contact support if I need help?',
+      question: 'How do I contact support?',
       answer:
-        "You can send us a message through the 'Help & Support' page. Fill out the contact form and an admin will reply to your email.",
+        "Use the 'Help & Support' page to send a message. Admin will reply via email.",
     },
     {
-      question: 'Can I change my password while logged in?',
-      answer:
-        "Yes. Go to the 'Settings' page and click on 'Change Password'. Enter your current password and your new password to update it.",
+      question: 'Can I change my password?',
+      answer: "Yes. Visit 'Settings' → 'Change Password'.",
     },
     {
-      question: 'What should I do if I’m not receiving platform emails?',
+      question: 'I’m not receiving emails — what should I do?',
       answer:
-        'Check your spam or junk folder first. If the emails are still missing, update your email address in your profile or contact support for assistance.',
+        'Check spam. If still missing, update your email or contact support.',
     },
     {
-      question: 'How do I log out of my account?',
-      answer:
-        "Click on your user icon or the menu toggle in the top navigation and select 'Logout'. This will safely end your session.",
+      question: 'How do I log out?',
+      answer: "Open the navigation menu and click 'Logout'.",
     },
   ]
 
   return (
-    <>
-      <div className='sepp__faqs section__padding' id='faqs'>
-        <div className='sepp__faqs-heading'>
-          <motion.h1
-            whileInView={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: -100 }}
-            transition={{ duration: 1 }}
-            className='gradient__text'
-          >
-            Frequently Asked Questions
-          </motion.h1>
-        </div>
+    <div className='faq__container'>
+      <motion.div
+        className='faq__title-wrapper'
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -30 }}
+        transition={{ duration: 0.8 }}
+      >
+        <FaQuestionCircle className='faq__title-icon' />
+        <h1 className='faq__title'>Frequently Asked Questions</h1>
+      </motion.div>
 
-        <div className='sepp__faqs-container'>
-          {faqItems.map((item, index) => (
-            <motion.div
-              key={index}
-              className={`sepp__faqs-item ${
-                activeIndex === index ? 'active' : ''
-              }`}
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+      <div className='faq__list'>
+        {faqItems.map((item, index) => (
+          <motion.div
+            key={index}
+            className={`faq__item ${activeIndex === index ? 'active' : ''}`}
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.4 }}
+          >
+            <button
+              className='faq__question'
+              onClick={() => toggleFAQ(index)}
+              aria-expanded={activeIndex === index}
             >
-              <button
-                className='sepp__faqs-question'
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={activeIndex === index}
+              <span>{item.question}</span>
+
+              <motion.span
+                className='faq__icon'
+                animate={{ rotate: activeIndex === index ? 45 : 0 }}
+                transition={{ duration: 0.25 }}
               >
-                <span>{item.question}</span>
-                <motion.span
-                  className='sepp__faqs-icon'
-                  animate={{ rotate: activeIndex === index ? 45 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  +
-                </motion.span>
-              </button>
-              <motion.div
-                className='sepp__faqs-answer'
-                initial={{ height: 0, opacity: 0 }}
-                animate={{
-                  height: activeIndex === index ? 'auto' : 0,
-                  opacity: activeIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <p>{item.answer}</p>
-              </motion.div>
+                +
+              </motion.span>
+            </button>
+
+            <motion.div
+              className='faq__answer'
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: activeIndex === index ? 'auto' : 0,
+                opacity: activeIndex === index ? 1 : 0,
+              }}
+              transition={{ duration: 0.25 }}
+            >
+              <p>{item.answer}</p>
             </motion.div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
-      {/* <Footer /> */}
-    </>
+    </div>
   )
 }
 

@@ -307,7 +307,7 @@ function Sidebar() {
                   </Link>
 
                   <Link
-                    to='/boardoutlet/help/contact'
+                    to='/boardoutlet/help/contactsupport'
                     className='sepp__sidebar-left__items sepp__sidebar-help-item'
                     onClick={handleSidebarItemClick}
                   >
@@ -315,7 +315,7 @@ function Sidebar() {
                   </Link>
 
                   <Link
-                    to='/boardoutlet/help/report'
+                    to='/boardoutlet/help/reportissue'
                     className='sepp__sidebar-left__items sepp__sidebar-help-item'
                     onClick={handleSidebarItemClick}
                   >

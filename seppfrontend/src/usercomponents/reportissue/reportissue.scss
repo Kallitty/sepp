@@ -1,0 +1,140 @@
+.reportIssue__container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.reportIssue__card {
+  background: rgb(232, 208, 238);
+  padding: 30px;
+  border-radius: 14px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.reportIssue__icon {
+  font-size: 50px;
+  color: #2c0326;
+  background: #ffffff;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reportIssue__title {
+  color: #2c0326;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.reportIssue__subtitle {
+  color: #5a3a56;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.reportIssue__success {
+  background: #d4ffe2;
+  color: #1d7c36;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.reportIssue__error {
+  background: #ffe1e1;
+  color: #a10000;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.reportIssue__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reportIssue__group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  label {
+    color: #2c0326;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 12px;
+    border: 1px solid rgba(90, 58, 86, 0.3);
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    color: #2c0326;
+    background: #fff;
+
+    &:focus {
+      border-color: #2c0326;
+    }
+  }
+}
+
+.reportIssue__button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #2c0326;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 550px) {
+  .reportIssue__card {
+    padding: 20px;
+  }
+
+  .reportIssue__title {
+    font-size: 20px;
+  }
+
+  .reportIssue__subtitle {
+    font-size: 14px;
+  }
+
+  .reportIssue__icon {
+    width: 55px;
+    height: 55px;
+    font-size: 40px;
+  }
+}
