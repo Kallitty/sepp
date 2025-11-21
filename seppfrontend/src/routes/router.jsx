@@ -49,6 +49,10 @@ import {
   startInactivityTimer,
   clearInactivityTimer,
 } from '../services/inactivityService'
+import FAQS from '../usercomponents/faqs/Faqs'
+import Tutorials from '../usercomponents/tutorials/Tutorials'
+import ReportIssue from '../usercomponents/reportissue/ReportIssue'
+import ContactSupport from '../usercomponents/contactsupport/ContactSupport'
 
 // In your router.jsx, modify the isAuthenticated function
 const isAuthenticated = () => {
@@ -106,6 +110,13 @@ const routes = createBrowserRouter([
           { path: 'exams/nabteb', element: <Nabteb /> },
           { path: 'certification/certificates', element: <Certificate /> },
           { path: 'certification/reportcard', element: <ReportCard /> },
+          {
+            path: 'help/faq',
+            element: <FAQS />,
+          },
+          { path: 'help/tutorials', element: <Tutorials /> },
+          { path: 'help/reportissue', element: <ReportIssue /> },
+          { path: 'help/contactsupport', element: <ContactSupport /> },
           { path: 'reportcard', element: <Nothing /> },
           { path: 'stats', element: <Nothing /> },
           { path: 'message', element: <UserInbox /> },

@@ -49,8 +49,8 @@ const FAQS = () => {
 
   return (
     <>
-      <div className='sepp__faq section__padding' id='faq'>
-        <div className='sepp__faq-heading'>
+      <div className='sepp__faqs section__padding' id='faqs'>
+        <div className='sepp__faqs-heading'>
           <motion.h1
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -100 }}
@@ -61,11 +61,11 @@ const FAQS = () => {
           </motion.h1>
         </div>
 
-        <div className='sepp__faq-container'>
+        <div className='sepp__faqs-container'>
           {faqItems.map((item, index) => (
             <motion.div
               key={index}
-              className={`sepp__faq-item ${
+              className={`sepp__faqs-item ${
                 activeIndex === index ? 'active' : ''
               }`}
               whileInView={{ opacity: 1, y: 0 }}
@@ -73,13 +73,13 @@ const FAQS = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <button
-                className='sepp__faq-question'
+                className='sepp__faqs-question'
                 onClick={() => toggleFAQ(index)}
                 aria-expanded={activeIndex === index}
               >
                 <span>{item.question}</span>
                 <motion.span
-                  className='sepp__faq-icon'
+                  className='sepp__faqs-icon'
                   animate={{ rotate: activeIndex === index ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -87,7 +87,7 @@ const FAQS = () => {
                 </motion.span>
               </button>
               <motion.div
-                className='sepp__faq-answer'
+                className='sepp__faqs-answer'
                 initial={{ height: 0, opacity: 0 }}
                 animate={{
                   height: activeIndex === index ? 'auto' : 0,
