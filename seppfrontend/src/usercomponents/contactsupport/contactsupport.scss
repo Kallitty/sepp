@@ -1,139 +1,182 @@
+$primary-color: #5a3a56;
+$secondary-color: #2c0326;
+$text-color: #470647;
+
 .contactSupport__container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 800px; // Matching reportIssue max-width
+  margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
+  @media (max-width: 550px) {
+    padding: 10px;
+  }
+}
+
+.contactSupport__loading-container {
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  align-items: center;
+  height: 200px;
   width: 100%;
 }
 
 .contactSupport__card {
-  background: rgb(232, 208, 238);
-  padding: 30px;
-  border-radius: 14px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  text-align: center;
+  background: white;
+  padding: 30px; // Matching reportIssue card padding
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+  @media (max-width: 550px) {
+    padding: 15px;
+  }
 }
 
 .contactSupport__icon {
-  font-size: 50px;
-  color: #2c0326;
-  background: #ffffff;
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // Reusing the icon style for the card title icon (FaEnvelope in JSX)
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-right: 10px; // Added margin to space from title/subtitle
+
+  @media (max-width: 550px) {
+    font-size: 1.2rem;
+  }
 }
 
 .contactSupport__title {
-  color: #2c0326;
-  font-size: 24px;
-  font-weight: 700;
+  color: $secondary-color;
+  text-align: center;
   margin-bottom: 5px;
+  font-size: 1.8rem; // Matching reportIssue__header
+  font-weight: 700;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 }
 
 .contactSupport__subtitle {
-  color: #5a3a56;
-  font-size: 15px;
+  color: $text-color;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 25px; // Slightly less than 30px to accommodate the full title/subtitle block
+}
+
+.contactSupport__success,
+.contactSupport__error {
+  padding: 10px;
+  border-radius: 6px;
   margin-bottom: 20px;
+  font-size: 0.9rem;
+  text-align: left;
 }
 
 .contactSupport__success {
-  background: #d4ffe2;
-  color: #1d7c36;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 14px;
+  background-color: #e6ffe6;
+  color: #008000;
+  border: 1px solid #008000;
 }
 
 .contactSupport__error {
-  background: #ffe1e1;
-  color: #a10000;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 14px;
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
 }
 
 .contactSupport__form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 15px; // Matching reportIssue form gap
+  text-align: left;
 }
 
 .contactSupport__group {
   display: flex;
   flex-direction: column;
-  text-align: left;
 
   label {
-    color: #2c0326;
-    margin-bottom: 6px;
-    font-size: 14px;
     font-weight: 600;
+    color: $text-color;
+    margin-bottom: 5px;
+    font-size: 0.9rem; // Matching reportIssue label font size
+
+    @media (max-width: 550px) {
+      font-size: 0.85rem;
+    }
   }
 
-  input,
+  input[type='text'],
+  input[type='email'],
   textarea {
-    padding: 12px;
-    border: 1px solid rgba(90, 58, 86, 0.3);
-    border-radius: 8px;
-    outline: none;
-    font-size: 14px;
-    color: #2c0326;
-    background: #fff;
+    padding: 10px; // Matching reportIssue input padding
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #f9f9f9; // Matching reportIssue input background
+
+    @media (max-width: 550px) {
+      padding: 8px;
+    }
 
     &:focus {
-      border-color: #2c0326;
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      background-color: white; // Matching reportIssue focus background
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .contactSupport__input--disabled {
+    background-color: #eee; // Slightly lighter disabled background
+    color: #777;
+    cursor: not-allowed;
+    // Remove focus shadow for disabled fields
+    &:focus {
+      box-shadow: none;
+      background-color: #eee;
     }
   }
 }
 
 .contactSupport__button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: #2c0326;
-  color: #fff;
+  background-color: $primary-color;
+  color: white;
+  padding: 10px 20px; // Matching reportIssue button padding
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 6px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
+  margin-top: 15px; // Matching reportIssue button margin
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  &:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+  @media (max-width: 550px) {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 10%);
   }
 
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed;
-  }
-}
-
-@media (max-width: 550px) {
-  .contactSupport__card {
-    padding: 20px;
-  }
-
-  .contactSupport__title {
-    font-size: 20px;
-  }
-
-  .contactSupport__subtitle {
-    font-size: 14px;
-  }
-
-  .contactSupport__icon {
-    width: 55px;
-    height: 55px;
-    font-size: 40px;
   }
 }

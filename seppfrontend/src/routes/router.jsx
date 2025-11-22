@@ -53,6 +53,9 @@ import FAQS from '../usercomponents/faqs/Faqs'
 import Tutorials from '../usercomponents/tutorials/Tutorials'
 import ReportIssue from '../usercomponents/reportissue/ReportIssue'
 import ContactSupport from '../usercomponents/contactsupport/ContactSupport'
+import AccountSettings from '../usercomponents/accountsettings/AccountSettings'
+import Preference from '../usercomponents/preference/Preference'
+import NotificationsSettings from '../usercomponents/notificationssettings/NotificationsSettings'
 
 // In your router.jsx, modify the isAuthenticated function
 const isAuthenticated = () => {
@@ -114,6 +117,7 @@ const routes = createBrowserRouter([
           { path: 'help/tutorials', element: <Tutorials /> },
           { path: 'help/reportissue', element: <ReportIssue /> },
           { path: 'help/contactsupport', element: <ContactSupport /> },
+
           { path: 'settings/accountsettings', element: <AccountSettings /> },
           { path: 'settings/preference', element: <Preference /> },
           {

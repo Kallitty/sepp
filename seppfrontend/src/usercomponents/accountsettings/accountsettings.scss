@@ -1,0 +1,156 @@
+$primary-color: #5a3a56;
+$secondary-color: #2c0326;
+$background-light: rgb(232, 208, 238);
+$text-color: #470647;
+
+.accountSettings__container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
+  @media (max-width: 550px) {
+    padding: 10px;
+  }
+}
+
+.accountSettings__header {
+  color: $secondary-color;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
+
+.accountSettings__card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 550px) {
+    padding: 15px;
+  }
+}
+
+.accountSettings__card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  h4 {
+    color: $primary-color;
+    font-size: 1.2rem;
+    margin: 0;
+
+    @media (max-width: 550px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.accountSettings__icon {
+  font-size: 1.5rem;
+  color: $primary-color;
+
+  @media (max-width: 550px) {
+    font-size: 1.2rem;
+  }
+}
+
+.accountSettings__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.accountSettings__form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+
+    @media (max-width: 550px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+}
+
+.accountSettings__submit-button {
+  background-color: $primary-color;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 10%);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  svg {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 550px) {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading State */
+.accountSettings__loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+}

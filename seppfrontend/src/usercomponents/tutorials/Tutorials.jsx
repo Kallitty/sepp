@@ -12,10 +12,33 @@ const Tutorials = () => {
   useEffect(() => {
     const fetchTutorials = async () => {
       try {
-        const response = await axios.get('/tutorials')
+        // Simulating API response:
+        // For testing the data view, uncomment the 'real' data below.
+        // For testing the empty state, keep the empty array.
+
+        // --- Dummy Data (UNCOMMENT TO TEST DATA VIEW) ---
+        const response = {
+          data: [
+            {
+              id: 1,
+              title: 'Getting Started with the Dashboard',
+              duration: 15,
+            },
+            { id: 2, title: 'Understanding Your Exam Results', duration: 10 },
+            { id: 3, title: 'Setting Up Notifications', duration: 7 },
+            { id: 4, title: 'Advanced Quiz Taking Strategies', duration: 22 },
+          ],
+        }
+        // --- Dummy Data End ---
+
+        // --- Empty/Error Handling (COMMENT OUT FOR DATA VIEW) ---
+        // const response = await axios.get('/tutorials')
+        // --- Empty/Error Handling End ---
+
         setTutorials(response.data)
       } catch (error) {
         console.error('Error fetching tutorials:', error)
+        // Optionally set a friendly error message state here
       } finally {
         setLoading(false)
       }
@@ -49,25 +72,31 @@ const Tutorials = () => {
 
   return (
     <div className='tutorials__container'>
-      {tutorials.map((tutorial) => (
-        <Link
-          to={`/tutorial/${tutorial.id}`}
-          key={tutorial.id}
-          className='tutorials__card'
-        >
-          <div className='tutorials__icon'>
-            <FaPlayCircle />
-          </div>
+      <h2 className='tutorials__main-header'>
+        Guided Tutorials & Walkthroughs
+      </h2>
 
-          <div className='tutorials__content'>
-            <div className='tutorials__title'>{tutorial.title}</div>
-
-            <div className='tutorials__duration'>
-              {tutorial.duration || 'N/A'} Minute(s)
+      <div className='tutorials__grid'>
+        {tutorials.map((tutorial) => (
+          <Link
+            to={`/tutorial/${tutorial.id}`}
+            key={tutorial.id}
+            className='tutorials__card'
+          >
+            <div className='tutorials__icon'>
+              <FaPlayCircle />
             </div>
-          </div>
-        </Link>
-      ))}
+
+            <div className='tutorials__content'>
+              <div className='tutorials__title'>{tutorial.title}</div>
+
+              <div className='tutorials__duration'>
+                {tutorial.duration || 'N/A'} Minutes
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

@@ -322,7 +322,7 @@ function Sidebar() {
                 </div>
               )}
             </div>
-            //Start
+
             {/* <Link
               to='/boardoutlet/settings'
               className='sepp__sidebar-left__items'
@@ -386,7 +386,6 @@ function Sidebar() {
                 </div>
               )}
             </div>
-            //here
           </div>
         </div>
         <a
