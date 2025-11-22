@@ -36,13 +36,13 @@ const FAQS = () => {
       answer: "Yes. Visit 'Settings' → 'Change Password'.",
     },
     {
-      question: 'I’m not receiving emails — what should I do?',
+      question: 'I’m not receiving emails, what should I do?',
       answer:
         'Check spam. If still missing, update your email or contact support.',
     },
     {
       question: 'How do I log out?',
-      answer: "Open the navigation menu and click 'Logout'.",
+      answer: "Open the sidebar menu, check beneath and click 'Logout'.",
     },
   ]
 

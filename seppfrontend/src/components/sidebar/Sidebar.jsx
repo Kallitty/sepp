@@ -44,6 +44,9 @@ function Sidebar() {
   const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false)
   const helpMenuRef = useRef(null)
 
+  const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false)
+  const settingsMenuRef = useRef(null)
+
   // Close sidebar and menus when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -53,6 +56,12 @@ function Sidebar() {
       }
       if (helpMenuRef.current && !helpMenuRef.current.contains(event.target)) {
         setIsHelpMenuOpen(false)
+      }
+      if (
+        settingsMenuRef.current &&
+        !settingsMenuRef.current.contains(event.target)
+      ) {
+        setIsSettingsMenuOpen(false)
       }
 
       // Close exam menu if clicking outside of it
@@ -165,7 +174,6 @@ function Sidebar() {
               <BiHome className='sepp__sidebar-left__icon' />
               Dashboard
             </Link>
-
             {/* Exam Section - Dropdown */}
             <div className='sepp__sidebar-exam-section' ref={examMenuRef}>
               <div
@@ -225,7 +233,6 @@ function Sidebar() {
               <BiSolidReport className='sepp__sidebar-left__icon' />
               Results
             </Link>
-
             {/* Certification Section - Dropdown */}
             <div className='sepp__sidebar-cert-section' ref={certMenuRef}>
               <div
@@ -256,7 +263,6 @@ function Sidebar() {
                 </div>
               )}
             </div>
-
             <Link
               to='/boardoutlet/message'
               className='sepp__sidebar-left__items'
@@ -265,14 +271,6 @@ function Sidebar() {
               <BiMessage className='sepp__sidebar-left__icon' />
               Message
             </Link>
-            {/* <Link
-              to='/boardoutlet/help'
-              className='sepp__sidebar-left__items'
-              onClick={handleSidebarItemClick}
-            >
-              <BiTask className='sepp__sidebar-left__icon' />
-              Help
-            </Link> */}
             {/* Help Section - Dropdown */}
             <div className='sepp__sidebar-help-section' ref={helpMenuRef}>
               <div
@@ -324,15 +322,71 @@ function Sidebar() {
                 </div>
               )}
             </div>
-
-            <Link
+            //Start
+            {/* <Link
               to='/boardoutlet/settings'
               className='sepp__sidebar-left__items'
               onClick={handleSidebarItemClick}
             >
               <DiAptana className='sepp__sidebar-left__icon' />
               Settings
-            </Link>
+            </Link> */}
+            {/* Settings Section-Dropdown */}
+            <div
+              className='sepp__sidebar-settings-section'
+              ref={settingsMenuRef}
+            >
+              <div
+                className='sepp__sidebar-settings-header'
+                onClick={() => {
+                  setIsSettingsMenuOpen(!isSettingMenuOpen)
+                  setIsHelpMenuOpen(false)
+                  setIsExamMenuOpen(false)
+                  setIsCertMenuOpen(false)
+                }}
+              >
+                <BiTask className='sepp__sidebar-left__icon' />
+                <span>Settings</span>
+                {isHelpMenuOpen ? <BiChevronUp /> : <BiChevronDown />}
+              </div>
+
+              {isHelpMenuOpen && (
+                <div className='sepp__sidebar-settings-subsections'>
+                  <Link
+                    to='/boardoutlet/settings/accountsettings'
+                    className='sepp__sidebar-left__items sepp__sidebar-settings-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Account Settings
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/settings/preference'
+                    className='sepp__sidebar-left__items sepp__sidebar-settings-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    App Preference
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/settings/notificationssettings'
+                    className='sepp__sidebar-left__items sepp__sidebar-settings-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Notification Settings
+                  </Link>
+
+                  <Link
+                    to='/boardoutlet/settings/reportissue'
+                    className='sepp__sidebar-left__items sepp__sidebar-help-item'
+                    onClick={handleSidebarItemClick}
+                  >
+                    Report Issue
+                  </Link>
+                </div>
+              )}
+            </div>
+            //here
           </div>
         </div>
         <a
