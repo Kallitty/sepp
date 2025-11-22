@@ -41,6 +41,11 @@ function Sidebar() {
     setIsExamMenuOpen(false) // Close exam menu when opening cert menu
   }
 
+  const toggleSettingsMenu = () => {
+    setIsSettingsMenuOpen(!isSettingsMenuOpen)
+    setIsHelpMenuOpen(false)
+  }
+
   const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false)
   const helpMenuRef = useRef(null)
 
@@ -332,25 +337,30 @@ function Sidebar() {
               Settings
             </Link> */}
             {/* Settings Section-Dropdown */}
-            <div
+            {/* <div
               className='sepp__sidebar-settings-section'
               ref={settingsMenuRef}
+            > */}
+            <div
+              className='sepp__sidebar-settings-section'
+              onClick={() => {
+                setIsSettingsMenuOpen(!isSettingMenuOpen)
+                setIsHelpMenuOpen(false)
+                setIsExamMenuOpen(false)
+                setIsCertMenuOpen(false)
+              }}
             >
               <div
                 className='sepp__sidebar-settings-header'
-                onClick={() => {
-                  setIsSettingsMenuOpen(!isSettingMenuOpen)
-                  setIsHelpMenuOpen(false)
-                  setIsExamMenuOpen(false)
-                  setIsCertMenuOpen(false)
-                }}
+                onClick={toggleSettingsMenu}
+                ref={settingsMenuRef}
               >
                 <BiTask className='sepp__sidebar-left__icon' />
                 <span>Settings</span>
-                {isHelpMenuOpen ? <BiChevronUp /> : <BiChevronDown />}
+                {isSettingsMenuOpen ? <BiChevronUp /> : <BiChevronDown />}
               </div>
 
-              {isHelpMenuOpen && (
+              {isSettingsMenuOpen && (
                 <div className='sepp__sidebar-settings-subsections'>
                   <Link
                     to='/boardoutlet/settings/accountsettings'
