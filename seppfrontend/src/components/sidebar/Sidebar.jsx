@@ -327,33 +327,18 @@ function Sidebar() {
                 </div>
               )}
             </div>
-
-            {/* <Link
-              to='/boardoutlet/settings'
-              className='sepp__sidebar-left__items'
-              onClick={handleSidebarItemClick}
-            >
-              <DiAptana className='sepp__sidebar-left__icon' />
-              Settings
-            </Link> */}
-            {/* Settings Section-Dropdown */}
-            {/* <div
-              className='sepp__sidebar-settings-section'
-              ref={settingsMenuRef}
-            > */}
             <div
               className='sepp__sidebar-settings-section'
-              onClick={() => {
-                setIsSettingsMenuOpen(!isSettingMenuOpen)
-                setIsHelpMenuOpen(false)
-                setIsExamMenuOpen(false)
-                setIsCertMenuOpen(false)
-              }}
+              ref={settingsMenuRef}
             >
               <div
                 className='sepp__sidebar-settings-header'
-                onClick={toggleSettingsMenu}
-                ref={settingsMenuRef}
+                onClick={() => {
+                  setIsSettingsMenuOpen(!isSettingsMenuOpen)
+                  setIsHelpMenuOpen(false)
+                  setIsExamMenuOpen(false)
+                  setIsCertMenuOpen(false)
+                }}
               >
                 <BiTask className='sepp__sidebar-left__icon' />
                 <span>Settings</span>
