@@ -55,15 +55,16 @@ const Certificate = () => {
 
   return (
     <div className='certificates__container'>
-      <h2>Your Earned Certificates</h2>
+      <h1>
+        {' '}
+        <FaAward />
+      </h1>
 
       {results.length === 0 ? (
         <div className='certificates__empty-state'>
-          <div className='certificates__empty-icon'>
-            <FaAward />
-          </div>
+          <div className='certificates__empty-icon'></div>
           <h3 className='certificates__empty-title'>
-            No Certificates Available
+            No Certificate(s) Available
           </h3>
           <p className='certificates__empty-message'>
             Apologies. Certificates are given on Merit and you are not eligible
@@ -98,10 +99,7 @@ const Certificate = () => {
                   <button
                     onClick={() => {
                       // Download - opens the pdf endpoint in a new tab
-                      window.open(
-                        `/api/certificate/pdf/${resItem.id}`,
-                        '_blank'
-                      )
+                      window.open(`/certificate/pdf/${resItem.id}`, '_blank')
                     }}
                     className='btn download'
                   >
