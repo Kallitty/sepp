@@ -89,7 +89,7 @@ const Certificate = () => {
                 <div className='certificates__actions'>
                   <button
                     onClick={() =>
-                      navigate(`/certificate/preview/${resItem.id}`)
+                      navigate(`/boardoutlet/certificate/preview/${resItem.id}`)
                     }
                     className='btn view'
                   >
@@ -99,7 +99,14 @@ const Certificate = () => {
                   <button
                     onClick={() => {
                       // Download - opens the pdf endpoint in a new tab
-                      window.open(`/certificate/pdf/${resItem.id}`, '_blank')
+                      // window.open(
+                      //   `/boardoutlet/certificate/pdf/${resItem.id}`,
+                      //   '_blank')
+
+                      window.open(
+                        `http://localhost:8000/certificate/pdf/${resItem.id}`,
+                        '_blank'
+                      )
                     }}
                     className='btn download'
                   >

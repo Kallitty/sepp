@@ -20,7 +20,7 @@ const CertificatePreview = ({ match }) => {
   useEffect(() => {
     ;(async () => {
       try {
-        const res = await axios.get(`/api/certificate/preview/${id}`)
+        const res = await axios.get(`/certificate/preview/${id}`)
         // res.data.result expected
         setResult(res.data.result)
       } catch (err) {
@@ -38,7 +38,7 @@ const CertificatePreview = ({ match }) => {
       <div className='certificates__empty-state'>Certificate not available</div>
     )
 
-  const logoUrl = '/mnt/data/cutoutsepp.png' // from your uploaded file
+  const logoUrl = '/public/mimages/cutoutsepp.png' // from your uploaded file
   const grade = mapGrade(Number(result.correct_answers_percentage))
   const certificateId = `SEPP-2025-${
     result.completion_date
@@ -84,11 +84,11 @@ const CertificatePreview = ({ match }) => {
 
         <div className='certificate-signatures'>
           <div>
-            <div className='sig-name'>A. Smith</div>
+            <div className='sig-name'>Luca Bradson</div>
             <div className='sig-title'>Chairman, SEPP Exams Board</div>
           </div>
           <div>
-            <div className='sig-name'>Ferdale K</div>
+            <div className='sig-name'>Ferndale Carl</div>
             <div className='sig-title'>Director of Assessments</div>
           </div>
         </div>
@@ -97,12 +97,23 @@ const CertificatePreview = ({ match }) => {
       <div className='certificate-actions'>
         <a
           className='btn download'
-          href={`/api/certificate/pdf/${result.id}`}
+          href={`/certificate/pdf/${result.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
           Download PDF
         </a>
+
+        {/* <a
+          className='btn download'
+          href={`${import.meta.env.VITE_API_BASE_URL}/certificate/pdf/${
+            result.id
+          }`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Download PDF
+        </a> */}
       </div>
     </div>
   )

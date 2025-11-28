@@ -35,6 +35,7 @@ import Waec from '../usercomponents/waec/Waec'
 import Neco from '../usercomponents/neco/Neco'
 import Nabteb from '../usercomponents/nabteb/Nabteb'
 import Certificate from '../usercomponents/certificate/Certifcate'
+import CertificatePreview from '../usercomponents/certificate/CertificatePreview'
 import ReportCard from '../usercomponents/reportcard/ReportCard'
 import FAQ from '../containers/faq/FAQ'
 import Blog from '../containers/blog/Blog'
@@ -112,6 +113,7 @@ const routes = createBrowserRouter([
           { path: 'exams/neco', element: <Neco /> },
           { path: 'exams/nabteb', element: <Nabteb /> },
           { path: 'certification/certificates', element: <Certificate /> },
+          { path: 'certificate/preview/:id', element: <CertificatePreview /> },
           { path: 'certification/reportcard', element: <ReportCard /> },
           { path: 'help/faq', element: <FAQS /> },
           { path: 'help/tutorials', element: <Tutorials /> },
