@@ -16,6 +16,19 @@ const CertificatePreview = ({ match }) => {
   const id = match?.params?.id || window.location.pathname.split('/').pop()
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(true)
+  const printRef = useRef(null)
+
+  //
+
+  const handleDownloadPdf = async () => {
+    const element = printRef.current
+    const canvas = await html2canvas(element)
+
+    const dataUrl = canvas.toDataURL('image/png')
+
+    // do something with the image…
+    console.log('Image generated:', dataUrl)
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -40,14 +53,14 @@ const CertificatePreview = ({ match }) => {
 
   const logoUrl = '/public/mimages/cutoutsepp.png' // from your uploaded file
   const grade = mapGrade(Number(result.correct_answers_percentage))
-  const certificateId = `SEPP-2025-${
+  const certificateId = `SEPP-202-${
     result.completion_date
       ? result.completion_date.replace(/-/g, '')
       : new Date().toISOString().slice(5, 10).replace('-', '')
   }-${result.id}`
 
   return (
-    <div className='certificate-preview-wrap'>
+    <div ref={printRef} className='certificate-preview-wrap'>
       <div className='certificate-a4' id='certificateContent' role='document'>
         <div className='certificate-header'>
           <img src={logoUrl} alt='SEPP Logo' className='sepp-logo' />
@@ -95,14 +108,16 @@ const CertificatePreview = ({ match }) => {
       </div>
 
       <div className='certificate-actions'>
-        <a
+        <button
+          onClick={handleDownloadPdf}
           className='btn download'
-          href={`/certificate/pdf/${result.id}`}
+          // Use the full URL to the Laravel backend endpoint
+          // href={`http://localhost:8000/certificate/pdf/${result.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
           Download PDF
-        </a>
+        </button>
 
         {/* <a
           className='btn download'
