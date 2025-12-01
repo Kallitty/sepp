@@ -96,7 +96,7 @@ const Certificate = () => {
                     View Certificate
                   </button>
 
-                  <a
+                  <button
                     onClick={() => {
                       // Download - opens the pdf endpoint in a new tab
                       // window.open(
@@ -111,7 +111,7 @@ const Certificate = () => {
                     className='btn download'
                   >
                     Download PDF
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

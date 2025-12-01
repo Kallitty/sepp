@@ -2,6 +2,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import './certificate.scss'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
+// import jsPDF from 'jspdf'
 
 function mapGrade(score) {
   if (score >= 80) return 'A1'
@@ -22,12 +25,64 @@ const CertificatePreview = ({ match }) => {
 
   const handleDownloadPdf = async () => {
     const element = printRef.current
-    const canvas = await html2canvas(element)
 
+    // Capture certificate as image
+    const canvas = await html2canvas(element, { scale: 2 })
     const dataUrl = canvas.toDataURL('image/png')
 
-    // do something with the image…
-    console.log('Image generated:', dataUrl)
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'px',
+      format: 'a4',
+    })
+
+    const pageWidth = pdf.internal.pageSize.getWidth()
+    const pageHeight = pdf.internal.pageSize.getHeight()
+
+    // 1️⃣ Add certificate image first
+    pdf.addImage(dataUrl, 'PNG', 0, 0, pageWidth, pageHeight)
+
+    // 2️⃣ Load watermark image
+    const watermarkImg = await new Promise((resolve) => {
+      const img = new Image()
+      img.src = '/mimages/cutoutsepp.png' // your watermark icon
+      img.onload = () => resolve(img)
+    })
+
+    // 3️⃣ Tile small watermarks across the PDF diagonally
+    const tileSize = 20 // size of watermark
+    const gap = 20 // spacing between tiles
+    const opacity = 0.08 // faint watermark
+    const angle = 45 // rotation angle in degrees
+
+    pdf.setGState(new pdf.GState({ opacity }))
+
+    let row = 0
+
+    for (let y = 0; y < pageHeight; y += gap) {
+      const offsetX = (row % 2) * (gap / 2) // stagger rows diagonally
+
+      for (let x = -offsetX; x < pageWidth; x += gap) {
+        pdf.addImage(
+          watermarkImg,
+          'PNG',
+          x,
+          y,
+          tileSize,
+          tileSize,
+          undefined,
+          undefined,
+          angle // rotation in degrees
+        )
+      }
+
+      row++
+    }
+
+    pdf.setGState(new pdf.GState({ opacity: 1 }))
+
+    const safeName = result.user_name.replace(/[^a-z0-9]/gi, '_').toLowerCase()
+    pdf.save(`${safeName}.pdf`)
   }
 
   useEffect(() => {
@@ -60,8 +115,13 @@ const CertificatePreview = ({ match }) => {
   }-${result.id}`
 
   return (
-    <div ref={printRef} className='certificate-preview-wrap'>
-      <div className='certificate-a4' id='certificateContent' role='document'>
+    <div className='certificate-preview-wrap'>
+      <div
+        ref={printRef}
+        className='certificate-a4'
+        id='certificateContent'
+        role='document'
+      >
         <div className='certificate-header'>
           <img src={logoUrl} alt='SEPP Logo' className='sepp-logo' />
           <div className='issuer'>Issued by: SEPP Exams Board</div>
@@ -86,6 +146,7 @@ const CertificatePreview = ({ match }) => {
           <div>
             Certificate ID: <strong>{certificateId}</strong>
           </div>
+
           <div>
             Date:{' '}
             <strong>
@@ -106,29 +167,15 @@ const CertificatePreview = ({ match }) => {
           </div>
         </div>
       </div>
-
       <div className='certificate-actions'>
         <button
           onClick={handleDownloadPdf}
           className='btn download'
-          // Use the full URL to the Laravel backend endpoint
-          // href={`http://localhost:8000/certificate/pdf/${result.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
           Download PDF
         </button>
-
-        {/* <a
-          className='btn download'
-          href={`${import.meta.env.VITE_API_BASE_URL}/certificate/pdf/${
-            result.id
-          }`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Download PDF
-        </a> */}
       </div>
     </div>
   )
