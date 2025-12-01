@@ -1,4 +1,3 @@
-// src/components/Certificate.jsx
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './certificate.scss'
@@ -22,52 +21,55 @@ const Certificate = () => {
 
   const handleDirectDownload = async (id) => {
     try {
-      // fetch certificate data
       const res = await axios.get(`/certificate/preview/${id}`)
       const result = res.data.result
 
-      // create a hidden preview container
       const temp = document.createElement('div')
       temp.style.position = 'fixed'
       temp.style.left = '-9999px'
       temp.style.top = '0'
       temp.style.width = '1122px'
       temp.style.height = '793px'
-      temp.style.background = 'white'
       temp.style.padding = '40px 60px'
+      temp.style.background = 'white'
       temp.style.fontFamily = 'Georgia, serif'
       temp.style.boxSizing = 'border-box'
+
       temp.innerHTML = `
-        <div style="text-align:center;">
-          <img src="/mimages/cutoutsepp.png" style="height:70px;" />
-          <div style="font-weight:600;margin-top:10px;">Issued by: SEPP Exams Board</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <img src="/public/mimages/cutoutsepp.png" style="height:70px;" />
+          <div style="font-weight:600;color:#6b2f74;">Issued by: SEPP Exams Board</div>
         </div>
 
-        <h1 style="text-align:center;margin-top:20px;color:#470647;font-size:34px;">
+        <h1 style="text-align:center;color:#470647;font-size:34px;margin-top:20px;">
           Certificate of Achievement
         </h1>
-        <p style="text-align:center;margin-top:10px;">This is to certify that</p>
 
-        <h2 style="text-align:center;font-size:30px;font-weight:700;color:#2c0326;margin-top:5px;">
+        <p style="text-align:center;margin-top:8px;color:#555;">This is to certify that</p>
+
+        <h2 style="text-align:center;font-size:30px;margin-top:6px;color:#2c0326;font-weight:700;">
           ${result.user_name}
         </h2>
 
         <p style="text-align:center;margin-top:5px;">has successfully completed</p>
 
-        <h3 style="text-align:center;font-size:22px;font-weight:600;margin-top:4px;">
+        <h3 style="text-align:center;font-size:22px;margin-top:6px;color:#333;font-weight:600;">
           ${result.quiz_title} — ${result.exam_segment || 'General'}
         </h3>
 
-        <p style="text-align:center;margin-top:10px;font-size:18px;">
-          Score: <strong>${result.correct_answers_percentage}%</strong> •
-          Grade: <strong>${mapGrade(
-            Number(result.correct_answers_percentage)
-          )}</strong>
+        <p style="text-align:center;margin-top:12px;font-size:18px;color:#333;">
+          Score: <strong>${
+            result.correct_answers_percentage
+          }%</strong> • Grade: 
+          <strong>${mapGrade(result.correct_answers_percentage)}</strong>
         </p>
 
-        <div style="display:flex;justify-content:center;margin-top:20px;gap:50px;font-size:14px;">
+        <div style="display:flex;justify-content:center;margin-top:18px;font-size:14px;color:#555;gap:40px;">
           <div>Certificate ID: <strong>${result.id}</strong></div>
-          <div>Date: <strong>${result.completion_date}</strong></div>
+          <div>Date: <strong>${
+            result.completion_date ||
+            new Date(result.created_at).toLocaleDateString()
+          }</strong></div>
         </div>
 
         <div style="position:absolute;bottom:40px;left:60px;right:60px;display:flex;justify-content:space-between;">
@@ -81,6 +83,7 @@ const Certificate = () => {
           </div>
         </div>
       `
+
       document.body.appendChild(temp)
 
       const canvas = await html2canvas(temp, { scale: 2 })
@@ -98,6 +101,37 @@ const Certificate = () => {
       const pageHeight = pdf.internal.pageSize.getHeight()
 
       pdf.addImage(dataUrl, 'PNG', 0, 0, pageWidth, pageHeight)
+
+      const watermark = await new Promise((resolve) => {
+        const img = new Image()
+        img.src = '/mimages/cutoutsepp.png'
+        img.onload = () => resolve(img)
+      })
+
+      const tileSize = 26
+      const gap = 70
+      const opacity = 0.06
+      const angle = 45
+
+      pdf.setGState(new pdf.GState({ opacity }))
+
+      for (let y = -100; y < pageHeight + 100; y += gap) {
+        for (let x = -100; x < pageWidth + 100; x += gap) {
+          pdf.addImage(
+            watermark,
+            'PNG',
+            x,
+            y,
+            tileSize,
+            tileSize,
+            undefined,
+            undefined,
+            angle
+          )
+        }
+      }
+
+      pdf.setGState(new pdf.GState({ opacity: 1 }))
 
       const safeName = result.user_name
         .replace(/[^a-z0-9]/gi, '_')
