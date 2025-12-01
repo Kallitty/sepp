@@ -1,4 +1,3 @@
-// src/components/Certificate.jsx
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './certificate.scss'
@@ -97,18 +96,10 @@ const Certificate = () => {
                   </button>
 
                   <button
-                    onClick={() => {
-                      // Download - opens the pdf endpoint in a new tab
-                      // window.open(
-                      //   `/boardoutlet/certificate/pdf/${resItem.id}`,
-                      //   '_blank')
-
-                      window.open(
-                        `http://localhost:8000/certificate/pdf/${resItem.id}`,
-                        '_blank'
-                      )
-                    }}
+                    // onClick={handleDownloadPdf}
                     className='btn download'
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
                     Download PDF
                   </button>

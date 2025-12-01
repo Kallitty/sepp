@@ -1,4 +1,3 @@
-// src/components/CertificatePreview.jsx
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import './certificate.scss'
@@ -14,8 +13,6 @@ function mapGrade(score) {
 }
 
 const CertificatePreview = ({ match }) => {
-  // If your router uses useParams, adapt accordingly
-  // For react-router v6, use useParams(); here show a generic prop "match"
   const id = match?.params?.id || window.location.pathname.split('/').pop()
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(true)
