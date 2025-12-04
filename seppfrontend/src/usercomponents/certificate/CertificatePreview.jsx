@@ -155,6 +155,7 @@ const CertificatePreview = ({ match }) => {
 
         <div className='certificate-signatures'>
           <div>
+            {/* <div className='sig-name'>Luca Bradson</div> */}
             <div className='sig-name'>Luca Bradson</div>
             <div className='sig-title'>Chairman, SEPP Exams Board</div>
           </div>
