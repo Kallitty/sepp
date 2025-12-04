@@ -196,21 +196,6 @@
   cursor: pointer;
 }
 
-.signature-text {
-  display: inline-block;
-  font-family: 'Mr Dafoe', cursive;
-  font-size: 38px;
-  color: #000;
-  transform: rotate(-2deg) skewX(-1deg); // small angle variations
-  letter-spacing: 1px; // mimic uneven pen strokes
-}
-
-.sig-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 // .certificates__container {
 //   display: grid;
 //   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
