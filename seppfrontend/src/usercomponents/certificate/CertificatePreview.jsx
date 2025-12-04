@@ -153,14 +153,24 @@ const CertificatePreview = ({ match }) => {
           </div>
         </div>
 
-        <div className='certificate-signatures'>
+        {/* <div className='certificate-signatures'>
           <div>
-            {/* <div className='sig-name'>Luca Bradson</div> */}
             <div className='sig-name'>Luca Bradson</div>
             <div className='sig-title'>Chairman, SEPP Exams Board</div>
           </div>
           <div>
             <div className='sig-name'>Ferndale Carl</div>
+            <div className='sig-title'>Director of Assessments</div>
+          </div>
+        </div> */}
+        <div className='certificate-signatures'>
+          <div className='sig-block'>
+            <div className='signature-text'>Luca Bradson</div>
+            <div className='sig-title'>Chairman, SEPP Exams Board</div>
+          </div>
+
+          <div className='sig-block'>
+            <div className='signature-text'>Ferndale Carl</div>
             <div className='sig-title'>Director of Assessments</div>
           </div>
         </div>
