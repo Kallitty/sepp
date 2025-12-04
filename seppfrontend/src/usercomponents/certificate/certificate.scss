@@ -197,11 +197,12 @@
 }
 
 .signature-text {
-  font-family: 'Great Vibes', cursive;
+  display: inline-block;
+  font-family: 'Mr Dafoe', cursive;
   font-size: 38px;
-  font-weight: 400;
   color: #000;
-  text-decoration: underline; // optional, to mimic pen
+  transform: rotate(-2deg) skewX(-1deg); // small angle variations
+  letter-spacing: 1px; // mimic uneven pen strokes
 }
 
 .sig-block {
