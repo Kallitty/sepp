@@ -194,7 +194,9 @@ const Certificate = () => {
         <div className='certificates__grid'>
           {results.map((resItem) => (
             <div className='certificates__card' key={resItem.id}>
-              <div className='certificates__icon'>{/* <FaAward /> */}</div>
+              <div className='certificates__icon'>
+                <FaAward />
+              </div>
 
               <div className='certificates__content'>
                 <div className='certificates__title'>{resItem.quiz_title}</div>
