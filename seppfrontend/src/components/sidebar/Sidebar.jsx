@@ -391,7 +391,7 @@ function Sidebar() {
             setIsMobileMenuOpen(false)
           }}
         >
-          {/* <BiLogOut className='sepp__sidebar-left__logouticon' /> */}
+          <BiLogOut className='sepp__sidebar-left__logouticon' />
           Logout
         </a>
       </div>
